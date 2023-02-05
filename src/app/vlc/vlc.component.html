@@ -1,0 +1,151 @@
+
+
+<!--Header-->
+<div class="header clearfix">
+      <div class="header-left">
+          <a href="#" class="noselect">
+            <img src="https://i.ibb.co/WzsdbKP/Heart-logo.png" alt="Logo">
+            <span>VLC remote.</span>
+          </a>
+      </div>
+      <div class="header-right">
+        <ul  class="noselect">
+          <li><a href="#"><i class="fas fa-cat"></i>show/hide vlc</a>
+            <ul>
+              <li>
+                  <button id="hidePC" >
+                    <h1><em class="fas fa-cat"></em></h1>
+                    <span> PC1</span>
+                  </button>
+                  <button id="hidePC2" >
+                    <h1><em class="fa fa-laptop"></em></h1>
+                    <span> PC2</span>
+                  </button>
+              </li>
+              <li>
+                 <button id="hidePC3" style="font-size: 15px; text-align: center">
+                   <h1><em class="fas fa-cat"></em></h1>
+                   <span> PC3</span>
+                 </button>
+              </li>
+              <li>
+                <button id="hideHPlan" >
+                  <h1><em class="fa fa-laptop"></em></h1>
+                  <span> HPlan</span>
+                </button>
+              </li>
+              <li>
+                <button id="hideMAC" >
+                  <h1><em class="fab fa-apple"></em></h1>
+                  <span> Mac</span>
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+</div>
+<!--
+            <li><button id="hidePC4" style="font-size: 15px; text-align: center">
+            <h1><em class="fas fa-cat"></em></h1>
+            <span> PC4</span></button>
+            </li>
+                                    -->
+<!--button id="hidemacosx" >
+  <h1><em class="fab fa-apple"></em></h1>
+    <span> Maclan</span></button-->
+
+<!--button id="hideHPlan2" >
+  <h1><em class="fa fa-laptop"></em></h1>
+    <span> HPlan</span></button-->
+<!--li><button id="hideHP" >
+  <h1><em class="fa-solid fa-wifi"></em></h1>
+    <span> HP</span></button>
+
+  <button id="hideHP2" >
+    <h1><em class="fa-solid fa-wifi"></em></h1>
+      <span> HP2</span></button>
+</li-->
+
+
+
+<!--service-->
+<div class="remote clearfix">
+  <div class="noselect">
+
+    <!-- PC -->
+    <iframe id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
+    <iframe id="iframePC2"  class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
+    <iframe id="iframePC3" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8082/mobile.html"></iframe>
+    <iframe id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8083/mobile.html"></iframe>
+    <iframe id="iframeHPlan" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8084/mobile.html"></iframe>
+    <!--iframe id="iframeHP"  src="http://192.168.2.2:8087/mobile.html"></iframe>
+    <iframe id="iframeHP2" src="http://192.168.2.2:8097/mobile.html"></iframe-->
+    <!--iframe id="iframeHPlan2"  src="http://192.168.2.2:8094/mobile.html"></iframe-->
+    <!--iframe id="iframemacosx"  src="http://192.168.2.2:8067/mobile.html"></iframe>
+    <iframe id="iframePC4" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.2:8068/mobile.html"></iframe-->
+
+    <br>
+
+  </div>
+</div>
+
+<br><br>
+
+<!--Footer-->
+<div class="footer">
+
+  <ul class="social-menu">
+
+    <li><a href="http://192.168.2.5:8080"><i class="fab fa-apple"></i></a></li>
+    <li><a href="http://192.168.2.2:8080"><i class="fa fa-desktop"></i></a></li>
+    <li><a href="http://192.168.2.4:8080"><i class="fa fa-laptop"></i></a></li>
+    <!-- PC
+        <li><a href="http://192.168.2.2:8081"><i class="fa fa-desktop"></i>2</a></li>
+        <li><a href="http://192.168.2.2:8082"><i class="fa fa-desktop"></i>3</a></li>
+        <li><a href="http://192.168.2.2:8083"><i class="fa fa-desktop"></i>4</a></li>
+
+    <li class="noselect"><a href="http://192.168.2.7:8081"><i class="fa fa-laptop"></i>2</a></li> -->
+    <li><a href="http://192.168.2.2:9001"><i class="fa fa-server"></i></a></li>
+    <li>  <div class="fixed-width"><span class="noselect">&copy; No Rights User:Empty---Pw: </span><span>12345zxcvb</span></div></li>
+  </ul>
+
+</div>
+
+
+<!--
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+$(document).ready(function(){
+  $("#hidewifi").click(function(){
+    $("#iframewifi").toggle(1000);
+  });
+});
+
+            <li><button id="hidePC" style="font-size: 15px; text-align: center">
+			<h1><em class="fa fa-laptop"></em></h1>
+			<span> PC</span></button></li>
+
+						<iframe id="iframePC" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.2:8086/mobile.html"></iframe>
+
+
+						<iframe id="myFrame"></iframe>
+
+<script>
+$(function () {
+
+  $.ajax({
+     url: "http://192.168.2.2:8086/mobile.html",
+     success: function (data) {
+        $("#iframePC").html(data);
+     },
+     error: function () {
+        $("#iframePC").html("Web site is not avaialable");
+     }
+
+});
+</script>
+
+-->

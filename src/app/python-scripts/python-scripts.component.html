@@ -1,0 +1,49 @@
+Get the output from python file:
+<hr />
+<textarea>
+    def menu():
+        return json.dumps('Dikke Testo - Returning from file testoww.py the method menu')
+
+    if __name__ == "__main__":
+    menu()
+</textarea>
+<hr />
+{{start}}
+<hr />
+{{ data }}
+
+
+<script>
+    function random(number) {
+        return Math.floor(Math.random()*number);
+    }
+
+    function bgChange() {
+        return `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+    }
+
+    const container = document.querySelector('#container');
+
+    container.addEventListener('click', (event) => event.target.style.backgroundColor = bgChange());
+
+</script>
+
+
+<div id="container">
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+</div>
