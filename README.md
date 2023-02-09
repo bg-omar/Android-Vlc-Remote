@@ -1,3 +1,10 @@
+
+npm i -g @ionic/cli
+npm i -g @angular/cli
+npm i -g cordova-res corepack native-run
+npm i -g @capacitor/core @capacitor/cli @capacitor/android
+
+
 # angular-mobile-app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.

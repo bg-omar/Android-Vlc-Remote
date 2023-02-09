@@ -17,7 +17,7 @@ export class VlcComponent {
   title = 'angularCapacitor';
   image = '';
   constructor(private http: HttpClient){}
- /* async captureImage() {
+  async captureImage() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
@@ -28,6 +28,6 @@ export class VlcComponent {
     if (image) {
       this.image = `data:image/jpeg;base64,${image.base64String}`!;
     }
-  }*/
+  }
 
 }
