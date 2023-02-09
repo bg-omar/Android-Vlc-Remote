@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Browser } from '@capacitor/browser';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import "jquery";
+
 
 declare var $: JQueryStatic;
 declare var jQuery: JQueryStatic;
