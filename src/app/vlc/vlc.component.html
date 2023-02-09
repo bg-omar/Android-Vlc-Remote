@@ -1,5 +1,5 @@
 
-
+<div class="div-scrollable">
 <!--Header-->
 <div class="header clearfix">
       <div class="header-left">
@@ -45,48 +45,25 @@
         </ul>
       </div>
 </div>
-<!--
-            <li><button id="hidePC4" style="font-size: 15px; text-align: center">
-            <h1><em class="fas fa-cat"></em></h1>
-            <span> PC4</span></button>
-            </li>
-                                    -->
-<!--button id="hidemacosx" >
-  <h1><em class="fab fa-apple"></em></h1>
-    <span> Maclan</span></button-->
-
-<!--button id="hideHPlan2" >
-  <h1><em class="fa fa-laptop"></em></h1>
-    <span> HPlan</span></button-->
-<!--li><button id="hideHP" >
-  <h1><em class="fa-solid fa-wifi"></em></h1>
-    <span> HP</span></button>
-
-  <button id="hideHP2" >
-    <h1><em class="fa-solid fa-wifi"></em></h1>
-      <span> HP2</span></button>
-</li-->
-
-
 
 <!--service-->
 <div class="remote clearfix">
+<div class="card-container">
+    <button class="card card-small" (click)="captureImage()">
+      <span>Capture image</span>
+    </button>
+</div>
+
+<img [src]="image" *ngIf="image" [style.width]="'300px'" alt="image">
+
   <div class="noselect">
-
     <!-- PC -->
-    <iframe id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
-    <iframe id="iframePC2"  class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
-    <iframe id="iframePC3" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8082/mobile.html"></iframe>
-    <iframe id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8083/mobile.html"></iframe>
-    <iframe id="iframeHPlan" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8084/mobile.html"></iframe>
-    <!--iframe id="iframeHP"  src="http://192.168.2.2:8087/mobile.html"></iframe>
-    <iframe id="iframeHP2" src="http://192.168.2.2:8097/mobile.html"></iframe-->
-    <!--iframe id="iframeHPlan2"  src="http://192.168.2.2:8094/mobile.html"></iframe-->
-    <!--iframe id="iframemacosx"  src="http://192.168.2.2:8067/mobile.html"></iframe>
-    <iframe id="iframePC4" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.2:8068/mobile.html"></iframe-->
-
+    <iframe title="pc" id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080"></iframe>
+    <iframe title="pc2" id="iframePC2"  class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081"></iframe>
+    <iframe title="pc3" id="iframePC3" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8082"></iframe>
+    <iframe title="mac" id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8083/mobile.html"></iframe>
+    <iframe title="hplan" id="iframeHPlan" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8084/mobile.html"></iframe>
     <br>
-
   </div>
 </div>
 
@@ -97,19 +74,14 @@
 
   <ul class="social-menu">
 
-    <li><a href="http://192.168.2.5:8080"><i class="fab fa-apple"></i></a></li>
-    <li><a href="http://192.168.2.2:8080"><i class="fa fa-desktop"></i></a></li>
-    <li><a href="http://192.168.2.4:8080"><i class="fa fa-laptop"></i></a></li>
-    <!-- PC
-        <li><a href="http://192.168.2.2:8081"><i class="fa fa-desktop"></i>2</a></li>
-        <li><a href="http://192.168.2.2:8082"><i class="fa fa-desktop"></i>3</a></li>
-        <li><a href="http://192.168.2.2:8083"><i class="fa fa-desktop"></i>4</a></li>
-
-    <li class="noselect"><a href="http://192.168.2.7:8081"><i class="fa fa-laptop"></i>2</a></li> -->
+    <li><a href="http://192.168.2.2:8080"><i class="fab fa-apple"></i></a></li>
+    <li><a href="http://192.168.2.2:8081"><i class="fa fa-desktop"></i></a></li>
+    <li><a href="http://192.168.2.2:8082"><i class="fa fa-laptop"></i></a></li>
     <li><a href="http://192.168.2.2:9001"><i class="fa fa-server"></i></a></li>
     <li>  <div class="fixed-width"><span class="noselect">&copy; No Rights User:Empty---Pw: </span><span>12345zxcvb</span></div></li>
   </ul>
 
+</div>
 </div>
 
 

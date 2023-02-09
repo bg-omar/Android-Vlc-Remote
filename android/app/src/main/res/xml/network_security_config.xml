@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config>
+    <domain>localhost</domain>
+    <domain>192.168.2.2:8080</domain>
+    <domain>192.168.2.2:8081</domain>
+    <domain>192.168.2.2:8082</domain>
+    <domain>192.168.2.2:8083</domain>
+  </domain-config>
+</network-security-config>

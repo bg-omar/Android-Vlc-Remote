@@ -1,4 +1,4 @@
-package com.example.app;
+package com.remotervlc.angularmobileapp;
 
 import com.getcapacitor.BridgeActivity;
 

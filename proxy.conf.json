@@ -1,0 +1,6 @@
+{
+  "/vlc": {
+    "target": "http://192.168.2.2:8080",
+    "secure": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "defaultProject": "angular-mobile-app",
+  "projects": {
+    "angular-mobile-ap": {
+      "name": "angular-mobile-app",
+      "integrations": {
+        "capacitor": {}
+      },
+      "type": "angular"
+    },
+    "angular-mobile-app": {
+      "integrations": {
+        "capacitor": {}
+      }
+    }
+  }
+}
