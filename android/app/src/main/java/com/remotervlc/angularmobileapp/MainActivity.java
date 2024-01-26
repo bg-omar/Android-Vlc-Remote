@@ -23,7 +23,6 @@ public class MainActivity extends BridgeActivity {
     webView.setWebViewClient(new BridgeWebViewClient(bridge){
       @Override
       public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-        // Provide username and password
         handler.proceed("", "1z2x");
       }
     });

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+        <title>VLC remotes</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<script>
+
+$(document).ready(function(){$("#hideHP").click(function(){$("#iframeHP").toggle(1000);});});
+$(document).ready(function(){$("#hideHP2").click(function(){$("#iframeHP2").toggle(1000);  });});
+$(document).ready(function(){$("#hideHPlan").click(function(){$("#iframeHPlan").toggle(1000);  });});
+$(document).ready(function(){$("#hideHPlan2").click(function(){$("#iframeHPlan2").toggle(1000); });});
+$(document).ready(function(){$("#hideMAC").click(function(){$("#iframeMAC").toggle(1000); });});
+$(document).ready(function(){$("#hidemacosx").click(function(){$("#iframemacosx").toggle(1000); });});
+$(document).ready(function(){$("#hidePC").click(function(){$("#iframePC").toggle(1000); });});
+$(document).ready(function(){$("#hidePC2").click(function(){$("#iframePC2").toggle(1000); });});
+$(document).ready(function(){$("#hidePC3").click(function(){$("#iframePC3").toggle(1000); });});
+$(document).ready(function(){$("#hidePC4").click(function(){$("#iframePC4").toggle(1000);});});
+$(document).ready(function(){$('#hideHPlan').click(function(){ });
+       setTimeout(function(){$('#hideHPlan').trigger('click'); }, 1000);});
+$(document).ready(function(){$('#hideHPlan2').click(function(){ });
+       setTimeout(function(){$('#hideHPlan2').trigger('click'); }, 2000);});
+$(document).ready(function(){$('#hidemacosx').click(function(){ });
+       setTimeout(function(){$('#hidemacosx').trigger('click'); }, 3000);});
+
+</script>
+    <!--
+    $(document).ready(function(){$('#hidePC3').click(function(){ });
+           setTimeout(function(){$('#hidePC3').trigger('click');}, 4000);});
+    $(document).ready(function(){$('#hidePC4').click(function(){ });
+           setTimeout(function(){$('#hidePC4').trigger('click'); }, 5000);});
+
+$(document).ready(function(){
+  $("#hidewifi").click(function(){
+    $("#iframewifi").toggle(1000);
+  });
+});	
+
+            <li><button id="hidePC" style="font-size: 15px; text-align: center">
+			<h3><h1><em class="fa fa-laptop"></em></h1>
+			<span> PC</span></h3></button></li>
+			
+						<iframe id="iframePC" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8086/mobile.html"></iframe>
+						
+						
+						<iframe id="myFrame"></iframe>
+
+<script>
+$(function () {
+
+  $.ajax({
+     url: "http://192.168.2.3:8086/mobile.html",
+     success: function (data) {
+        $("#iframePC").html(data);
+     },
+     error: function () {
+        $("#iframePC").html("Web site is not avaialable");
+     }
+
+});
+</script>
+
+    -->
+<script>
+*{
+    margin:0;
+    padding:0;
+
+}
+.clearfix::after{
+    content:" ";
+    display:block;
+    clear:both;
+	
+}
+iframe{
+    min-width: 475px;
+    min-height: 375px;
+    border-width: 0;
+}
+button{
+    font-size: 15px;
+    text-align: center
+
+}
+
+img{
+    max-width:100%;
+}
+
+.text-center{
+    text-align:center;
+}
+.text-left{
+    text-align:left;
+}
+.text-right{
+    text-align:right;
+}
+.fixed-width{
+    min-width:350px;
+    margin:auto;
+	text-align:center;
+}
+body{
+    font-family: 'Arial', cursive;
+    font-weight: 600;
+	background-color: #FDE4FA ;
+}
+
+
+/*Header CSS*/
+.header{
+    background-color:#550055;
+}
+.header-left{
+    float:left;
+    width:30%;
+}
+.header-left img{
+    width:25px;
+    height:auto;
+}
+    /*Header Right*/
+.header-right{
+    float:right;
+    width:70%;
+}
+.header-right ul{
+    text-align:right;
+}
+.header-right ul li{
+    display:inline-block;
+    margin-left:-6px;
+
+}
+.header-right ul li a{
+    display:inline-block;
+    text-decoration:none;
+    color:#fff;
+    font-weight:30;
+    padding:0 6.76px;
+    line-height:35px;
+    border-right:1px solid #fff;
+    transition:.5s;
+    text-align:center ;
+}
+.header-right ul li:first-child a{
+    border-left:1px solid #fff;
+}
+.header-right ul a:hover{
+    background:rgba(44, 0, 44,.5);
+}
+    /*dropdown menu*/
+.header-right ul li{
+    position:relative;
+}
+.header-right ul li ul{
+    position:absolute;
+    left:0;
+    top:100%;
+    width:60px;
+    background-color:rgba(41, 0, 41,1.0);
+    transition:.6s;
+}
+.header-right ul li ul li{
+    display:block;
+    margin-left:0;
+}
+.header-right ul li ul li a{
+    display:block;
+    background-color:rgba(52, 0, 52,1.0);
+    border:.5px solid #fff;
+}
+.header-right ul li ul{
+    opacity:0;
+    visibility:hidden;
+    transform:scaleY(0);
+    transform-origin:top center;
+}
+.header-right ul li:hover ul{
+    transform:scaleY(1);
+    opacity:1;
+    visibility:visible;
+    background:#2980b9;
+}
+.header-right ul li:last-child ul{
+    background-color:rgba(52, 15, 52,1.0);
+    font-size:25px;
+    width:100%;
+    text-align:center;
+}
+
+/*Banner*/
+.banner{
+    background-color:rgba(255, 255, 255,1.0);
+    background-size:cover;
+    padding:120px 0;
+    background-attachment:fixed;
+}
+.banner-caption h2{
+    background:rgba(52,1,52,.3);
+    color:#fff;
+    max-width:300px;
+    display:inline-block;
+    margin:auto;
+    margin-top:auto;
+    font-size:20px;
+    border-radius:5px;
+    padding:10px 5px;
+}
+.banner-caption h3{
+    background:rgba(52,15,52,.3);
+    color:#fff;
+    display:inline-block;
+    max-width:300px;
+    margin: 5px auto auto;
+    font-size:15px;
+    border-radius:5px;
+    padding:10px 5px;
+}
+/*About Me*/
+.about{
+    margin-top:10px;
+}
+.about h2{
+	font-size: 41px;
+	margin-bottom: 2px;
+}
+.about p{
+	max-width: 342px;
+	margin: auto;
+	font-size: 45px;
+}
+    /*service*/
+.service{
+    margin-top:15px;
+}
+.service-item{
+    padding:2px 2px;
+    margin-left:.5%;
+    margin-right:.5%;
+    margin-bottom:8px;
+}
+.service-item span{
+	display: block;
+	height: 25px;
+	width: 50px;
+	background: rgba(150, 0, 150,.2);
+	color: #9C119C;
+	margin: auto;
+	font-size: 20px;
+	border-radius: 165px 30px 196px;
+}
+.service-item h3{
+    margin:2px 0;
+    font-size:17px;
+}
+.service-item p{
+    font-size:12px;
+}
+/*Blog Section*/
+.blog-container{
+    margin:5px 0;
+}
+.blog-left-container{
+    float:left;
+    width:75%;
+}
+.blog-right-notification{
+    float:right;
+    width:20%;
+}
+.blog-item{
+    margin:10px;
+    font-size:15px;
+    text-align:left;
+}
+.blog-item img{
+    float:left;
+    width:110px;
+    height:auto;
+    margin-right:10px;
+    transition:.6s;
+}
+.blog-item img:hover{
+    transform:scale(1.2);
+}
+    /*Blog Notification*/
+.blog-right-notification h2{
+    font-size:20px;
+    border-bottom:1px solid #ddd;
+    margin:5px 0;
+    padding-bottom:5px;
+}
+.blog-right-notification ul{
+    list-style:none;
+    margin-top:5px;
+}
+.blog-right-notification ul li{
+    border:1px solid #ddd;
+    background:#fafafa;
+    padding:5px;
+    font-size:10px;
+    margin-bottom:5px;
+    border-radius:5px;
+}
+
+
+/*Footer*/
+.footer{
+    background:rgba(27, 1, 27,1.0);
+    color:#fff;
+    padding:2px 0;
+    margin:1px 0;
+    margin-top:10px;
+}
+.footer-left{
+    float:left;
+    width:65%;
+}
+.footer-right{
+    float:right;
+    width:35%;
+}
+.social-menu{
+    text-align:left;
+}
+.social-menu li{
+    display:inline-block;
+}
+.social-menu li a{
+    color:#fff;
+    font-size:20px;
+    padding:3px;
+}
+.social-menu li a:hover{
+    background:rgba(41, 1, 41,.5);
+}
+
+/*remote*/
+.remote{
+    background:rgba(27, 1, 27,0.1);
+	width: auto;
+	
+}
+.remote-left{
+    float:left;
+    width:45%;
+	text-align:right;
+}
+
+.remote-right{
+    float:right;
+    width:45%;
+	margin-right: auto;
+	margin-left: 10px;
+}
+/*END*/
+</script>
+
+
+</head>
+<body>
+   <!--Header-->
+<div class="header clearfix">
+   	 <div class="fixed-width">
+      <div class="header-left">
+        <a href="#">
+          <img src="https://i.ibb.co/WzsdbKP/Heart-logo.png" alt="Logo">
+        </a>
+		
+      </div>
+      <!--Header Right-->
+      <div class="header-right">
+        <ul>
+          <li><a href="#"><i class="fas fa-cat"></i>show/hide vlc</a>
+          <ul>
+            <li><button id="hidePC" >
+			<h3><h1><em class="fas fa-cat"></em></h1>
+			<span> PC1</span></h3></button>
+
+			<button id="hidePC2" >
+			<h3><h1><em class="fa fa-laptop"></em></h1>
+			<span> PC2</span></h3></button></li>
+
+              <!--
+                          <li><button id="hidePC3" style="font-size: 15px; text-align: center">
+                          <h3><h1><em class="fas fa-cat"></em></h1>
+                          <span> PC3</span></h3></button></li>
+
+                          <li><button id="hidePC4" style="font-size: 15px; text-align: center">
+                          <h3><h1><em class="fas fa-cat"></em></h1>
+                          <span> PC4</span></h3></button></li>
+              -->
+
+		   <li><button id="hideHP" >
+			<h3><h1><em class="fa fa-laptop"></em></h1>
+			<span> HP</span></h3></button>
+ 
+			<button id="hideHP2" >
+			<h3><h1><em class="fa fa-laptop"></em></h1>
+			<span> HP2</span></h3></button></li>			  
+	
+            <li><button id="hideHPlan" >
+			<h3><h1><em class="fa fa-laptop"></em></h1>
+			<span> HPlan</span></h3></button>
+
+            <button id="hideHPlan2" >
+            <h3><h1><em class="fa fa-laptop"></em></h1>
+            <span> HPlan</span></h3></button></li>
+
+			<li><button id="hideMAC" >
+			<h3><h1><em class="fab fa-apple"></em></h1>
+			<span> Mac</span></h3></button>
+
+            <button id="hidemacosx" >
+            <h3><h1><em class="fab fa-apple"></em></h1>
+            <span> Osx</span></h3></button></li>
+
+          </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--service-->
+
+<div class="remote clearfix">
+   	 <div class="fixed-width">
+ 			<!-- PC -->
+			<iframe id="iframePC" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8086/mobile.html"></iframe>
+            <iframe id="iframePC2" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8096/mobile.html"></iframe>
+			<iframe id="iframeHP"  style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8087/mobile.html"></iframe>
+			<iframe id="iframeHP2"  style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8097/mobile.html"></iframe>
+			<iframe id="iframeHPlan"  style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8084/mobile.html"></iframe>
+			<iframe id="iframeHPlan2" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8094/mobile.html"></iframe>
+            <iframe id="iframeMAC"  style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8085/mobile.html"></iframe>
+            <iframe id="iframemacosx" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8067/mobile.html"></iframe>
+<!--
+            <iframe id="iframePC3" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8069/mobile.html"></iframe>
+            <iframe id="iframePC4" style="min-width: 450px; min-height: 350px; border-width: 0px" src="http://192.168.2.3:8068/mobile.html"></iframe>
+-->
+		<br>
+    </div>
+</div>
+	
+      
+
+
+   
+
+	
+<br><br>
+	
+    <!--Footer-->
+<div class="footer">
+    <div class="fixed-width">
+       
+           &copy; No Rights 
+		 User:Empty---Pw:12345zxcvb
+</div>
+		           <ul class="social-menu">
+
+            <li><a href="http://192.168.2.10:8080"><i class="fab fa-apple"></i></a></li>
+            <li><a href="http://192.168.2.3:8080"><i class="fa fa-desktop"></i></a></li>
+			<li><a href="http://192.168.2.7:8080"><i class="fa fa-laptop"></i></a></li>
+				<!-- PC
+            <li><a href="http://192.168.2.3:8081"><i class="fa fa-desktop"></i>2</a></li>
+            <li><a href="http://192.168.2.3:8082"><i class="fa fa-desktop"></i>3</a></li>
+            <li><a href="http://192.168.2.3:8083"><i class="fa fa-desktop"></i>4</a></li>	
+			 -->
+			<li><a href="http://192.168.2.7:8081"><i class="fa fa-laptop"></i>2</a></li>
+			<li><a href="http://192.168.2.3:9001"><i class="fa fa-server"></i></a></li>
+
+        </ul>
+       
+    </div>
+</div>
+
+</body>
+</html>
