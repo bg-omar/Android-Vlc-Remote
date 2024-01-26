@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-mobile-app'),
+      dir: require('path').join(__dirname, './coverage/vlc-remote'),
       subdir: '.',
       reporters: [
         { type: 'html' },

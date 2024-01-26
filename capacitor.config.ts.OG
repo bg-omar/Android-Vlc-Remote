@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.remotervlc.angularmobileapp',
-  appName: 'angular-mobile-app',
+  appName: 'vlc-remote',
   webDir: 'www',
   bundledWebRuntime: true,
   server: {

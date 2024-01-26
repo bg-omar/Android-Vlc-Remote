@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-mobile-app": {
+    "vlc-remote": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -85,11 +85,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-mobile-app:build:production",
+              "browserTarget": "vlc-remote:build:production",
               "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "angular-mobile-app:build:development",
+              "browserTarget": "vlc-remote:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },
@@ -98,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-mobile-app:build"
+            "browserTarget": "vlc-remote:build"
           }
         },
         "test": {

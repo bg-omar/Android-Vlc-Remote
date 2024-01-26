@@ -31,15 +31,18 @@ public class MainActivity extends BridgeActivity {
     // Enable JavaScript (if needed)
     webSettings.setJavaScriptEnabled(true);
 
-
   }
 
   @Override
   public void onresume() {
     super.onResume();
     WebView webview = this.getBridge().getWebView();
-    webview.setWebViewClient(new WebViewClient(getBridge()));
-
+    webview.setWebViewClient(new BridgeWebViewClient(bridge){
+      @Override
+      public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+        handler.proceed("", "1z2x");
+      }
+    });
   }
 
 }

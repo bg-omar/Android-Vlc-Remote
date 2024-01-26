@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">angular-mobile-app</string>
-    <string name="title_activity_main">angular-mobile-app</string>
+    <string name="app_name">vlc-remote</string>
+    <string name="title_activity_main">vlc-remote</string>
     <string name="package_name">com.remotervlc.angularmobileapp</string>
     <string name="custom_url_scheme">com.remotervlc.angularmobileapp</string>
 </resources>

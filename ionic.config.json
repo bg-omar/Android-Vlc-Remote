@@ -1,14 +1,14 @@
 {
-  "defaultProject": "angular-mobile-app",
+  "defaultProject": "vlc-remote",
   "projects": {
     "angular-mobile-ap": {
-      "name": "angular-mobile-app",
+      "name": "vlc-remote",
       "integrations": {
         "capacitor": {}
       },
       "type": "angular"
     },
-    "angular-mobile-app": {
+    "vlc-remote": {
       "integrations": {
         "capacitor": {}
       }
