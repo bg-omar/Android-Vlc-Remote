@@ -1,29 +1,18 @@
-import { Component } from '@angular/core';
 
+import "jquery";
 import { PopoverController } from '@ionic/angular';
+import {Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild} from '@angular/core';
+
 
 @Component({
-  template: `
-    <ion-list>
-      <ion-item button (click)="close('https://ionicframework.com/getting-started')">
-        <ion-label>Learn Ionic</ion-label>
-      </ion-item>
-      <ion-item button (click)="close('https://ionicframework.com/docs/')">
-        <ion-label>Documentation</ion-label>
-      </ion-item>
-      <ion-item button (click)="close('https://showcase.ionicframework.com')">
-        <ion-label>Showcase</ion-label>
-      </ion-item>
-      <ion-item button (click)="close('https://github.com/ionic-team/ionic')">
-        <ion-label>GitHub Repo</ion-label>
-      </ion-item>
-      <ion-item button (click)="support()">
-        <ion-label>Support</ion-label>
-      </ion-item>
-    </ion-list>
-  `
+  templateUrl: './vlc-popover.html',
 })
 export class VlcPopoverPage {
+  @Output() iframeToggle = new EventEmitter<string>();
+
+  onIframeToggle(iframe: string) {
+    this.iframeToggle.emit(iframe);
+  }
   constructor(public popoverCtrl: PopoverController) {}
 
   support() {
@@ -31,7 +20,7 @@ export class VlcPopoverPage {
   }
 
   close(url: string) {
-    window.open(url, '_blank');
+    //window.open(url, '_blank');
     this.popoverCtrl.dismiss();
   }
 }

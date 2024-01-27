@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
-import {environment} from "../../ionic-conference-app-master/src/environments/environment";
+import {environment} from "../environments/environment";
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {IonicStorageModule} from "@ionic/storage";

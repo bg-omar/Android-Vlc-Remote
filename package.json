@@ -10,7 +10,7 @@
     "* ionic cap build": "ionic capacitor build android --prod",
     "* sync-cap": "npx cap sync",
     "* open-android": "npx cap open android",
-    "init capacitor": "npx cap init vlc-remote com.omariskandarani.vlc-remote",
+    "init capacitor": "npx cap init vlc-remote com.omariskandarani.vlcremote",
     "init ionic": "npx ionic init vlc-remote --type=angular",
     "run": "ng run vlc-remote:serve --host=localhost --port=8100",
     "watch VLC": "ng build --watch --configuration   --output-path www --watch --output-hashing none",

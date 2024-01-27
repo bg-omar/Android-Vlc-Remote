@@ -1,18 +1,19 @@
-<ion-content>
-  <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button (click)="presentPopover($event)">
-          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+
 
 <div class="div-scrollable">
+  <ion-content>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="presentPopover($event)">
+            <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
   <!--Header-->
 <div class="header clearfix">
       <div class="header-left">
@@ -21,22 +22,22 @@
       </div>
       <div class="header-right">
         <ul  class="noselect">
-          <li><a href="#"><i class="fas fa-cat"></i>show/hide vlc</a>
+          <li><i class="fas fa-cat"></i>show/hide vlc
             <ul>
               <li>
-                  <button id="hidePC" >
+                  <button #hidePC id="hidePC" >
                     <h1><em class="fas fa-cat"></em></h1>
                     <span> PC1</span>
                   </button>
               </li>
               <li>
-              <button id="hidePC2" >
+              <button #hidePC2 id="hidePC2" >
                 <h1><em class="fas fa-cat"></em></h1>
                 <span> PC2</span>
               </button>
               </li>
               <li>
-                <button id="hideMAC" >
+                <button #hideMAC id="hideMAC" >
                   <h1><em class="fas fa-cat"></em></h1>
                   <span> MAC</span>
                 </button>
@@ -50,12 +51,18 @@
 <!--service-->
 <div class="remote clearfix">
   <div class="noselect">
+<div>
+      <iframe #iframePC class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
+    <iframe #iframePC2 class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
+    <iframe #iframeMAC class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
+</div>
+    <br> <br> <br>
+<!--    <div>
+    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
+    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
+    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>
+    </div>-->
 
-    <!-- PC -->
-    <iframe id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
-    <iframe id="iframePC2" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
-    <iframe id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
-    <br>
   </div>
 </div>
 
@@ -70,8 +77,8 @@
     <li><a href="http://192.168.2.2:9001"><i class="fa fa-server"></i></a></li>
     <li>  <div class="fixed-width"><span class="noselect">&copy; No Rights User:Empty---Pw: </span><span>1z2x</span></div></li>
   </ul>
-  <bg-badge [badgeText]="'pesto'"></bg-badge>
-</div>
 </div>
 
+
 </ion-content>
+</div>

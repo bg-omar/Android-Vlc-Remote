@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.omariskandarani.vlc-remote',
+  appId: 'com.omariskandarani.vlcremote',
   appName: 'vlc-remote',
   webDir: 'www',
   bundledWebRuntime: true,
