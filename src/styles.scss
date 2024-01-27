@@ -1,27 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
 /* Core CSS required for Ionic components to work properly */
-@import "../node_modules/@ionic/angular/css/core.css";
+@import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-@import "../node_modules/@ionic/angular/css/normalize.css";
-@import "../node_modules/@ionic/angular/css/structure.css";
-@import "../node_modules/@ionic/angular/css/typography.css";
-@import '../node_modules/@ionic/angular/css/display.css';
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
-@import "../node_modules/@ionic/angular/css/padding.css";
-@import "../node_modules/@ionic/angular/css/float-elements.css";
-@import "../node_modules/@ionic/angular/css/text-alignment.css";
-@import "../node_modules/@ionic/angular/css/text-transformation.css";
-@import "../node_modules/@ionic/angular/css/flex-utils.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+
+/*
+ * App CSS
+ * ----------------------------------------------------------------------------
+ * Imports a file that can contain Sass/CSS that should be used throughout
+ * the entire app.
+ */
+
+@import "./app/app";
 body{
   min-width: 450px;
   font-family: 'Arial', cursive;
   font-weight: 600;
-  background-color: #fde4fa ;
+  background-color: #ea94e0 ;
 }
 html {
-  background-color: #fde4fa ;
+  background-color: #ea94e0;
 }
 .div-scrollable {
     overflow-y: auto;

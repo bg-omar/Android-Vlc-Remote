@@ -5,43 +5,29 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VlcComponent } from './vlc/vlc.component';
-
-
 import { IonicModule } from '@ionic/angular';
-import {IframeComponent} from "./iframe/iframe.component";
-import {BgTabsModule} from "./tab-switch/tabs/tabs.module";
-import {BgBadgeModule} from "./badge/badge.module";
-import {BgTabSwitchModule} from "./tab-switch/tab-switch.module";
-import {BgIconModule} from "./icon/icon.module";
-import {BgInputModule} from "./input/input.module";
-import {BgDirectivesModule} from "./directive/directives.module";
-import {BgScrollNavModule} from "./scroll-nav/scroll-nav.module";
+import {environment} from "../../ionic-conference-app-master/src/environments/environment";
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
   declarations: [
     AppComponent,
-    VlcComponent
   ],
   imports: [
-    HttpClientModule,
     CommonModule,
-    BgBadgeModule,
-    BgTabsModule,
-    BgTabSwitchModule,
-    BgIconModule,
-    BgInputModule,
-    BgDirectivesModule,
-    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    IonicModule.forRoot({
-      animated: false,
-    }),
-    IframeComponent,
-    BgScrollNavModule,
+    HttpClientModule,
+    FormsModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, InAppBrowser],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

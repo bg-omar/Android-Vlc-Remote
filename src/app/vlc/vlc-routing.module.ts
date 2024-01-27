@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { VlcComponent } from './vlc.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: VlcComponent,
+    component: VlcComponent
   }
 ];
 
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VlcRoutingModule {}
+export class VlcRoutingModule { }

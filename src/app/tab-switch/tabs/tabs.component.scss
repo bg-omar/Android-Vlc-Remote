@@ -1,5 +1,5 @@
 
-
+$button-background: #000; $border-color: #000; $font-color: #000;
 :host {
     width: 100%;
 }
@@ -62,7 +62,7 @@
                 border: none;
 
                 a {
-                    color: $white;
+                    color: #fff;
                     background: linear-gradient(180deg, lighten($button-background, 2.5%) 0%, $button-background 100%);
                     border: 1px solid $button-background;
                 }

@@ -1,3 +1,16 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="presentPopover($event)">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <div class="div-scrollable">
   <!--Header-->
@@ -33,7 +46,7 @@
         </ul>
       </div>
 </div>
-<bg-badge [badgeText]="'pesto'"></bg-badge>
+
 <!--service-->
 <div class="remote clearfix">
   <div class="noselect">
@@ -57,7 +70,8 @@
     <li><a href="http://192.168.2.2:9001"><i class="fa fa-server"></i></a></li>
     <li>  <div class="fixed-width"><span class="noselect">&copy; No Rights User:Empty---Pw: </span><span>1z2x</span></div></li>
   </ul>
-
+  <bg-badge [badgeText]="'pesto'"></bg-badge>
 </div>
 </div>
 
+</ion-content>
