@@ -86,11 +86,9 @@
           "configurations": {
             "production": {
               "browserTarget": "vlc-remote:build:production",
-              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
               "browserTarget": "vlc-remote:build:development",
-              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

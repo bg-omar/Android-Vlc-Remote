@@ -1,7 +1,0 @@
-{
-  "vorticity": [1093845.633, "Ce", "m", "1/sec"],
-  "lightspeed": [299792458, "C", "m", "1/sec"],
-  "fine-structure": [0.0072973526, "Fine"],
-  "coulomb-barrier": [0.0000000000140897017, "Rc", "m"],
-  "max-force": [29.053507, "Fmax", "N"]
-}

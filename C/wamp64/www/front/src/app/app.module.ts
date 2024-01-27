@@ -8,17 +8,20 @@ import { VlcComponent } from './vlc/vlc.component';
 import { CalcComponent } from './calc/calc.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    VlcComponent,
-    CalcComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        VlcComponent,
+        CalcComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule
+    ],
+    providers: [],
+    exports: [
+        VlcComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
