@@ -1,0 +1,21 @@
+
+.bg-scroll-nav {
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    margin: inherit;
+    transition: top 0.2s ease-in-out;
+    z-index: 1002;
+
+    &.header-visible {
+        top: 0;
+    }
+
+    &.header-hidden {
+        top: -98px;
+    }
+
+    &.nav-only {
+        top: -58px;
+    }
+}

@@ -1,0 +1,9 @@
+<ul class="bg-tabs" [ngClass]="{'bg-tabs-margin': withMargin, 'bg-tabs-compact': isCompact}" id="bg-tab" role="tablist">
+    <li *ngFor="let tabItem of tabPanes" class="bg-tab-item" [ngClass]="{'bg-tab-active': tabItem.selected}">
+        <a class="bg-tab-link" id="tab-{{tabItem.tabTitle}}" (click)="selectTab(tabItem)">
+            <bg-icon [type]="tabItem.tabIcon" size="small" *ngIf="tabItem.tabIcon"></bg-icon>
+            <span [ngClass]="{'has-icon' : tabItem.tabIcon}">{{tabItem.tabTitle}}</span>
+        </a>
+    </li>
+</ul>
+<ng-content></ng-content>

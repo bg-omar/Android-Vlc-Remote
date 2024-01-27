@@ -1,0 +1,104 @@
+
+
+:host-context(.bgenius-style) {
+    .bg-tab-switch {
+        display: none;
+    }
+}
+
+:host-context(.kinesso-style) {
+    .bg-tab-switch {
+        display: flex;
+        justify-content: center;
+        height: 36px;
+
+        .content-tabs {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: fit-content;
+            margin: 0;
+            padding: 4px;
+            background-color: var(--secondary-disabled);
+            border: 1px solid var(--secondary-disabled);
+            border-radius: 48px;
+
+            .tab {
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                height: 28px;
+                margin: 0 4px 0 0;
+                padding: 5px 8px;
+                color: var(--action-icons);
+                font-family: var(--font-family);
+                font-size: 14px;
+                font-weight: 600;
+                background-color: transparent;
+                border-radius: 14px;
+                transition: all .2s ease;
+
+                .tab-text {
+                    color: var(--secondary-components);
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+
+                span:not(.tab-text) {
+                    display: block;
+                    padding: 2px 8px;
+                    line-height: 22px;
+                    background-color: transparent;
+                    border-radius: 8px;
+                    transition: background .2s ease-in;
+                    cursor: pointer;
+
+                    bg-icon {
+                        position: relative;
+                        top: 3px;
+                        display: inline;
+                        margin-right: 6px;
+                        filter: grayscale(1);
+                        opacity: .5;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba(143, 156, 180, 0.36);
+                }
+
+                &.selected {
+                    color: var(--text);
+                    font-weight: 700;
+                    background-color: white;
+
+                    span:not(.tab-text) bg-icon {
+                        filter: grayscale(0);
+                        opacity: 1;
+                    }
+                }
+
+                &:last-of-type {
+                    margin: 0;
+                }
+            }
+
+            &.content-tabs-compact {
+                height: 38px;
+
+                .tab {
+                    height: 38px;
+
+                    span:not(.tab-text) {
+                        margin-top: 5px;
+                        padding: 0 8px
+                    }
+
+                    &:active span:not(.tab-text) {
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
