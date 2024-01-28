@@ -2,82 +2,60 @@
 
 <div class="div-scrollable">
   <ion-content>
-    <ion-header class="ion-no-border">
+    <ion-header class="ion-no-border" [translucent]="true">
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-buttons slot="end">
+        <ion-title>VLC remote</ion-title>
+        <ion-buttons slot="start">
+          <div class="fixed-width"><span class="noselect">&copy; No Rights Pw: </span><span>1z2x</span></div>
+
+        </ion-buttons>
+        <ion-buttons slot="primary">
+          <i class="fas fa-cat"></i>show/hide vlc
+          <ion-button>
+            <button #hidePC id="hidePC" >
+              <h1><em class="fas fa-cat"></em></h1>
+              <span> PC1</span>
+            </button>
+          </ion-button>
+
+          <ion-button>
+            <button #hidePC2 id="hidePC2" >
+              <h1><em class="fas fa-cat"></em></h1>
+              <span> PC2</span>
+            </button>
+          </ion-button>
+
+          <ion-button >
+            <button #hideMAC id="hideMAC" >
+              <h1><em class="fas fa-cat"></em></h1>
+              <span> MAC</span>
+            </button>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons [collapse]="true" slot="end">
           <ion-button (click)="presentPopover($event)">
             <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-  <!--Header-->
-<div class="header clearfix">
-      <div class="header-left">
-            <img src="https://i.ibb.co/WzsdbKP/Heart-logo.png" alt="Logo">
-            <span>VLC remote.</span>
-      </div>
-      <div class="header-right">
-        <ul  class="noselect">
-          <li><i class="fas fa-cat"></i>show/hide vlc
-            <ul>
-              <li>
-                  <button #hidePC id="hidePC" >
-                    <h1><em class="fas fa-cat"></em></h1>
-                    <span> PC1</span>
-                  </button>
-              </li>
-              <li>
-              <button #hidePC2 id="hidePC2" >
-                <h1><em class="fas fa-cat"></em></h1>
-                <span> PC2</span>
-              </button>
-              </li>
-              <li>
-                <button #hideMAC id="hideMAC" >
-                  <h1><em class="fas fa-cat"></em></h1>
-                  <span> MAC</span>
-                </button>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-</div>
 
 <!--service-->
-<div class="remote clearfix">
-  <div class="noselect">
-<div>
-      <iframe #iframePC class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
-    <iframe #iframePC2 class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
-    <iframe #iframeMAC class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
-</div>
-    <br> <br> <br>
-<!--    <div>
-    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
-    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
-    <app-iframe class="col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>
-    </div>-->
+<div class="remote">
+  <hexatrail> </hexatrail>
+    <iframe #iframePC class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
+    <iframe #iframePC2 class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
+    <iframe #iframeMAC class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
 
-  </div>
+<!--    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
+    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
+    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>-->
 </div>
 
-<br><br>
 
-<!--Footer-->
-<div class="footer">
-
-  <ul class="social-menu">
-
-    <li><a href="http://localhost:4200/"><i class="fa fa-desktop"></i></a></li>
-    <li><a href="http://192.168.2.2:9001"><i class="fa fa-server"></i></a></li>
-    <li>  <div class="fixed-width"><span class="noselect">&copy; No Rights User:Empty---Pw: </span><span>1z2x</span></div></li>
-  </ul>
-</div>
 
 
 </ion-content>

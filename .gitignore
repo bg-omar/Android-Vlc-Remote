@@ -5,6 +5,10 @@
 /tmp
 /out-tsc
 /bazel-out
+/www/*
+/www/assets/*
+/www/svg/*
+
 
 # Node
 /node_modules
@@ -41,7 +45,14 @@ testem.log
 .DS_Store
 Thumbs.db
 /.angular/
-/www/*
-/www/assets/*
-/www/svg/*
 
+/C/wamp64
+/C/wamp64/
+/C/install.txt
+/.yarn/
+/.vscode/
+/android/.gradle
+/android/capacitor-cordova-android-plugins
+/android/app/build
+
+/.yarn/

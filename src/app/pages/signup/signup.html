@@ -39,6 +39,29 @@
         required>
       </ion-input>
 
+      <ion-input
+        label="ipaddress"
+        labelPlacement="stacked"
+        fill="solid"
+        [(ngModel)]="signup.ipaddress"
+        name="ipaddress"
+        type="text"
+        #ipaddress="ngModel"
+        errorText="ip is required">
+      </ion-input>
+
+      <ion-input
+        label="VLC Password"
+        labelPlacement="stacked"
+        fill="solid"
+        [(ngModel)]="signup.vlcpassword"
+        name="vlcpassword"
+        type="text"
+        #vlcpassword="ngModel"
+        errorText="vlcpassword">
+      </ion-input>
+
+
       <div class="ion-padding">
         <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Create</ion-button>
       </div>

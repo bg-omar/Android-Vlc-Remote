@@ -1,3 +1,7 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
+
 <ion-app [class.dark-theme]="dark">
   <ion-split-pane contentId="main-content">
 
@@ -70,12 +74,12 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-
+        </ion-list>
+        <ion-list [inset]="true">
           <ion-item>
             <ion-icon slot="start" name="moon-outline"></ion-icon>
-            <ion-toggle [(ngModel)]="dark">
-              Dark Mode
-            </ion-toggle>
+            Dark Mode
+            <ion-toggle [(ngModel)]="dark" (ionChange)="toggleChange($event)" justify="space-between"></ion-toggle>
           </ion-item>
         </ion-list>
 

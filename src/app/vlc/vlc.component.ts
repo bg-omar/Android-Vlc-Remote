@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core'
 import "jquery";
 import {VlcPopoverPage} from "./vlc-popover";
 import {PopoverController} from "@ionic/angular";
+import {Element} from "@angular/compiler";
 
 declare var $: JQueryStatic;
 declare var jQuery: JQueryStatic;
@@ -19,7 +20,7 @@ export class VlcComponent {
   @ViewChild('iframePC') iframePC: ElementRef;
   @ViewChild('iframePC2') iframePC2: ElementRef;
   @ViewChild('iframeMAC') iframeMAC: ElementRef;
-
+  @ViewChild('myDiv') myDiv: ElementRef;
   location = 'madison';
   conferenceDate = '2047-05-17';
 
@@ -43,16 +44,17 @@ export class VlcComponent {
     });
   }
 
+
   toggleIframePC() {
-    this.iframePC.nativeElement.style.display = this.iframePC.nativeElement.style.display === 'none'? 'block' : 'none';
+    this.iframePC.nativeElement.style.display = this.iframePC.nativeElement.style.display === 'none'? 'inline-block' : 'none';
     this.iframePC.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
   }
   toggleIframePC2() {
-    this.iframePC2.nativeElement.style.display = this.iframePC2.nativeElement.style.display === 'none'? 'block' : 'none';
+    this.iframePC2.nativeElement.style.display = this.iframePC2.nativeElement.style.display === 'none'? 'inline-block' : 'none';
     this.iframePC2.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
   }
   toggleIframeMAC() {
-    this.iframeMAC.nativeElement.style.display = this.iframeMAC.nativeElement.style.display === 'none'? 'block' : 'none';
+    this.iframeMAC.nativeElement.style.display = this.iframeMAC.nativeElement.style.display === 'none'? 'inline-block' : 'none';
     this.iframeMAC.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
   }
   async presentPopover(event: Event) {

@@ -13,6 +13,8 @@ import { UserData } from '../../providers/user-data';
 })
 export class AccountPage implements AfterViewInit {
   username: string;
+  ipaddress: string;
+  vlcpassword: string;
 
   constructor(
     public alertCtrl: AlertController,
@@ -22,6 +24,8 @@ export class AccountPage implements AfterViewInit {
 
   ngAfterViewInit() {
     this.getUsername();
+    this.getIpaddress();
+    this.getVlcpassword();
   }
 
   updatePicture() {
@@ -73,5 +77,69 @@ export class AccountPage implements AfterViewInit {
 
   support() {
     this.router.navigateByUrl('/support');
+  }
+
+  getVlcpassword() {
+    this.userData.getVlcpassword().then((vlcpassword) => {
+      this.vlcpassword = vlcpassword;
+    });
+  }
+
+  getIpaddress() {
+    this.userData.getVlcpassword().then((ipaddress) => {
+      this.ipaddress = ipaddress;
+    });
+  }
+
+  async changevlcpassword() {
+    const alert = await this.alertCtrl.create({
+      header: 'Change VlcPass',
+      buttons: [
+        'Cancel',
+        {
+          text: 'Ok',
+          handler: (data: any) => {
+            this.userData.setVlcpassword(data.vlcpassword);
+            this.getVlcpassword();
+          }
+        }
+      ],
+      inputs: [
+        {
+          type: 'text',
+          name: 'vlcpassword',
+          value: this.vlcpassword,
+          placeholder: 'vlcpassword'
+        }
+      ]
+    });
+    await alert.present();
+
+  }
+
+  async changeipaddress() {
+  const alert = await this.alertCtrl.create({
+    header: 'Change ipaddress',
+    buttons: [
+      'Cancel',
+      {
+        text: 'Ok',
+        handler: (data: any) => {
+          this.userData.setIpaddress(data.ipaddress);
+          this.getIpaddress();
+        }
+      }
+    ],
+    inputs: [
+      {
+        type: 'text',
+        name: 'ipaddress',
+        value: this.ipaddress,
+        placeholder: 'ipaddress'
+      }
+    ]
+  });
+  await alert.present();
+
   }
 }

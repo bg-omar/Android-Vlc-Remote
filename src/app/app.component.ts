@@ -24,24 +24,24 @@ export class AppComponent implements OnInit {
       url: '/app/tabs/vlc',
       icon: 'easel'
     },
-    {
-      title: 'Schedule',
-      url: '/app/tabs/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Speakers',
-      url: '/app/tabs/speakers',
-      icon: 'people'
-    },
-    {
-      title: 'About',
-      url: '/app/tabs/about',
-      icon: 'information-circle'
-    }
+    // {
+    //   title: 'Schedule',
+    //   url: '/app/tabs/schedule',
+    //   icon: 'calendar'
+    // },
+    // {
+    //   title: 'Speakers',
+    //   url: '/app/tabs/speakers',
+    //   icon: 'people'
+    // },
+    // {
+    //   title: 'About',
+    //   url: '/app/tabs/about',
+    //   icon: 'information-circle'
+    // }
   ];
   loggedIn = false;
-  dark = false;
+  dark = true;
 
   constructor(
     private menu: MenuController,
@@ -78,6 +78,15 @@ export class AppComponent implements OnInit {
         .then(() => this.swUpdate.activateUpdate())
         .then(() => window.location.reload());
     });
+    // Use matchMedia to check the user preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    // Initialize the dark theme based on the initial
+    // value of the prefers-color-scheme media query
+    this.initializeDarkTheme(prefersDark.matches);
+
+    // Listen for changes to the prefers-color-scheme media query
+    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
   }
 
   initializeApp() {
@@ -125,5 +134,21 @@ export class AppComponent implements OnInit {
     this.menu.enable(false);
     this.storage.set('ion_did_tutorial', false);
     this.router.navigateByUrl('/tutorial');
+  }
+
+  // Check/uncheck the toggle and update the theme based on isDark
+  initializeDarkTheme(isDark) {
+    this.dark = isDark;
+    this.toggleDarkTheme(isDark);
+  }
+
+  // Listen for the toggle check/uncheck to toggle the dark theme
+  toggleChange(ev) {
+    this.toggleDarkTheme(ev.detail.checked);
+  }
+
+  // Add or remove the "dark" class on the document body
+  toggleDarkTheme(shouldAdd) {
+    document.body.classList.toggle('dark', shouldAdd);
   }
 }

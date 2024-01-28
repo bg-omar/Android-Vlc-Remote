@@ -61,6 +61,26 @@ export class UserData {
     });
   }
 
+  setVlcpassword(vlcpassword: string): Promise<any> {
+    return this.storage.set('vlcpassword', vlcpassword);
+  }
+
+  getVlcpassword(): Promise<string> {
+    return this.storage.get('vlcpassword').then((value) => {
+      return value;
+    });
+  }
+
+  setIpaddress(ipaddress: string): Promise<any> {
+    return this.storage.set('ipaddress', ipaddress);
+  }
+
+  getIpaddress(): Promise<string> {
+    return this.storage.get('ipaddress').then((value) => {
+      return value;
+    });
+  }
+
   isLoggedIn(): Promise<boolean> {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
       return value === true;
