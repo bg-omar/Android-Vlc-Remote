@@ -8,6 +8,7 @@ import { VlcComponent } from './vlc.component';
 import { VlcRoutingModule } from './vlc-routing.module';
 import { VlcPopoverPage } from './vlc-popover';
 import {HexatrailComponent} from "../hexatrail/hexatrail.component";
+import {HomePage} from "../home/home";
 
 
 
@@ -19,7 +20,8 @@ import {HexatrailComponent} from "../hexatrail/hexatrail.component";
         FormsModule,
         IonicModule,
         IonicModule,
-        HexatrailComponent
+        HexatrailComponent,
+        HomePage
     ],
   declarations: [
     VlcComponent, VlcPopoverPage

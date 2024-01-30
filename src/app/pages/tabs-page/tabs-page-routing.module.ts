@@ -40,11 +40,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'about',
+        path: 'home',
         children: [
           {
             path: '',
-            loadChildren: () => import('../about/about.module').then(m => m.AboutModule)
+            loadChildren: () => import('../../home/home.module').then(m => m.HomeModule)
           }
         ]
       },
@@ -59,7 +59,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/schedule',
+        redirectTo: '/app/tabs/home',
         pathMatch: 'full'
       }
     ]

@@ -12,6 +12,10 @@ import { defineCustomElements as pwaElements} from '@ionic/pwa-elements/loader';
 import { defineCustomElements as jeepSqlite} from 'jeep-sqlite/loader';
 import { Capacitor } from '@capacitor/core';
 
+import './polyfills';
+
+
+
 if (environment.production) {
   enableProdMode();
 }

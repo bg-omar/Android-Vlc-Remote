@@ -9,6 +9,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
     path: 'vlc',
     loadChildren: () => import('./vlc/vlc.module').then(m => m.VlcModule)
   },
