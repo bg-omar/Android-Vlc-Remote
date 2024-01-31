@@ -16,8 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2018",
-    "module": "CommonJS",
+    "target": "ES2017",
+    "module": "ES2022",
     "lib": [
       "es2018",
       "dom"

@@ -12,6 +12,9 @@ const config: CapacitorConfig = {
     CapacitorHttp: {
       enabled: true,
     },
+    CapacitorSQLite: {
+      iosDatabaseLocation: "Library/CapacitorDatabase"
+    },
     SplashScreen: {
       launchShowDuration: 3000,
       launchAutoHide: true,

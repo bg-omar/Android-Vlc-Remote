@@ -8,7 +8,7 @@ import { VlcComponent } from './vlc.component';
 import { VlcRoutingModule } from './vlc-routing.module';
 import { VlcPopoverPage } from './vlc-popover';
 import {HexatrailComponent} from "../hexatrail/hexatrail.component";
-import {HomePage} from "../home/home";
+import {HomePage} from ".././home2/home";
 
 
 

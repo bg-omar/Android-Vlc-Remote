@@ -10,7 +10,7 @@ import { ScheduleModule } from '../schedule/schedule.module';
 import { SessionDetailModule } from '../session-detail/session-detail.module';
 import { SpeakerDetailModule } from '../speaker-detail/speaker-detail.module';
 import { SpeakerListModule } from '../speaker-list/speaker-list.module';
-import {HomeModule} from "../../home/home.module";
+import {HomeModule} from "../.././home2/home.module";
 
 @NgModule({
   imports: [

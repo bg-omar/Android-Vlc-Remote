@@ -5,12 +5,12 @@ import { CheckTutorial } from './providers/check-tutorial.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/vlc',
+    redirectTo: '/todos',
     pathMatch: 'full'
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('././home2/home.module').then(m => m.HomeModule)
   },
   {
     path: 'vlc',
@@ -36,7 +36,31 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
     canLoad: [CheckTutorial]
+  },
+  {
+    path: 'todos',
+    loadChildren: () => import('./pages/todos/todos.module')
+      .then(m => m.TodosModule)
+  },
+  {
+    path: 'todo',
+    loadChildren: () => import('./pages/todo/todo.module')
+      .then(m => m.TodoModule)
+  },
+  {
+    path: 'todo/:id',
+    loadChildren: () => import('./pages/todoedit/todoedit.module')
+      .then(m => m.TodoeditModule)
+  },
+  {
+    path: 'confirm',
+    loadChildren: () => import('./confirm/confirm.module').then( m => m.ConfirmPageModule)
+  },  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
+
+
 ];
 
 @NgModule({

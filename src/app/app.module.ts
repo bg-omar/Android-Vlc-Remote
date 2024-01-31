@@ -12,9 +12,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import {IonicStorageModule} from "@ionic/storage";
 
 
-import { IonicModule} from '@ionic/angular';
+import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 
 import { NativeHttpModule} from 'ionic-native-http-connection-backend';
+import {RouteReuseStrategy} from "@angular/router";
 
 
 
@@ -38,7 +39,8 @@ import { NativeHttpModule} from 'ionic-native-http-connection-backend';
   ],
   providers: [
     HttpClient,
-    InAppBrowser
+    InAppBrowser,
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

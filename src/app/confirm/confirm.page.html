@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Please confirm your profile</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ user.name }} is {{ user.age }} years old
+    </ion-card-content>
+    <ion-item float-right>
+      <ion-button color="primary" [routerLink]="'/home'">Ok</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

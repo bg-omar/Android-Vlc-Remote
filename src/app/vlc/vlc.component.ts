@@ -4,6 +4,7 @@ import {VlcPopoverPage} from "./vlc-popover";
 import {PopoverController} from "@ionic/angular";
 import {Element} from "@angular/compiler";
 
+
 declare var $: JQueryStatic;
 declare var jQuery: JQueryStatic;
 

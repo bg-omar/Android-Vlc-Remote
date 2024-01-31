@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
       url: '/app/tabs/vlc',
       icon: 'easel'
     },
-    // {
-    //   title: 'Schedule',
-    //   url: '/app/tabs/schedule',
-    //   icon: 'calendar'
-    // },
+    {
+      title: 'Todos',
+      url: '/app/tabs/todos',
+      icon: 'calendar'
+    },
     // {
     //   title: 'Speakers',
     //   url: '/app/tabs/speakers',

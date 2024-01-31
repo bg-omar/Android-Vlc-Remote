@@ -44,7 +44,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../../home/home.module').then(m => m.HomeModule)
+            loadChildren: () => import('../.././home2/home.module').then(m => m.HomeModule)
           }
         ]
       },
@@ -58,8 +58,17 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'todos',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../todos/todos.module').then(m => m.TodosModule)
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/app/tabs/home',
+        redirectTo: '/app/tabs/todos',
         pathMatch: 'full'
       }
     ]
