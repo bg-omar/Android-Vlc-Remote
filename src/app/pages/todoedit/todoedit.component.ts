@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ITodo } from '../../models/todo.model';
-import { VlcService } from '../../vlc.service';
+import { VlcService } from '../../services/vlc.service';
 import {Todo} from '../todo/todo';
 
 @Component({

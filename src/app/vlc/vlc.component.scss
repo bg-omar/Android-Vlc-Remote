@@ -64,6 +64,15 @@ div:hover {
       -ms-user-select: none; /* Internet Explorer/Edge */
       user-select: none;
    }
+    .storage-buttoins{
+      gap: 15px;
+      .butt{
+        margin: 15px;
+      }
+    }
+    .data {
+      font-size: large;
+    }
   }
 }
 

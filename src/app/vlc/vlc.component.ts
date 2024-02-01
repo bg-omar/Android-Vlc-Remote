@@ -3,11 +3,18 @@ import "jquery";
 import {VlcPopoverPage} from "./vlc-popover";
 import {PopoverController} from "@ionic/angular";
 import {Element} from "@angular/compiler";
+import {StorageService} from "../services/storage.service";
+import {GetResult} from "@capacitor/preferences";
 
 
 declare var $: JQueryStatic;
 declare var jQuery: JQueryStatic;
 
+type user = {
+  name: string;
+  age: number;
+  country: string;
+};
 
 @Component({
   selector: 'app-vlc',
@@ -22,14 +29,17 @@ export class VlcComponent {
   @ViewChild('iframePC2') iframePC2: ElementRef;
   @ViewChild('iframeMAC') iframeMAC: ElementRef;
   @ViewChild('myDiv') myDiv: ElementRef;
-  location = 'madison';
-  conferenceDate = '2047-05-17';
 
-  selectOptions = {
-    header: 'Select a Location'
+  user: user = {
+    name: 'me',
+    age: 36,
+    country: 'NL'
   };
+  that = JSON.stringify(this.user)
 
-  constructor(private renderer: Renderer2, public popoverCtrl: PopoverController) { }
+  public getterdata = "testing no data";
+
+  constructor(public storageServive: StorageService, private renderer: Renderer2, public popoverCtrl: PopoverController) { }
 
   ngAfterViewInit() {
     this.renderer.listen(this.hidePC.nativeElement, 'click', () => {
@@ -66,4 +76,15 @@ export class VlcComponent {
     await popover.present();
   }
 
+  setJson() {
+    this.storageServive.setData(this.user.name, this.that );
+  }
+  async getJson() {
+    await this.storageServive.getData(this.user.name).then((data:any) => { this.getterdata = data.value});
+  }
+  async delJson() {
+    await this.storageServive.delData(this.user.name);
+    this.getterdata = "testing deleted data";
+  }
 }
+

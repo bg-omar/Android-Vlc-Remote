@@ -55,7 +55,7 @@ public class MainActivity extends BridgeActivity {
 
   }
 
-  @Override
+
   public void onresume() {
     super.onResume();
     WebView webview = this.getBridge().getWebView();
