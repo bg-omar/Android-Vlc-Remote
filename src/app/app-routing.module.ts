@@ -9,8 +9,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('././home2/home.module').then(m => m.HomeModule)
+    path: 'home2',
+    loadChildren: () => import('./home2/home.module').then(m => m.HomeModule)
   },
   {
     path: 'vlc',
@@ -55,7 +55,8 @@ const routes: Routes = [
   {
     path: 'confirm',
     loadChildren: () => import('./confirm/confirm.module').then( m => m.ConfirmPageModule)
-  },  {
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
@@ -68,3 +69,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

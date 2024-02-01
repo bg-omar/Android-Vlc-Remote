@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   ];
   loggedIn = false;
   dark = true;
-
+  title = this.appPages
   constructor(
     private menu: MenuController,
     private platform: Platform,

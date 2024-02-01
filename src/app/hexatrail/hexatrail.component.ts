@@ -12,8 +12,8 @@ import {NgForOf, NgIf} from "@angular/common";
   ],
   styleUrls: ['./hexatrail.component.scss']
 })
-export class HexatrailComponent<T> implements AfterViewInit, OnChanges {
-  rows: Array<T> | undefined | null;
+export class HexatrailComponent implements AfterViewInit, OnChanges {
+  rows: Array<any> | undefined | null;
   rowsPerPage: any;
   hexagonsPerRow: any;
   hexagonHeight: number = 110;
