@@ -30,11 +30,11 @@ export class AppComponent implements OnInit {
       url: '/app/tabs/todos',
       icon: 'calendar'
     },
-    // {
-    //   title: 'Speakers',
-    //   url: '/app/tabs/speakers',
-    //   icon: 'people'
-    // },
+    {
+      title: 'Account',
+      url: '/app/tabs/account',
+      icon: 'people'
+    },
     // {
     //   title: 'About',
     //   url: '/app/tabs/about',

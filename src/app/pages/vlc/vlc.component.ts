@@ -1,10 +1,20 @@
 import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core';
 import "jquery";
 import {VlcPopoverPage} from "./vlc-popover";
-import {PopoverController} from "@ionic/angular";
+import {
+  AlertController, Config, IonFab,
+  IonRouterOutlet,
+  LoadingController,
+  ModalController,
+  PopoverController,
+  ToastController
+} from "@ionic/angular";
 import {Element} from "@angular/compiler";
-import {StorageService} from "../services/storage.service";
+import {StorageService} from "../../services/storage.service";
 import {GetResult} from "@capacitor/preferences";
+import {ConferenceData} from "../../providers/conference-data";
+import {Router} from "@angular/router";
+import {UserData} from "../../providers/user-data";
 
 
 declare var $: JQueryStatic;
@@ -30,17 +40,36 @@ export class VlcComponent {
   @ViewChild('iframeMAC') iframeMAC: ElementRef;
   @ViewChild('myDiv') myDiv: ElementRef;
 
-  user: user = {
+  userSettings: user = {
     name: 'me',
     age: 36,
     country: 'NL'
   };
-  that = JSON.stringify(this.user)
+
+  userSettings2: user = {
+    name: 'you',
+    age: 28,
+    country: 'NL'
+  };
+  that: string = JSON.stringify(this.userSettings);
+  that2: string = JSON.stringify(this.userSettings2);
 
   public getterdata = "testing no data";
 
-  constructor(public storageServive: StorageService, private renderer: Renderer2, public popoverCtrl: PopoverController) { }
-
+  constructor(
+    public storageServive: StorageService,
+    private renderer: Renderer2,
+    public popoverCtrl: PopoverController,
+    public alertCtrl: AlertController,
+    public confData: ConferenceData,
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
+    public router: Router,
+    public routerOutlet: IonRouterOutlet,
+    public toastCtrl: ToastController,
+    public user: UserData,
+    public config: Config
+  ) { }
   ngAfterViewInit() {
     this.renderer.listen(this.hidePC.nativeElement, 'click', () => {
       this.toggleIframePC();
@@ -76,15 +105,43 @@ export class VlcComponent {
     await popover.present();
   }
 
-  setJson() {
-    this.storageServive.setData(this.user.name, this.that );
+  setJson(setter) {
+    if (setter == 1)this.storageServive.setData(this.userSettings.name, this.that).then(r =>{}) ;
+    if (setter == 2)this.storageServive.setData(this.userSettings2.name, this.that2).then(r =>{}) ;
   }
-  async getJson() {
-    await this.storageServive.getData(this.user.name).then((data:any) => { this.getterdata = data.value});
+  async getJson(getter) {
+    if (getter == 1){
+      await this.storageServive.getData(this.userSettings.name).then((data:any) => {
+        if(data.value) {
+          this.getterdata = data.value;
+        } else {
+          this.getterdata = "no value";
+        }
+      });
+    }
+    if (getter == 2){
+      await this.storageServive.getData(this.userSettings2.name).then((data:any) => {
+        if(data.value) {
+          this.getterdata = data.value;
+        } else {
+          this.getterdata = "no value";
+        }
+      });
+    }
   }
   async delJson() {
-    await this.storageServive.delData(this.user.name);
+    await this.storageServive.delData(this.userSettings.name);
     this.getterdata = "testing deleted data";
+  }
+
+  async openSocial(network: string, fab: IonFab) {
+    const loading = await this.loadingCtrl.create({
+      message: `Posting to ${network}`,
+      duration: (Math.random() * 1000) + 500
+    });
+    await loading.present();
+    await loading.onWillDismiss();
+    fab.close();
   }
 }
 

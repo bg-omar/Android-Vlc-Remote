@@ -49,20 +49,44 @@
     <iframe #iframePC class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
     <iframe #iframePC2 class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
     <iframe #iframeMAC class="noselect col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
+
   <div class="storage-buttoins">
-  <ion-button class="butt" (click)="setJson()">set storage</ion-button>
-  <ion-button class="butt" (click)="getJson()">get storage</ion-button>
-  <ion-button class="butt" (click)="delJson()">delete storage</ion-button>
+    <ion-button class="butt" (click)="setJson(1)">set storage</ion-button>
+    <ion-button class="butt" (click)="getJson(1)">get storage</ion-button>
+    <ion-button class="butt" (click)="delJson()">delete storage</ion-button>
   </div>
   <div class="data">
   {{getterdata}}
+  </div>
+  <div class="storage-buttoins">
+    <ion-button class="butt" (click)="setJson(2)">set storage</ion-button>
+    <ion-button class="butt" (click)="getJson(2)">get storage</ion-button>
+    <ion-button class="butt" (click)="delJson()">delete storage</ion-button>
   </div>
 <!--    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
     <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
     <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>-->
 </div>
 
-
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+      <ion-fab-button>
+        <ion-icon name="share-social"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+          <ion-icon name="logo-vimeo"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="instagram" (click)="openSocial('Instagram',fab)">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="twitter" (click)="openSocial('Twitter',fab)">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="facebook" (click)="openSocial('Facebook',fab)">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
 
 
 </ion-content>

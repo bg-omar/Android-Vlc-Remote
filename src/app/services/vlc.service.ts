@@ -5,7 +5,35 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ITodo } from '../models/todo.model';
 import { Preferences } from '@capacitor/preferences';
+import {CapacitorHttp, HttpResponse} from '@capacitor/core';
 
+// Example of a GET request
+const doGet = async () => {
+  const options = {
+    url: 'https://example.com/my/api',
+    headers: {'X-Fake-Header': 'Fake-Value'},
+    params: {size: 'XL'},
+  };
+  const response: HttpResponse = await CapacitorHttp.get(options);
+
+  // or...
+  // const response = await CapacitorHttp.request({ ...options, method: 'GET' })
+};
+
+// Example of a POST request. Note: data
+// can be passed as a raw JS Object (must be JSON serializable)
+const doPost = async () => {
+  const options = {
+    url: 'https://example.com/my/api',
+    headers: {'X-Fake-Header': 'Fake-Value'},
+    data: {foo: 'bar'},
+  };
+
+  const response: HttpResponse = await CapacitorHttp.post(options);
+
+  // or...
+  // const response = await CapacitorHttp.request({ ...options, method: 'POST' })
+};
 
 const setName = async () => {
   await Preferences.set({
@@ -28,6 +56,7 @@ const URL_PREFIX = "http://localhost:3000";
 @Injectable({
   providedIn: 'root'
 })
+
 export class VlcService {
 
   constructor(private http: HttpClient) { }

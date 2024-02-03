@@ -8,10 +8,11 @@ import {Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild} from 
   templateUrl: './vlc-popover.html',
 })
 export class VlcPopoverPage {
-  @Output() iframeToggle = new EventEmitter<string>();
+  @Output() iframeToggle = new EventEmitter<any>();
 
-  onIframeToggle(iframe: string) {
+  onIframeToggle(iframe: any) {
     this.iframeToggle.emit(iframe);
+    this.popoverCtrl.dismiss();
   }
   constructor(public popoverCtrl: PopoverController) {}
 

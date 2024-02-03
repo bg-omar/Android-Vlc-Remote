@@ -1,9 +1,3 @@
-
-
-import { PopoverController } from '@ionic/angular';
-
-import { PopoverPage } from '../about-popover/about-popover';
-
 import { Component, OnInit } from '@angular/core';
 import { ITodo } from '../../models/todo.model';
 import { VlcService } from '../../services/vlc.service';

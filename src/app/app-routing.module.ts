@@ -5,16 +5,12 @@ import { CheckTutorial } from './providers/check-tutorial.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/vlc',
+    redirectTo: '/app/tabs/vlc',
     pathMatch: 'full'
   },
   {
-    path: 'home2',
-    loadChildren: () => import('./home2/home.module').then(m => m.HomeModule)
-  },
-  {
     path: 'vlc',
-    loadChildren: () => import('./vlc/vlc.module').then(m => m.VlcModule)
+    loadChildren: () => import('./pages/vlc/vlc.module').then(m => m.VlcModule)
   },
   {
     path: 'account',
@@ -54,14 +50,8 @@ const routes: Routes = [
   },
   {
     path: 'confirm',
-    loadChildren: () => import('./confirm/confirm.module').then( m => m.ConfirmPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/confirm/confirm.module').then(m => m.ConfirmPageModule)
   }
-
-
 ];
 
 @NgModule({

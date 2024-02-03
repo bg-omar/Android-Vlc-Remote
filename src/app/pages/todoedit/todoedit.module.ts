@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { TodoEdit } from './todoedit.component';
-import { PopoverPage } from '../about-popover/about-popover';
 import { TodoEditRoutingModule } from './todoedit-routing.module';
 
 @NgModule({

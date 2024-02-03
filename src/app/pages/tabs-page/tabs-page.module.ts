@@ -4,28 +4,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs-page';
 import { TabsPageRoutingModule } from './tabs-page-routing.module';
+import {AccountPage} from "../account/account";
 
-import { AboutModule } from '../about/about.module';
-import { ScheduleModule } from '../schedule/schedule.module';
-import { SessionDetailModule } from '../session-detail/session-detail.module';
-import { SpeakerDetailModule } from '../speaker-detail/speaker-detail.module';
-import { SpeakerListModule } from '../speaker-list/speaker-list.module';
-import {HomeModule} from "../.././home2/home.module";
 
 @NgModule({
   imports: [
-    AboutModule,
-    HomeModule,
     CommonModule,
     IonicModule,
-    ScheduleModule,
-    SessionDetailModule,
-    SpeakerDetailModule,
-    SpeakerListModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    AccountPage
   ],
-  declarations: [
-    TabsPage,
+  declarations: [ TabsPage,
   ]
 })
 export class TabsModule { }

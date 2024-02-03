@@ -4,15 +4,27 @@ import { IonicModule } from '@ionic/angular';
 
 import { AccountPage } from './account';
 import { AccountPageRoutingModule } from './account-routing.module';
+import {RouterModule, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AccountPage
+  }
+];
 @NgModule({
-  imports: [
+  imports: [RouterModule.forChild(routes),
+    CommonModule,
+    FormsModule,
+    IonicModule,
     CommonModule,
     IonicModule,
-    AccountPageRoutingModule
+    AccountPageRoutingModule,
+    AccountPage
   ],
-  declarations: [
-    AccountPage,
-  ]
+  declarations: [  ],
+  exports: [RouterModule]
 })
 export class AccountModule { }

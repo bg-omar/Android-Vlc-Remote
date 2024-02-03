@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'iframe-toggler-child',
@@ -7,7 +7,7 @@ import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/cor
     <iframe #iframe></iframe>
   `
 })
-export class IFrameTogglerChild {
+export class IFrameTogglerChild implements AfterViewInit{
   @Input() hideIFrame: ElementRef;
   @ViewChild('iframe') iframe: ElementRef;
 

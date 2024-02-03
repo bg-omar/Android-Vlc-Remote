@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { Todos } from './todos';
-import { PopoverPage } from '../about-popover/about-popover';
 import { TodosRoutingModule } from './todos-routing.module';
 
 @NgModule({

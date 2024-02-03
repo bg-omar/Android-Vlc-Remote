@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,8 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="username" class="ion-padding-top ion-text-center">
-    <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
+<!--  <div *ngIf="username" class="ion-padding-top ion-text-center">-->
+  <div class="ion-padding-top ion-text-center">
+  <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
     <h2>{{username}}</h2>
 
     <ion-list inset>
@@ -21,5 +22,125 @@
       <ion-item (click)="support()">Support</ion-item>
       <ion-item (click)="logout()">Logout</ion-item>
     </ion-list>
+
+
+      <ion-header class="ion-no-border" [translucent]="true">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>VLC remote</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+    <div class="ion-padding">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>What you are entering</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-badge color="secondary">Name</ion-badge>{{ user2.name }}<br /><br />
+          <ion-badge color="tertiary">Age</ion-badge> {{ user2.age }}
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+        <ion-item>
+          <ion-label position="fixed">Name</ion-label>
+          <ion-input type="text" [(ngModel)]="user2.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Age</ion-label>
+          <ion-input type="number" [(ngModel)]="user2.age"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-float-right" lines="none">
+          <ion-button color="primary" [routerLink]="'/confirm'">Confirm</ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  <!--<ion-content padding>-->
+  <form [formGroup]="myForm" (submit)="createUser(myForm)">
+    <ion-item>
+      <ion-label floating>
+        Nick Name
+      </ion-label>
+      <ion-input type="text" formControlName="nickName"></ion-input>
+    </ion-item>
+    <div *ngIf="myForm.get('nickName').invalid && myForm.get('nickName').dirty">
+      <ion-item *ngIf="myForm.hasError('required', 'nickName')">
+        <span style="color:red;">Nick Name required!</span>
+      </ion-item>
+      <ion-item *ngIf="myForm.hasError('minlength', 'nickName')">
+        <span style="color:red;">Nick Name minLength 6!</span>
+      </ion-item>
+    </div>
+    <ion-item>
+      <ion-label floating>
+        Mobile
+      </ion-label>
+      <ion-input type="text" formControlName="mobile"></ion-input>
+    </ion-item>
+    <div style="margin-top:30px;">
+      sex
+      <ion-list formControlName="sex" radio-group>
+        <ion-item>
+          <ion-label style="color:#666666">sex</ion-label>
+          <ion-radio value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label style="color:#666666">sex2</ion-label>
+          <ion-radio value="2"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div style="margin-top:30px;">
+      emails
+      <div formArrayName="emails">
+        <div class="form-group" *ngFor="let email of myForm.controls['emails']">
+          <ion-item>
+            <ion-label floating>email {{email}}</ion-label>
+            <ion-input type="text" [formControlName]="email.toString()"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="address" style="margin-top:30px;">
+      Address
+      <div formArrayName="addressArray">
+        <div class="form-group" *ngFor="let item of myForm.controls['address']">
+          <ion-item>
+            <ion-label floating>item{{item}}</ion-label>
+            <ion-input type="text" [formControlName]="item.toString()"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:30px;" checkbox-group>
+      <ion-list formGroupName="interest">
+        <ion-item>
+          <ion-label>movie</ion-label>
+          <ion-checkbox formControlName="movie" value="true" ></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>music</ion-label>
+          <ion-checkbox formControlName="music" value="true"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>sport</ion-label>
+          <ion-checkbox formControlName="sport" value="true"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+    <ion-button  type="submit">Create User</ion-button>
+  </form>
+  {{myForm.value | json}}
+
   </div>
 </ion-content>
