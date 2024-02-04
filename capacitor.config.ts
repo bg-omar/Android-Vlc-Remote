@@ -6,19 +6,11 @@ const config: CapacitorConfig = {
   webDir: 'www',
   bundledWebRuntime: true,
   server: {
-    androidScheme: "https",
-    iosScheme: "ionic",
     cleartext: true,
-    allowNavigation: [
-      "*"
-    ]
   },
   plugins: {
     CapacitorHttp: {
       enabled: true,
-    },
-    CapacitorSQLite: {
-      iosDatabaseLocation: "Library/CapacitorDatabase"
     },
     SplashScreen: {
       launchShowDuration: 3000,

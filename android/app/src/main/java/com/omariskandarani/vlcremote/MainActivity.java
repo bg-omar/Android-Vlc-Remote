@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 
-
 import android.webkit.WebView;
 
 public class MainActivity extends BridgeActivity {
@@ -53,6 +52,9 @@ public class MainActivity extends BridgeActivity {
     // Enable JavaScript (if needed)
     webSettings.setJavaScriptEnabled(true);
 
+    registerPlugin(EchoPlugin.class);
+
+
   }
 
 
@@ -66,5 +68,7 @@ public class MainActivity extends BridgeActivity {
       }
     });
   }
+
+
 
 }

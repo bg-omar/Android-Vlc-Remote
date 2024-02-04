@@ -15,7 +15,7 @@ import {GetResult} from "@capacitor/preferences";
 import {ConferenceData} from "../../providers/conference-data";
 import {Router} from "@angular/router";
 import {UserData} from "../../providers/user-data";
-
+import Echo from './echo-plugin';
 
 declare var $: JQueryStatic;
 declare var jQuery: JQueryStatic;
@@ -134,7 +134,7 @@ export class VlcComponent {
     this.getterdata = "testing deleted data";
   }
 
-  async openSocial(network: string, fab: IonFab) {
+  async openSocial(network: string, fab: HTMLIonFabElement) {
     const loading = await this.loadingCtrl.create({
       message: `Posting to ${network}`,
       duration: (Math.random() * 1000) + 500
