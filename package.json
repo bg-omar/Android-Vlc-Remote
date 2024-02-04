@@ -1,13 +1,15 @@
 {
   "name": "vlc-remote",
   "version": "0.0.1",
+  "author": "Iskandarani",
+  "homepage": "https://omariskandarani.com/",
   "scripts": {
+    "* serve": "npm run copy:sql:wasm && ng serve --host=0.0.0.0 --disable-host-check",
     "* serve ionic": "npx ionic serve",
     "* build-pr": "ng build vlc-remote -c production  --source-map",
     "* build-webpack": "webpack --mode=production",
     "* sync-cap": "npx cap sync",
     "start-webpack": "webpack-dev-server --mode=development --open",
-    "serve": "npm run copy:sql:wasm && ng serve --host=0.0.0.0 --disable-host-check",
     "serve json": "json-server db.json ",
     "build:web": "npm run copy:sql:wasm && ng build",
     "build:native": "npm run remove:sql:wasm && ng build",

@@ -1,4 +1,5 @@
 package com.omariskandarani.vlcremote;
+import androidx.preference.PreferenceManager;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.BridgeWebViewClient;
 
@@ -14,8 +15,19 @@ import java.io.InputStream;
 
 import android.webkit.WebView;
 
+import com.getcapacitor.PreferenceManager;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 public class MainActivity extends BridgeActivity {
 
+  PreferenceManager preferenceManager = PreferenceManager.getInstance();
+  String jsonData = preferenceManager.get("jsonData", "");
+  JSONObject jsonObject = new JSONObject(jsonData);
+  String name = jsonObject.getString("name");
+  int age = jsonObject.getInt("age");
+  boolean isMarried = jsonObject.getBoolean("isMarried");
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
