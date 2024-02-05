@@ -28,7 +28,7 @@ export interface pass {
 export interface User extends pass {
   ipAddress: string;
   port: number;
-  pcs: string[]
+  pcs: string[];
 }
 
 
@@ -63,8 +63,7 @@ export class AccountPage implements OnInit {
     pcs: ['192.168.2.2:8080', '192.168.2.2:8081', '192.168.2.3:8080']
   };
 
-  pass: pass = {vlcPass: this.userSettings.vlcPass, vlcUser: this.userSettings.vlcUser}
-  config: string = JSON.stringify(this.pass);
+
   configAccount: string = JSON.stringify(this.userSettings);
 
 
@@ -134,8 +133,9 @@ export class AccountPage implements OnInit {
 
   setJson(setter: number) {
     if (setter == 1){
+      let config: string = JSON.stringify(this.userSettings.vlcPass);
       this.storageServive.setData(this.userSettings.ipAddress, this.configAccount).then(r =>{});
-      this.storageServive.setData('pass', this.config).then(r =>{});
+      this.storageServive.setData('pass', config).then(r =>{});
 
     }
 

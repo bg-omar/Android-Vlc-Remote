@@ -106,8 +106,8 @@ export class AppComponent implements OnInit {
       return  await Preferences.get({ key: 'pass' });
     };
 
+    let passvalue: string = JSON.stringify( "1z2x");
     const setDefaultConfig = async () => {
-      let passvalue: string = JSON.stringify({vlcPass: "1z2x", vlcUser: ""});
       await Preferences.set({
         key: 'pass',
         value: passvalue,

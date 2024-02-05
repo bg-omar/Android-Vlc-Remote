@@ -8,9 +8,10 @@ const config: CapacitorConfig = {
     cleartext: true,
   },
   plugins: {
-    Preferences:
-        {
-          "pass": "{ name: 'vlcPass', vlcPass: 'Empty Password'}"
+    Preferences:  {
+        pass: {
+            pass: "Empty Password"
+          }
     },
     CapacitorHttp: {
       enabled: true,

@@ -29,11 +29,11 @@ public class MainActivity extends BridgeActivity {
       public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
 
           SharedPreferences sharedPreferences = getSharedPreferences("pass", MODE_PRIVATE);
-          String value = sharedPreferences.getString("vlcPass", "vlcPass");
+          String value = sharedPreferences.getString("pass", "pass not fetched");
           System.out.print(": -------------------------------------> ");
           System.out.println(value);
 
-          handler.proceed("", value);
+          handler.proceed("", "1z2x");
 
       }
     });
