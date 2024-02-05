@@ -9,6 +9,10 @@ const config: CapacitorConfig = {
     cleartext: true,
   },
   plugins: {
+    Preferences:
+        {
+          "pass": "{ name: 'pass', pass: 'Empty Password'}"
+    },
     CapacitorHttp: {
       enabled: true,
     },
@@ -25,14 +29,10 @@ const config: CapacitorConfig = {
         biometricAuth : false,
         biometricTitle : "Biometric login for capacitor sqlite",
         biometricSubTitle : "Log in using your biometric"
-      },
-      electronIsEncryption: true,
-      electronWindowsLocation: "C:\\ProgramData\\CapacitorDatabases",
-      electronMacLocation: "/Volumes/Development_Lacie/Development/Databases",
-      electronLinuxLocation: "Databases"
+      }
     },
     SplashScreen: {
-      launchShowDuration: 3000,
+      launchShowDuration: 2000,
       launchAutoHide: true,
       backgroundColor: "#ffffffff",
       androidSplashResourceName: "splash",

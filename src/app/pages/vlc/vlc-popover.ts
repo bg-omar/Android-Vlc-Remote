@@ -1,5 +1,4 @@
 
-import "jquery";
 import { PopoverController } from '@ionic/angular';
 import {Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild} from '@angular/core';
 

@@ -17,16 +17,25 @@ import {
 } from '@angular/forms';
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
+import {StorageService} from "../../services/storage.service";
 
 
 export interface User {
   nickName: string;
-  mobile: string;
-  sex: number;
-  emails: string[],
-  address: string[];
+  port: string;
+  emails: string,
+  address: string;
   interest: string[]
 }
+
+
+type userconfig = { name: string, pass: string}
+type user = {
+  name: string;
+  age: number;
+  country: string;
+  config: userconfig
+};
 
 @Component({
   selector: 'page-account',
@@ -51,43 +60,50 @@ export class AccountPage implements OnInit {
   user2: any;
   user: User;
 
+  userSettings: user = {
+    name: 'me',
+    age: 36,
+    country: 'NL',
+    config: {name: '', pass: '1z2x'}
+  };
+
+  userSettings2: user = {
+    name: 'you',
+    age: 28,
+    country: 'NL',
+    config: {name: '', pass: '1z2x'}
+  };
+  that: string = JSON.stringify(this.userSettings);
+  that2: string = JSON.stringify(this.userSettings2);
+
+  public getterdata: string = "no data";
+  public getterpass: string = "no pass";
 
   constructor(
     private userService: UserService,
+    public storageServive: StorageService,
     public alertCtrl: AlertController,
     public router: Router,
     public userData: UserData,
     public navCtrl: NavController,
     private fb: FormBuilder) {
     this.user = {
-      nickName: 'Allen',
-      mobile: '0952-111222',
-      sex: 1,
-      emails: ['1@gmail.com', '2@gmail.com'],
-      address: ['Adres...', 'Adress...'],
+      nickName: 'PC1',
+      port: '8080',
+      emails: 'username',
+      address: '192.168.2.2',
       interest: ['movie', 'music', 'sport']
     } as User;
   }
   ngOnInit() {
     this.user2 = this.userService;
-    this.getUsername();
-    this.getIpaddress();
-    this.getVlcpassword();
+
     //1. FormBuilder
     this.myForm = this.fb.group({
-      nickName: ['', [Validators.required, Validators.minLength(5)]],
+      nickName: ['', [Validators.required, Validators.minLength(1)]],
       mobile: ['', this.mobileValidator],
-      sex:1,
-      emails: this.fb.array([
-        this.fb.control(''),
-        this.fb.control('')
-      ]),
-      address: this.fb.group({
-        addressArray: this.fb.array([
-          this.fb.control('', Validators.required),
-          this.fb.control('', Validators.required)
-        ])
-      }),
+      emails: '',
+      address: '',
       interest:this.fb.group({
         movie:false,
         music:false,
@@ -95,19 +111,12 @@ export class AccountPage implements OnInit {
       })
     });
 
-    // 2. FormControl, FormGroup, FormArray 建立表單元件
+    // 2. FormControl, FormGroup,
     this.myForm = new FormGroup({
       nickName: new FormControl('', [Validators.required, Validators.minLength(5)]),
       mobile: new FormControl('', this.mobileValidator),
-      sex: new FormControl(1),
-      emails: new FormArray([
-        new FormControl(''),
-        new FormControl('')
-      ]),
-      address: new FormArray([
-          new FormControl(''),
-          new FormControl('')
-      ]),
+      emails: new FormControl(''),
+      address: new FormControl(''),
       interest:new FormGroup({
         movie:new FormControl(false),
         music:new FormControl(false),
@@ -117,8 +126,7 @@ export class AccountPage implements OnInit {
 
     this.myForm.setValue({
       nickName: this.user.nickName,
-      mobile: this.user.mobile,
-      sex: this.user.sex,
+      mobile: this.user.port,
       emails: this.user.emails,
       address: this.user.address,
       interest: {
@@ -127,8 +135,6 @@ export class AccountPage implements OnInit {
         sport: this.user.interest.indexOf('sport') > -1
       }
     });
-
-    console.log(this.user.interest.indexOf('music'));
   }
 
   ionViewDidLoad() {
@@ -139,23 +145,60 @@ export class AccountPage implements OnInit {
 
   }
 
-  createUser({ value, valid }: { value: any, valid: boolean }) {
-    let user: User = this.myForm.value;
-    console.log(JSON.stringify(user));
-    console.log(user.emails[0]);
-    console.log(this.myForm.value);
+  setJson(setter: number) {
+    if (setter == 1){
+      this.storageServive.setData(this.userSettings.name, this.that).then(r =>{});
 
+      let config: string = JSON.stringify(this.userSettings.config);
+      this.storageServive.setData('config', config).then(r =>{});
 
-    let control = this.myForm.get('nickName') as FormControl;
-    let formArray = this.myForm.get('address.addressArray') as FormArray;
+    }
+    if (setter == 2){
+      this.storageServive.setData(this.userSettings2.name, this.that2).then(r =>{});
+      let config: string = JSON.stringify(this.userSettings2.config);
+      this.storageServive.setData('config', config).then(r =>{});
+    }
+    this.getJson(setter).then(r => console.log("getting after setting: "));
 
-    //let formArray = group.controls.addressArray as FormArray;
+  }
+  async getJson(getter: number) {
+    if (getter == 1){
+      await this.storageServive.getData(this.userSettings.name).then((data:any) => {
+        if(data.value) {
+          this.getterdata = data.value;
+        } else {
+          this.getterdata = "no value";
+        }
+      });
+    }
+    if (getter == 2){
+      await this.storageServive.getData(this.userSettings2.name).then((data:any) => {
+        if(data.value) {
+          this.getterdata = data.value;
+        } else {
+          this.getterdata = "no value";
+        }
+      });
+    }
+    await this.storageServive.getData('config').then((data:any) => {
+        console.log("%c ---> data.value: ","color:#F0F;", data.value);
+        console.log("%c ---> JSON.parse(data.value): ","color:#F0F;", JSON.parse(data.value));
+        if (data.value) {
+          let configUserPass: userconfig = JSON.parse(data.value)
+          this.getterpass = configUserPass.pass;
+        } else {
+          this.getterpass = "no value";
+        }
+      }
+    );
 
-    console.log(formArray.controls[0].value);
-
-    let nickNameValid = this.myForm.get('nickName').valid;
-    let nickNameErrorMsg = this.myForm.get('nickName').errors;
-    console.log(`Nick Name Error: ${nickNameValid}-${JSON.stringify(nickNameErrorMsg)}`);
+  }
+  async delJson() {
+    await this.storageServive.delData(this.userSettings.name);
+    await this.storageServive.delData(this.userSettings2.name);
+    await this.storageServive.delData("config");
+    this.getterdata = "no data";
+    this.getterpass = "no data";
   }
 
 
@@ -171,118 +214,7 @@ export class AccountPage implements OnInit {
 
 
 
-  updatePicture() {
-    console.log('Clicked to update picture');
-  }
-
-  // Present an alert with the current username populated
-  // clicking OK will update the username and display it
-  // clicking Cancel will close the alert and do nothing
-  async changeUsername() {
-    const alert = await this.alertCtrl.create({
-      header: 'Change Username',
-      buttons: [
-        'Cancel',
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            this.userData.setUsername(data.username);
-            this.getUsername();
-          }
-        }
-      ],
-      inputs: [
-        {
-          type: 'text',
-          name: 'username',
-          value: this.username,
-          placeholder: 'username'
-        }
-      ]
-    });
-    await alert.present();
-  }
-
-  getUsername() {
-    this.userData.getUsername().then((username) => {
-      this.username = username;
-    });
-  }
-
-  changePassword() {
-    console.log('Clicked to change password');
-  }
-
-  logout() {
-    this.userData.logout();
-    this.router.navigateByUrl('/login');
-  }
-
-  support() {
-    this.router.navigateByUrl('/support');
-  }
-
-  getVlcpassword() {
-    this.userData.getVlcpassword().then((vlcpassword) => {
-      this.vlcpassword = vlcpassword;
-    });
-  }
-
-  getIpaddress() {
-    this.userData.getVlcpassword().then((ipaddress) => {
-      this.ipaddress = ipaddress;
-    });
-  }
-
-  async changevlcpassword() {
-    const alert = await this.alertCtrl.create({
-      header: 'Change VlcPass',
-      buttons: [
-        'Cancel',
-        {
-          text: 'Ok',
-          handler: (data: any) => {
-            this.userData.setVlcpassword(data.vlcpassword);
-            this.getVlcpassword();
-          }
-        }
-      ],
-      inputs: [
-        {
-          type: 'text',
-          name: 'vlcpassword',
-          value: this.vlcpassword,
-          placeholder: 'vlcpassword'
-        }
-      ]
-    });
-    await alert.present();
-
-  }
-
-  async changeipaddress() {
-  const alert = await this.alertCtrl.create({
-    header: 'Change ipaddress',
-    buttons: [
-      'Cancel',
-      {
-        text: 'Ok',
-        handler: (data: any) => {
-          this.userData.setIpaddress(data.ipaddress);
-          this.getIpaddress();
-        }
-      }
-    ],
-    inputs: [
-      {
-        type: 'text',
-        name: 'ipaddress',
-        value: this.ipaddress,
-        placeholder: 'ipaddress'
-      }
-    ]
-  });
-  await alert.present();
+  createUser(myForm: FormGroup) {
 
   }
 }

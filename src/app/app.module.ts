@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { environment} from "../environments/environment";
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IonicStorageModule } from "@ionic/storage";
+import { IonicStorageModule } from "@ionic/storage-angular";
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';

@@ -1,7 +1,12 @@
 package com.omariskandarani.vlcremote;
-import androidx.preference.PreferenceManager;
+
+import android.content.SharedPreferences;
+
+
+import android.preference.PreferenceManager;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.BridgeWebViewClient;
+
 
 import android.os.Bundle;
 import android.webkit.CookieManager;
@@ -15,20 +20,14 @@ import java.io.InputStream;
 
 import android.webkit.WebView;
 
-import com.getcapacitor.PreferenceManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class MainActivity extends BridgeActivity {
 
-  PreferenceManager preferenceManager = PreferenceManager.getInstance();
-  String jsonData = preferenceManager.get("jsonData", "");
-  JSONObject jsonObject = new JSONObject(jsonData);
-  String name = jsonObject.getString("name");
-  int age = jsonObject.getInt("age");
-  boolean isMarried = jsonObject.getBoolean("isMarried");
-  @Override
+    @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
@@ -51,6 +50,13 @@ public class MainActivity extends BridgeActivity {
             stringBuilder.append(line);
           }
           String json = stringBuilder.toString();
+          System.out.println(json);
+
+          SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+          String value = sharedPreferences.getString("pass", "password");
+          System.out.println(value);
+
+          //JSONObject jsonObject = new JSONObject(value);
 
           // Pass the JSON string as the first argument to the proceed method
           handler.proceed("", "1z2x");
@@ -80,6 +86,12 @@ public class MainActivity extends BridgeActivity {
       }
     });
   }
+
+  public MainActivity() throws JSONException {
+  }
+//  String name = jsonObject.getString("name");
+//  int age = jsonObject.getInt("age");
+//  boolean isMarried = jsonObject.getBoolean("isMarried");
 
 
 

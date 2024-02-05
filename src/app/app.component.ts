@@ -6,10 +6,16 @@ import { MenuController, Platform, ToastController } from '@ionic/angular';
 
 import { StatusBar } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
+import {GetResult, Preferences} from '@capacitor/preferences';
 
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import { registerPlugin } from '@capacitor/core';
+
+import type { PreferencesPlugin } from './definitions';
+
+
 
 
 @Component({
@@ -97,6 +103,31 @@ export class AppComponent implements OnInit {
         SplashScreen.hide();
       }
     });
+
+    const getConfig = async () => {
+      return  await Preferences.get({ key: 'config' });
+    };
+
+    const setDefaultConfig = async () => {
+      let passvalue: string = JSON.stringify({ name: '', pass: ''});
+      await Preferences.set({
+        key: 'config',
+        value: passvalue,
+      });
+    };
+
+    function checkConfig(r: GetResult) {
+      console.log("checking passvalue")
+      console.log(r)
+      if (r.value == null) {
+        console.log("Value = null  ==> setting Default")
+        setDefaultConfig().then(r => getConfig());
+      } else {
+        console.log("Value = ", r.value)
+      }
+    }
+
+    getConfig().then(r => checkConfig(r));
   }
 
   checkLoginStatus() {

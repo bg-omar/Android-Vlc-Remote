@@ -1,4 +1,4 @@
-<div class="div-scrollable">
+<!--<div class="div-scrollable">-->
 <ion-header class="ion-no-border" [translucent]="true">
       <ion-toolbar>
         <ion-buttons slot="start">
@@ -41,33 +41,17 @@
     </ion-header>
 <ion-content>
 
-<!--service-->
-
-    <!--service-->
     <div class="remote clearfix">
-      <hexatrail> </hexatrail>
       <div class="noselect">
-
+        <hexatrail> </hexatrail>
         <!-- PC -->
-        <iframe id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
-        <iframe id="iframePC2" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
-        <iframe id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
+        <iframe #iframePC id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
+        <iframe #iframePC2 id="iframePC2" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
+        <iframe #iframeMAC id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
         <br>
       </div>
 
-  <div class="storage-buttoins">
-    <ion-button class="butt" (click)="setJson(1)">set storage</ion-button>
-    <ion-button class="butt" (click)="getJson(1)">get storage</ion-button>
-    <ion-button class="butt" (click)="delJson()">delete storage</ion-button>
-  </div>
-  <div class="data">
-  {{getterdata}}
-  </div>
-  <div class="storage-buttoins">
-    <ion-button class="butt" (click)="setJson(2)">set storage</ion-button>
-    <ion-button class="butt" (click)="getJson(2)">get storage</ion-button>
-    <ion-button class="butt" (click)="delJson()">delete storage</ion-button>
-  </div>
+
 <!--    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
     <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
     <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>-->
@@ -96,4 +80,3 @@
 
 </ion-content>
 
-</div>

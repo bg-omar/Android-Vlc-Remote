@@ -12,26 +12,22 @@
   <div class="ion-padding-top ion-text-center">
   <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
     <h2>{{username}}</h2>
-
-    <ion-list inset>
-      <ion-item (click)="updatePicture()">Update Picture</ion-item>
-      <ion-item (click)="changeUsername()">Change Username</ion-item>
-      <ion-item (click)="changePassword()">Change Password</ion-item>
-      <ion-item (click)="changeipaddress()">ipaddress</ion-item>
-      <ion-item (click)="changevlcpassword()">vlcpassword</ion-item>
-      <ion-item (click)="support()">Support</ion-item>
-      <ion-item (click)="logout()">Logout</ion-item>
-    </ion-list>
+    <div class="storage-buttoins">
+      <ion-button class="butt" (click)="setJson(1)">set 1</ion-button>
+      <ion-button class="butt" (click)="getJson(1)">get 1</ion-button>
+    </div>
+    <div class="data">
+      {{getterdata}}    <ion-button class="butt" (click)="delJson()">delete</ion-button>
+      {{getterpass}}
 
 
-      <ion-header class="ion-no-border" [translucent]="true">
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-          <ion-title>VLC remote</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    </div>
+    <div class="storage-buttoins">
+      <ion-button class="butt" (click)="setJson(2)">set 2</ion-button>
+      <ion-button class="butt" (click)="getJson(2)">get 2</ion-button>
+    </div>
+
+
 
     <div class="ion-padding">
       <ion-card>
@@ -61,8 +57,11 @@
       </ion-list>
     </div>
 
-  <!--<ion-content padding>-->
+    <div class="ion-padding">
+      <ion-card>
   <form [formGroup]="myForm" (submit)="createUser(myForm)">
+    <ion-button  type="submit">Create User</ion-button>
+    <ion-item>{{myForm.value | json}}   </ion-item>
     <ion-item>
       <ion-label floating>
         Nick Name
@@ -83,42 +82,19 @@
       </ion-label>
       <ion-input type="text" formControlName="mobile"></ion-input>
     </ion-item>
-    <div style="margin-top:30px;">
-      sex
-      <ion-list formControlName="sex" radio-group>
-        <ion-item>
-          <ion-label style="color:#666666">sex</ion-label>
-          <ion-radio value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label style="color:#666666">sex2</ion-label>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
-      </ion-list>
-    </div>
-    <div style="margin-top:30px;">
-      emails
-      <div formArrayName="emails">
-        <div class="form-group" *ngFor="let email of myForm.controls['emails']">
-          <ion-item>
-            <ion-label floating>email {{email}}</ion-label>
-            <ion-input type="text" [formControlName]="email.toString()"></ion-input>
-          </ion-item>
-        </div>
-      </div>
-    </div>
 
-    <div formGroupName="address" style="margin-top:30px;">
-      Address
-      <div formArrayName="addressArray">
-        <div class="form-group" *ngFor="let item of myForm.controls['address']">
-          <ion-item>
-            <ion-label floating>item{{item}}</ion-label>
-            <ion-input type="text" [formControlName]="item.toString()"></ion-input>
-          </ion-item>
-        </div>
-      </div>
-    </div>
+
+    <ion-item>
+      <ion-label floating>email </ion-label>
+      <ion-input type="text" formControlName="emails"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>address</ion-label>
+      <ion-input type="text" formControlName="address"></ion-input>
+    </ion-item>
+
 
     <div style="margin-top:30px;" checkbox-group>
       <ion-list formGroupName="interest">
@@ -138,9 +114,8 @@
         </ion-item>
       </ion-list>
     </div>
-    <ion-button  type="submit">Create User</ion-button>
   </form>
-  {{myForm.value | json}}
-
+      </ion-card>
+    </div>
   </div>
 </ion-content>

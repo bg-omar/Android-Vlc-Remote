@@ -44,7 +44,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js"
             ]
           },
@@ -85,10 +84,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "vlc-remote:build:production",
+              "browserTarget": "vlc-remote:build:production"
             },
             "development": {
-              "browserTarget": "vlc-remote:build:development",
+              "browserTarget": "vlc-remote:build:development"
             }
           },
           "defaultConfiguration": "development"
