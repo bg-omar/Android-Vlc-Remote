@@ -42,8 +42,6 @@ public class MainActivity extends BridgeActivity {
     // Enable JavaScript (if needed)
     webSettings.setJavaScriptEnabled(true);
 
-    registerPlugin(EchoPlugin.class);
-
 
   }
 
