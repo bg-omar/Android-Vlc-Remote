@@ -11,7 +11,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      {{ user.name }} is {{ user.age }} years old
+      {{ user | json }}
     </ion-card-content>
     <ion-item float-right>
       <ion-button color="primary" [routerLink]="'/account'">Ok</ion-button>

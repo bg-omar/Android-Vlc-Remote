@@ -9,8 +9,12 @@ import { VlcRoutingModule } from './vlc-routing.module';
 import { VlcPopoverPage } from './vlc-popover';
 import {HexatrailComponent} from "../../hexatrail/hexatrail.component";
 import {AccountModule} from "../account/account.module";
-import {IFrameTogglerParent} from "./iframe-toggler-parent.component";
-import {IFrameTogglerChild} from "./iframe-toggler-child.component";
+
+import {IframeComponent} from "../../iframe/iframe.component";
+import {IFrameToggler} from "../../iframe/iframe-toggler.component";
+import {TabsPage} from "../tabs-page/tabs-page";
+
+
 
 
 
@@ -24,9 +28,12 @@ import {IFrameTogglerChild} from "./iframe-toggler-child.component";
     IonicModule,
     HexatrailComponent,
     AccountModule,
+    IframeComponent,
+    IFrameToggler,
+    TabsPage
   ],
   declarations: [
-    VlcComponent, VlcPopoverPage, IFrameTogglerParent, IFrameTogglerChild
+    VlcComponent, VlcPopoverPage
   ],
   bootstrap: [VlcComponent]
 })

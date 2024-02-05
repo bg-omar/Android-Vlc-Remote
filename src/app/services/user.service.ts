@@ -2,22 +2,51 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private _name: string;
-  private _age: number;
 
-  get name() {
-    return this._name;
+  private _port: number;
+  private _ipAddress: string;
+  private _vlcUser: string;
+  private _vlcPass: string;
+  private _pcs: string[];
+
+  get ipAddress() {
+    return this._ipAddress;
   }
 
-  set name(name: string) {
-    this._name = name;
+  set ipAddress(ip: string) {
+    this._ipAddress = ip;
   }
 
-  get age() {
-    return this._age;
+  get port() {
+    return this._port;
   }
 
-  set age(age: number) {
-    this._age = age;
+  set port(port: number) {
+    this._port = port;
+  }
+
+  get vlcUser() {
+    return this._vlcUser;
+  }
+
+  set vlcUser(user: string) {
+    this._vlcUser = user;
+  }
+
+
+  get vlcPass() {
+    return this._vlcPass;
+  }
+
+  set vlcPass(pass: string) {
+    this._vlcPass = pass;
+  }
+
+  get pcs() {
+    return this._pcs;
+  }
+
+  set pcs(pcs: string[]) {
+    this._pcs = pcs;
   }
 }

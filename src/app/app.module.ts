@@ -17,13 +17,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { NativeHttpModule } from 'ionic-native-http-connection-backend';
 import { RouteReuseStrategy } from "@angular/router";
 import { CustomErrorHandler } from "./custom-error-handler";
+import {IframeComponent} from "./iframe/iframe.component";
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +38,7 @@ import { CustomErrorHandler } from "./custom-error-handler";
       enabled: environment.production
     }),
     NativeHttpModule,
+    IframeComponent,
   ],
   providers: [
     HttpClient,

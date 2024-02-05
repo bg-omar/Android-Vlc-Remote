@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { TabsPage } from './tabs-page';
 import { TabsPageRoutingModule } from './tabs-page-routing.module';
 import {AccountPage} from "../account/account";
+import {IFrameToggler} from "../../iframe/iframe-toggler.component";
 
 
 @NgModule({
@@ -12,9 +13,10 @@ import {AccountPage} from "../account/account";
     CommonModule,
     IonicModule,
     TabsPageRoutingModule,
-    AccountPage
+    AccountPage,
+    IFrameToggler,
+    TabsPage
   ],
-  declarations: [ TabsPage,
-  ]
+  declarations: []
 })
 export class TabsModule { }

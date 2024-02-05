@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, Renderer2, ViewChild} from '@angular/core';
 import {VlcPopoverPage} from "./vlc-popover";
 import {
   AlertController, Config, IonFab,
@@ -11,6 +11,7 @@ import {
 
 import {ConferenceData} from "../../providers/conference-data";
 import {Router} from "@angular/router";
+
 
 
 
@@ -28,10 +29,13 @@ export class VlcComponent {
   @ViewChild('iframeMAC') iframeMAC: ElementRef;
   @ViewChild('myDiv') myDiv: ElementRef;
 
+  hideIframePC: boolean;
+  hideIframePC2: boolean;
+  hideIframeMAC: boolean;
+  static hideIframe: string;
 
 
   constructor(
-    private renderer: Renderer2,
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -42,33 +46,8 @@ export class VlcComponent {
     public toastCtrl: ToastController,
     public config: Config
   ) { }
-  ngAfterViewInit() {
-    this.renderer.listen(this.hidePC.nativeElement, 'click', () => {
-      this.toggleIframePC();
-    });
-
-    this.renderer.listen(this.hidePC2.nativeElement, 'click', () => {
-      this.toggleIframePC2();
-    });
-
-    this.renderer.listen(this.hideMAC.nativeElement, 'click', () => {
-      this.toggleIframeMAC();
-    });
-  }
 
 
-  toggleIframePC() {
-    this.iframePC.nativeElement.style.display = this.iframePC.nativeElement.style.display === 'none'? 'inline-block' : 'none';
-    this.iframePC.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
-  }
-  toggleIframePC2() {
-    this.iframePC2.nativeElement.style.display = this.iframePC2.nativeElement.style.display === 'none'? 'inline-block' : 'none';
-    this.iframePC2.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
-  }
-  toggleIframeMAC() {
-    this.iframeMAC.nativeElement.style.display = this.iframeMAC.nativeElement.style.display === 'none'? 'inline-block' : 'none';
-    this.iframeMAC.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
-  }
   async presentPopover(event: Event) {
     const popover = await this.popoverCtrl.create({
       component: VlcPopoverPage,
@@ -78,7 +57,7 @@ export class VlcComponent {
   }
 
 
-  async openSocial(network: string, fab: HTMLIonFabElement) {
+  async openSocial(network: string, fab: IonFab) {
     const loading = await this.loadingCtrl.create({
       message: `Posting to ${network}`,
       duration: (Math.random() * 1000) + 500
@@ -86,6 +65,18 @@ export class VlcComponent {
     await loading.present();
     await loading.onWillDismiss();
     await fab.close();
+  }
+
+  toogle($event: string) {
+    console.log("$event: ", $event);
+    if ($event == 'iframePC') {
+      this.hideIframePC = !this.hideIframePC;
+    } else if ($event == 'iframePC2') {
+      this.hideIframePC2 = !this.hideIframePC2;
+    } else if ($event == 'iframeMAC') {
+      this.hideIframeMAC = !this.hideIframeMAC;
+    }
+
   }
 }
 

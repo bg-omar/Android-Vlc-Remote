@@ -4,32 +4,16 @@ const config: CapacitorConfig = {
   appId: 'com.omariskandarani.vlcremote',
   appName: 'vlc-remote',
   webDir: 'www',
-  bundledWebRuntime: true,
   server: {
     cleartext: true,
   },
   plugins: {
     Preferences:
         {
-          "pass": "{ name: 'pass', pass: 'Empty Password'}"
+          "pass": "{ name: 'vlcPass', vlcPass: 'Empty Password'}"
     },
     CapacitorHttp: {
       enabled: true,
-    },
-    CapacitorSQLite: {
-      iosDatabaseLocation: 'Library/CapacitorDatabase',
-      iosIsEncryption: true,
-      iosKeychainPrefix: 'angular-sqlite-app-starter',
-      iosBiometric: {
-        biometricAuth: false,
-        biometricTitle : "Biometric login for capacitor sqlite"
-      },
-      androidIsEncryption: true,
-      androidBiometric: {
-        biometricAuth : false,
-        biometricTitle : "Biometric login for capacitor sqlite",
-        biometricSubTitle : "Log in using your biometric"
-      }
     },
     SplashScreen: {
       launchShowDuration: 2000,

@@ -1,8 +1,17 @@
-import {Component, ViewChild, OnInit, AfterViewInit, Input, Renderer2, ElementRef} from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  OnInit,
+  AfterViewInit,
+  Input,
+  Renderer2,
+  ElementRef,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import {iframeResizer} from 'iframe-resizer';
-import {PopoverController} from "@ionic/angular";
 import {NgClass} from "@angular/common";
+
 
 
 
@@ -16,39 +25,35 @@ import {NgClass} from "@angular/common";
   standalone: true
 })
 export class IframeComponent implements OnInit {
-  @ViewChild('hidePC') hidePC: ElementRef;
-  @ViewChild('iframePC') iframePC: ElementRef;
-  @ViewChild('framename') myDiv: ElementRef;
+  @ViewChild('myFrame') myFrame: ElementRef;
 
-  @Input() framename: string = "";
-  @Input() url: string = "http://192.168.2.13:8080";
+  @Input() frameName: string = "";
+  @Input() url: string = "http://127.0.0.1:8080";
+  @Input() hideFrame: boolean = false;
   urlSafe: SafeResourceUrl;
-  hidden: boolean = false;
 
 
-  constructor(public sanitizer: DomSanitizer, private renderer: Renderer2, public popoverCtrl: PopoverController) { }
+
+
+  constructor(public sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-    iframeResizer({ log: true }, '#'+this.framename)
+    console.log("inside child component ngOnInit");
+
   }
-
   ngAfterViewInit() {
-    this.renderer.listen(this.hidePC.nativeElement, 'click', () => {
-      this.toggleIframe();
-    });
 
 
-
-    this.renderer.listen(this.myDiv.nativeElement, 'animationstart', (e: AnimationEvent) => {
+    this.renderer.listen(this.myFrame.nativeElement, 'animationstart', (e: AnimationEvent) => {
       if (e.animationName === 'fade-in') {
-        this.renderer.addClass(this.myDiv.nativeElement, 'did-fade-in');
+        this.renderer.addClass(this.myFrame.nativeElement, 'did-fade-in');
       }
     });
 
-    this.renderer.listen(this.myDiv.nativeElement, 'animationend', (e: AnimationEvent) => {
+    this.renderer.listen(this.myFrame.nativeElement, 'animationend', (e: AnimationEvent) => {
       if (e.animationName === 'fade-out') {
-        this.renderer.removeClass(this.myDiv.nativeElement, 'did-fade-in');
+        this.renderer.removeClass(this.myFrame.nativeElement, 'did-fade-in');
       }
     });
 
@@ -56,7 +61,6 @@ export class IframeComponent implements OnInit {
 
 
   toggleIframe() {
-    this.iframePC.nativeElement.style.display = this.iframePC.nativeElement.style.display === 'none'? 'inline-block' : 'none';
-    this.iframePC.nativeElement.contentWindow.postMessage({ type: 'toggle-iframe' }, '*');
+    this.myFrame.nativeElement.style.display = this.myFrame.nativeElement.style.display === 'none'? 'inline-block' : 'none';
   }
 }

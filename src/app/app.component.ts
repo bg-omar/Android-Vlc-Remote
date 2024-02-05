@@ -11,9 +11,7 @@ import {GetResult, Preferences} from '@capacitor/preferences';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
-import { registerPlugin } from '@capacitor/core';
 
-import type { PreferencesPlugin } from './definitions';
 
 
 
@@ -31,11 +29,11 @@ export class AppComponent implements OnInit {
       url: '/app/tabs/vlc',
       icon: 'easel'
     },
-    {
-      title: 'Todos',
-      url: '/app/tabs/todos',
-      icon: 'calendar'
-    },
+    // {
+    //   title: 'Todos',
+    //   url: '/app/tabs/todos',
+    //   icon: 'calendar'
+    // },
     {
       title: 'Account',
       url: '/app/tabs/account',
@@ -105,13 +103,13 @@ export class AppComponent implements OnInit {
     });
 
     const getConfig = async () => {
-      return  await Preferences.get({ key: 'config' });
+      return  await Preferences.get({ key: 'pass' });
     };
 
     const setDefaultConfig = async () => {
-      let passvalue: string = JSON.stringify({ name: '', pass: ''});
+      let passvalue: string = JSON.stringify({vlcPass: "1z2x", vlcUser: ""});
       await Preferences.set({
-        key: 'config',
+        key: 'pass',
         value: passvalue,
       });
     };
@@ -123,7 +121,7 @@ export class AppComponent implements OnInit {
         console.log("Value = null  ==> setting Default")
         setDefaultConfig().then(r => getConfig());
       } else {
-        console.log("Value = ", r.value)
+        console.log("Value: ", r.value)
       }
     }
 

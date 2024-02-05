@@ -4,33 +4,12 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>VLC remote</ion-title>
-        <ion-buttons slot="start">
-          <div class="fixed-width"><span class="noselect">&copy; No Rights Pw: </span><span>1z2x</span></div>
+        <ion-title><i class="fas fa-transgender-alt"></i>show/hide vlc</ion-title>
 
-        </ion-buttons>
         <ion-buttons slot="primary">
-          <i class="fas fa-cat"></i>show/hide vlc
-          <ion-button>
-            <button #hidePC id="hidePC" >
-              <h1><em class="fas fa-cat"></em></h1>
-              <span> PC1</span>
-            </button>
-          </ion-button>
-
-          <ion-button>
-            <button #hidePC2 id="hidePC2" >
-              <h1><em class="fas fa-cat"></em></h1>
-              <span> PC2</span>
-            </button>
-          </ion-button>
-
-          <ion-button >
-            <button #hideMAC id="hideMAC" >
-              <h1><em class="fas fa-cat"></em></h1>
-              <span> MAC</span>
-            </button>
-          </ion-button>
+          <iframe-button [awesomeLogo]="'fas fa-cat'" [frameName]="'iframePC'" [buttonText]="'iframePC'" (iframeToggle)="toogle($event)"></iframe-button>
+          <iframe-button [awesomeLogo]="'fas fa-dog'"  [frameName]="'iframePC2'" [buttonText]="'iframePC2'" (iframeToggle)="toogle($event)"></iframe-button>
+          <iframe-button [awesomeLogo]="'fas fa-dragon'"  [frameName]="'iframeMAC'" [buttonText]="'iframeMAC'" (iframeToggle)="toogle($event)"></iframe-button>
         </ion-buttons>
 <!--        <ion-buttons [collapse]="true" slot="end">
           <ion-button (click)="presentPopover($event)">
@@ -45,37 +24,35 @@
       <div class="noselect">
         <hexatrail> </hexatrail>
         <!-- PC -->
-        <iframe #iframePC id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
+<!--        <iframe #iframePC id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
         <iframe #iframePC2 id="iframePC2" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
         <iframe #iframeMAC id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
-        <br>
+        <br>-->
       </div>
+      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframePC'" [hideFrame]="hideIframePC" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
+      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframePC2'" [hideFrame]="hideIframePC2" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
+      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframeMAC'" [hideFrame]="hideIframeMAC" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>
 
 
-<!--    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC'" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
-    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframePC2'" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
-    <app-iframe class="noselect col-xs-6 col-sm-5 col-md-4" [framename]="'iframeMAC'" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>-->
-
-
-<!--    <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>-->
-<!--      <ion-fab-button>-->
-<!--        <ion-icon name="share-social"></ion-icon>-->
-<!--      </ion-fab-button>-->
-<!--      <ion-fab-list side="top">-->
-<!--        <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">-->
-<!--          <ion-icon name="logo-vimeo"></ion-icon>-->
-<!--        </ion-fab-button>-->
-<!--        <ion-fab-button color="instagram" (click)="openSocial('Instagram',fab)">-->
-<!--          <ion-icon name="logo-instagram"></ion-icon>-->
-<!--        </ion-fab-button>-->
-<!--        <ion-fab-button color="twitter" (click)="openSocial('Twitter',fab)">-->
-<!--          <ion-icon name="logo-twitter"></ion-icon>-->
-<!--        </ion-fab-button>-->
-<!--        <ion-fab-button color="facebook" (click)="openSocial('Facebook',fab)">-->
-<!--          <ion-icon name="logo-facebook"></ion-icon>-->
-<!--        </ion-fab-button>-->
-<!--      </ion-fab-list>-->
-<!--    </ion-fab>-->
+<!--          <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+      <ion-fab-button>
+        <ion-icon name="share-social"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+          <ion-icon name="logo-vimeo"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="instagram" (click)="openSocial('Instagram',fab)">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="twitter" (click)="openSocial('Twitter',fab)">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="facebook" (click)="openSocial('Facebook',fab)">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>-->
 </div>
 
 </ion-content>

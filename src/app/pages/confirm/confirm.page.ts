@@ -9,6 +9,8 @@ import { UserService } from '../../services/user.service';
 export class ConfirmPage implements OnInit {
   user: any;
 
+
+
   constructor(private  userService: UserService) { }
 
   ngOnInit() {

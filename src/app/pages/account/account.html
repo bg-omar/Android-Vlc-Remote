@@ -20,11 +20,6 @@
       {{getterdata}}    <ion-button class="butt" (click)="delJson()">delete</ion-button>
       {{getterpass}}
 
-
-    </div>
-    <div class="storage-buttoins">
-      <ion-button class="butt" (click)="setJson(2)">set 2</ion-button>
-      <ion-button class="butt" (click)="getJson(2)">get 2</ion-button>
     </div>
 
 
@@ -36,81 +31,90 @@
         </ion-card-header>
 
         <ion-card-content>
-          <ion-badge color="secondary">Name</ion-badge>{{ user2.name }}<br /><br />
-          <ion-badge color="tertiary">Age</ion-badge> {{ user2.age }}
-        </ion-card-content>
-      </ion-card>
+
 
       <ion-list>
         <ion-item>
-          <ion-label position="fixed">Name</ion-label>
-          <ion-input type="text" [(ngModel)]="user2.name"></ion-input>
+          <ion-label position="fixed"><ion-badge color="secondary">vlcUser</ion-badge></ion-label>
+          <ion-input type="text" [(ngModel)]="configForm.vlcUser"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="fixed">Age</ion-label>
-          <ion-input type="number" [(ngModel)]="user2.age"></ion-input>
+          <ion-label position="fixed"><ion-badge color="tertiary">vlcPass</ion-badge></ion-label>
+          <ion-input type="text" [(ngModel)]="configForm.vlcPass"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed"><ion-badge color="secondary">ipAddress</ion-badge></ion-label>
+          <ion-input type="text" [(ngModel)]="configForm.ipAddress"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed"><ion-badge color="tertiary">port</ion-badge></ion-label>
+          <ion-input type="text" [(ngModel)]="configForm.port"></ion-input>
         </ion-item>
 
         <ion-item class="ion-float-right" lines="none">
           <ion-button color="primary" [routerLink]="'/confirm'">Confirm</ion-button>
         </ion-item>
       </ion-list>
+          <br /><br />
+          <ion-badge color="tertiary">{{ user2 | json }}</ion-badge>
+        </ion-card-content>
+      </ion-card>
     </div>
 
     <div class="ion-padding">
       <ion-card>
-  <form [formGroup]="myForm" (submit)="createUser(myForm)">
-    <ion-button  type="submit">Create User</ion-button>
-    <ion-item>{{myForm.value | json}}   </ion-item>
+  <form [formGroup]="myForm" (submit)="saveConfig(myForm)">
+    <ion-button  type="submit">Save</ion-button>
+    <ion-badge color="tertiary">{{myForm.value | json}}   </ion-badge>
+
     <ion-item>
       <ion-label floating>
-        Nick Name
+        <ion-badge color="secondary">vlcPass</ion-badge>
       </ion-label>
-      <ion-input type="text" formControlName="nickName"></ion-input>
+      <ion-input type="text" formControlName="vlcPass"></ion-input>
     </ion-item>
-    <div *ngIf="myForm.get('nickName').invalid && myForm.get('nickName').dirty">
-      <ion-item *ngIf="myForm.hasError('required', 'nickName')">
-        <span style="color:red;">Nick Name required!</span>
+    <div *ngIf="myForm.get('vlcPass').invalid && myForm.get('vlcPass').dirty">
+      <ion-item *ngIf="myForm.hasError('required', 'vlcPass')">
+        <span style="color:red;">vlcPass required!</span>
       </ion-item>
-      <ion-item *ngIf="myForm.hasError('minlength', 'nickName')">
-        <span style="color:red;">Nick Name minLength 6!</span>
+      <ion-item *ngIf="myForm.hasError('minlength', 'vlcPass')">
+        <span style="color:red;">vlcPass minLength 1!</span>
       </ion-item>
     </div>
+
+
+
     <ion-item>
-      <ion-label floating>
-        Mobile
-      </ion-label>
-      <ion-input type="text" formControlName="mobile"></ion-input>
+      <ion-label floating><ion-badge color="secondary">vlcUser</ion-badge> </ion-label>
+      <ion-input type="text" formControlName="vlcUser"></ion-input>
     </ion-item>
 
 
     <ion-item>
-      <ion-label floating>email </ion-label>
-      <ion-input type="text" formControlName="emails"></ion-input>
+      <ion-label floating>ipAddress</ion-label>
+      <ion-input type="text" formControlName="ipAddress"></ion-input>
     </ion-item>
-
 
     <ion-item>
-      <ion-label floating>address</ion-label>
-      <ion-input type="text" formControlName="address"></ion-input>
+      <ion-label floating>port</ion-label>
+      <ion-input type="text" formControlName="port"></ion-input>
     </ion-item>
-
 
     <div style="margin-top:30px;" checkbox-group>
-      <ion-list formGroupName="interest">
+      <ion-list formGroupName="pcs">
         <ion-item>
-          <ion-label>movie</ion-label>
-          <ion-checkbox formControlName="movie" value="true" ></ion-checkbox>
+          <ion-label>pc1</ion-label>
+          <ion-checkbox formControlName="pc1" value="true" ></ion-checkbox>
         </ion-item>
 
         <ion-item>
-          <ion-label>music</ion-label>
-          <ion-checkbox formControlName="music" value="true"></ion-checkbox>
+          <ion-label>pc2</ion-label>
+          <ion-checkbox formControlName="pc2" value="true"></ion-checkbox>
         </ion-item>
 
         <ion-item>
-          <ion-label>sport</ion-label>
-          <ion-checkbox formControlName="sport" value="true"></ion-checkbox>
+          <ion-label>pc3</ion-label>
+          <ion-checkbox formControlName="pc3" value="true"></ion-checkbox>
         </ion-item>
       </ion-list>
     </div>

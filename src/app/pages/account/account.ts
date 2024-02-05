@@ -18,24 +18,19 @@ import {
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
 import {StorageService} from "../../services/storage.service";
+import {json} from "@angular-devkit/core";
 
-
-export interface User {
-  nickName: string;
-  port: string;
-  emails: string,
-  address: string;
-  interest: string[]
+export interface pass {
+  vlcUser: string,
+  vlcPass: string,
 }
 
+export interface User extends pass {
+  ipAddress: string;
+  port: number;
+  pcs: string[]
+}
 
-type userconfig = { name: string, pass: string}
-type user = {
-  name: string;
-  age: number;
-  country: string;
-  config: userconfig
-};
 
 @Component({
   selector: 'page-account',
@@ -60,24 +55,22 @@ export class AccountPage implements OnInit {
   user2: any;
   user: User;
 
-  userSettings: user = {
-    name: 'me',
-    age: 36,
-    country: 'NL',
-    config: {name: '', pass: '1z2x'}
+  userSettings: User = {
+    vlcPass: '1z2x',
+    ipAddress: '192.168.2.2',
+    port: 8080,
+    vlcUser: '',
+    pcs: ['192.168.2.2:8080', '192.168.2.2:8081', '192.168.2.3:8080']
   };
 
-  userSettings2: user = {
-    name: 'you',
-    age: 28,
-    country: 'NL',
-    config: {name: '', pass: '1z2x'}
-  };
-  that: string = JSON.stringify(this.userSettings);
-  that2: string = JSON.stringify(this.userSettings2);
+  pass: pass = {vlcPass: this.userSettings.vlcPass, vlcUser: this.userSettings.vlcUser}
+  config: string = JSON.stringify(this.pass);
+  configAccount: string = JSON.stringify(this.userSettings);
+
 
   public getterdata: string = "no data";
   public getterpass: string = "no pass";
+  configForm: any;
 
   constructor(
     private userService: UserService,
@@ -87,52 +80,46 @@ export class AccountPage implements OnInit {
     public userData: UserData,
     public navCtrl: NavController,
     private fb: FormBuilder) {
-    this.user = {
-      nickName: 'PC1',
-      port: '8080',
-      emails: 'username',
-      address: '192.168.2.2',
-      interest: ['movie', 'music', 'sport']
-    } as User;
   }
   ngOnInit() {
     this.user2 = this.userService;
+    this.configForm = this.userService;
 
     //1. FormBuilder
     this.myForm = this.fb.group({
-      nickName: ['', [Validators.required, Validators.minLength(1)]],
-      mobile: ['', this.mobileValidator],
-      emails: '',
-      address: '',
-      interest:this.fb.group({
-        movie:false,
-        music:false,
-        sport:false
+      vlcPass: ['', [Validators.required, Validators.minLength(1)]],
+      port: ['', this.mobileValidator],
+      vlcUser: '',
+      ipAddress: ['', this.ipValidator],
+      pcs:this.fb.group({
+        pc1:false,
+        pc2:false,
+        pc3:false
       })
     });
 
     // 2. FormControl, FormGroup,
     this.myForm = new FormGroup({
-      nickName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      mobile: new FormControl('', this.mobileValidator),
-      emails: new FormControl(''),
-      address: new FormControl(''),
-      interest:new FormGroup({
-        movie:new FormControl(false),
-        music:new FormControl(false),
-        sport:new FormControl(false)
+      vlcPass: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      port: new FormControl('', this.mobileValidator),
+      vlcUser: new FormControl(''),
+      ipAddress: new FormControl('', this.ipValidator),
+      pcs:new FormGroup({
+        pc1:new FormControl(false),
+        pc2:new FormControl(false),
+        pc3:new FormControl(false)
       })
     });
 
     this.myForm.setValue({
-      nickName: this.user.nickName,
-      mobile: this.user.port,
-      emails: this.user.emails,
-      address: this.user.address,
-      interest: {
-        movie: this.user.interest.indexOf('movie') > -1,
-        music: this.user.interest.indexOf('music') > -1,
-        sport: this.user.interest.indexOf('sport') > -1
+      vlcPass: this.userSettings.vlcPass,
+      port: this.userSettings.port,
+      vlcUser: this.userSettings.vlcUser,
+      ipAddress: this.userSettings.ipAddress,
+      pcs: {
+        pc1: this.userSettings.pcs.indexOf('pc1') > -1,
+        pc2: this.userSettings.pcs.indexOf('pc2') > -1,
+        pc3: this.userSettings.pcs.indexOf('pc3') > -1
       }
     });
   }
@@ -147,23 +134,17 @@ export class AccountPage implements OnInit {
 
   setJson(setter: number) {
     if (setter == 1){
-      this.storageServive.setData(this.userSettings.name, this.that).then(r =>{});
-
-      let config: string = JSON.stringify(this.userSettings.config);
-      this.storageServive.setData('config', config).then(r =>{});
+      this.storageServive.setData(this.userSettings.ipAddress, this.configAccount).then(r =>{});
+      this.storageServive.setData('pass', this.config).then(r =>{});
 
     }
-    if (setter == 2){
-      this.storageServive.setData(this.userSettings2.name, this.that2).then(r =>{});
-      let config: string = JSON.stringify(this.userSettings2.config);
-      this.storageServive.setData('config', config).then(r =>{});
-    }
+
     this.getJson(setter).then(r => console.log("getting after setting: "));
 
   }
   async getJson(getter: number) {
     if (getter == 1){
-      await this.storageServive.getData(this.userSettings.name).then((data:any) => {
+      await this.storageServive.getData(this.userSettings.ipAddress).then((data:any) => {
         if(data.value) {
           this.getterdata = data.value;
         } else {
@@ -171,21 +152,11 @@ export class AccountPage implements OnInit {
         }
       });
     }
-    if (getter == 2){
-      await this.storageServive.getData(this.userSettings2.name).then((data:any) => {
-        if(data.value) {
-          this.getterdata = data.value;
-        } else {
-          this.getterdata = "no value";
-        }
-      });
-    }
-    await this.storageServive.getData('config').then((data:any) => {
-        console.log("%c ---> data.value: ","color:#F0F;", data.value);
-        console.log("%c ---> JSON.parse(data.value): ","color:#F0F;", JSON.parse(data.value));
+
+    await this.storageServive.getData('pass').then((data:any) => {
         if (data.value) {
-          let configUserPass: userconfig = JSON.parse(data.value)
-          this.getterpass = configUserPass.pass;
+          let configUserPass: pass = JSON.parse(data.value)
+          this.getterpass = configUserPass.vlcPass;
         } else {
           this.getterpass = "no value";
         }
@@ -194,27 +165,34 @@ export class AccountPage implements OnInit {
 
   }
   async delJson() {
-    await this.storageServive.delData(this.userSettings.name);
-    await this.storageServive.delData(this.userSettings2.name);
+    await this.storageServive.delData(this.userSettings.ipAddress);
     await this.storageServive.delData("config");
+    await this.storageServive.delData("pass");
     this.getterdata = "no data";
     this.getterpass = "no data";
   }
 
 
-  mobileValidator(mobile: FormControl): any {
-    let value = (mobile.value || '') + ''; //轉成字串
-    var phoneReg = /^09\d{2}-?\d{3}-?\d{3}$/; //台灣手機號碼
-    let valid = phoneReg.test(value);
-
-    console.log('phone:' + valid);
-
-    return valid ? null: {mobile: valid}
+  mobileValidator(port: FormControl): any {
+    let value = (port.value || '') + '';
+    var portReg = /^\d{2,5}?$/;
+    let valid = portReg.test(value);
+    return valid ? null: {port: valid}
   }
 
 
+  ipValidator(ipAddress: FormControl): any {
+    let value = (ipAddress.value || '') + '';
+    var ipReg = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
+    let valid ;
+    (value == 'localhost') ? valid = true : valid = ipReg.test(value);
+    return valid ? null: {ipAddress: valid}
+  }
 
-  createUser(myForm: FormGroup) {
-
+  saveConfig(myForm: FormGroup) {
+    let configForm: User = JSON.parse(myForm.value)
+    let config: string = JSON.stringify(myForm.value);
+    console.log("%c ---> configForm: ","color:#F0F;", configForm);
+    this.storageServive.setData(configForm.ipAddress, config).then(r =>{});
   }
 }
