@@ -8,11 +8,12 @@ function cY(y: any) {
 }
 
 @Component({
-  selector: 'app-fluid-simulation',
+  selector: 'fluidflow',
   template: '<canvas #myCanvas></canvas>',
-  styleUrls: ['./fluid-simulation.component.css']
+  standalone: true,
+  styleUrls: ['./fluidflow.css']
 })
-export class FluidSimulationComponent implements OnInit {
+export class Fluidflow implements OnInit {
   @ViewChild('myCanvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
   c: CanvasRenderingContext2D;
   simHeight = 1.1;

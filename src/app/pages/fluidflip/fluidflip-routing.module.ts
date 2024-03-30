@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { Fluidflow } from './fluidflow';
+import { Fluidflip } from './fluidflip';
 
 const routes: Routes = [
   {
     path: '',
-    component: Fluidflow
+    component: Fluidflip
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class fluidflowRoutingModule { }
+export class fluidflipRoutingModule { }
