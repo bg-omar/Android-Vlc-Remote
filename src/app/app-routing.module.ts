@@ -17,40 +17,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'signup',
-    loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignUpModule)
-  },
-  {
     path: 'app',
     loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule)
   },
   {
-    path: 'tutorial',
-    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
-    canLoad: [CheckTutorial]
-  },
-  {
-    path: 'todos',
-    loadChildren: () => import('./pages/todos/todos.module')
-      .then(m => m.TodosModule)
-  },
-  {
-    path: 'todo',
-    loadChildren: () => import('./pages/todo/todo.module')
-      .then(m => m.TodoModule)
-  },
-  {
-    path: 'todo/:id',
-    loadChildren: () => import('./pages/todoedit/todoedit.module')
-      .then(m => m.TodoeditModule)
-  },
-  {
     path: 'confirm',
     loadChildren: () => import('./pages/confirm/confirm.module').then(m => m.ConfirmPageModule)
+  },
+  {
+    path: 'fluidflow',
+    loadChildren: () => import('./pages/fluidflow/fluidflow.module').then(m => m.FluidflowModule)
   }
 ];
 

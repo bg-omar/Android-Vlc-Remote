@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITodo } from '../../models/todo.model';
-import { VlcService } from '../../services/vlc.service';
+import { ITodo } from '../todo.model';
+import { VlcService } from '../vlc.service';
 import {Router} from "@angular/router";
 
 

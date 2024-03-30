@@ -9,7 +9,6 @@ import {
   ToastController
 } from "@ionic/angular";
 
-import {ConferenceData} from "../../providers/conference-data";
 import {Router} from "@angular/router";
 
 
@@ -38,7 +37,6 @@ export class VlcComponent {
   constructor(
     public popoverCtrl: PopoverController,
     public alertCtrl: AlertController,
-    public confData: ConferenceData,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
     public router: Router,

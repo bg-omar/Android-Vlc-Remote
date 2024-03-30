@@ -29,21 +29,16 @@ export class AppComponent implements OnInit {
       url: '/app/tabs/vlc',
       icon: 'easel'
     },
-    // {
-    //   title: 'Todos',
-    //   url: '/app/tabs/todos',
-    //   icon: 'calendar'
-    // },
     {
       title: 'Account',
       url: '/app/tabs/account',
       icon: 'people'
     },
-    // {
-    //   title: 'About',
-    //   url: '/app/tabs/about',
-    //   icon: 'information-circle'
-    // }
+    {
+      title: 'fluidflowf',
+      url: '/app/tabs/fluidflow',
+      icon: 'people'
+    }
   ];
   loggedIn = false;
   dark = true;

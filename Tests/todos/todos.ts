@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ITodo } from 'src/app/models/todo.model';
-import { VlcService } from '../../services/vlc.service';
+import { ITodo } from '../todo.model';
+import { VlcService } from '../vlc.service';
 
 @Component({
   selector: 'app-todos',
