@@ -41,4 +41,5 @@ if(platform === "web") {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-  defineCustomElements(window);
+  defineCustomElements(window).then(r =>  console.log("r: ", r));
+

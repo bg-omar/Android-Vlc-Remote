@@ -28,24 +28,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'fluidflow',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../fluidflow/fluidflow.module').then(m => m.FluidflowModule)
-          }
-        ]
-      },
-      {
-        path: 'todos',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../../../../Tests/todos/todos.module').then(m => m.TodosModule)
-          }
-        ]
-      },
-      {
         path: '',
         redirectTo: '/app/tabs/todos',
         pathMatch: 'full'

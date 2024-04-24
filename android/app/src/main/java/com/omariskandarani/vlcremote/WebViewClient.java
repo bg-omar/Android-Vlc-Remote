@@ -12,7 +12,7 @@ import com.getcapacitor.Bridge;
 
 public class WebViewClient extends android.webkit.WebViewClient {
 
-  private Bridge bridge;
+  private final Bridge bridge;
 
   public WebViewClient(Bridge bridge) {
     this.bridge = bridge;

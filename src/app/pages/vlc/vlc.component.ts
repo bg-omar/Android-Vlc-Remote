@@ -1,12 +1,9 @@
-import {Component, ElementRef, Input, OnChanges, Renderer2, ViewChild} from '@angular/core';
-import {VlcPopoverPage} from "./vlc-popover";
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {
-  AlertController, Config, IonFab,
+  Config,
   IonRouterOutlet,
   LoadingController,
-  ModalController,
-  PopoverController,
-  ToastController
+  PopoverController
 } from "@ionic/angular";
 
 import {Router} from "@angular/router";
@@ -36,36 +33,13 @@ export class VlcComponent {
 
   constructor(
     public popoverCtrl: PopoverController,
-    public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController,
     public router: Router,
     public routerOutlet: IonRouterOutlet,
-    public toastCtrl: ToastController,
     public config: Config
   ) { }
 
-
-  async presentPopover(event: Event) {
-    const popover = await this.popoverCtrl.create({
-      component: VlcPopoverPage,
-      event
-    });
-    await popover.present();
-  }
-
-
-  async openSocial(network: string, fab: IonFab) {
-    const loading = await this.loadingCtrl.create({
-      message: `Posting to ${network}`,
-      duration: (Math.random() * 1000) + 500
-    });
-    await loading.present();
-    await loading.onWillDismiss();
-    await fab.close();
-  }
-
-  toogle($event: string) {
+  toggle($event: string) {
     console.log("$event: ", $event);
     if ($event == 'iframePC') {
       this.hideIframePC = !this.hideIframePC;

@@ -9,7 +9,6 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import {GetResult, Preferences} from '@capacitor/preferences';
 
 import { Storage } from '@ionic/storage';
-
 import { UserData } from './providers/user-data';
 
 
@@ -33,11 +32,6 @@ export class AppComponent implements OnInit {
       title: 'Account',
       url: '/app/tabs/account',
       icon: 'people'
-    },
-    {
-      title: 'fluidflowf',
-      url: '/app/tabs/fluidflow',
-      icon: 'people'
     }
   ];
   loggedIn = false;
@@ -55,7 +49,18 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
+  some_return_function(x) {
+    return 'returning: ' + x;
+  }
+  other_function() {
+    let variable;
+    variable = 'THE_STRING';
+    this.some_return_function(variable);
+    console.log("this.some_return_function(variable): ", this.some_return_function(variable));
+  }
+
   async ngOnInit() {
+    this.other_function();
     this.checkLoginStatus();
     this.listenForLoginEvents();
 

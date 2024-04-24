@@ -23,10 +23,6 @@ const routes: Routes = [
   {
     path: 'confirm',
     loadChildren: () => import('./pages/confirm/confirm.module').then(m => m.ConfirmPageModule)
-  },
-  {
-    path: 'fluidflow',
-    loadChildren: () => import('./pages/fluidflow/fluidflow.module').then(m => m.FluidflowModule)
   }
 ];
 
