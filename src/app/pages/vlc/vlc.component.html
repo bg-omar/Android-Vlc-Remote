@@ -7,9 +7,8 @@
         <ion-title><i class="fas fa-transgender-alt"></i>show/hide vlc</ion-title>
 
         <ion-buttons slot="primary">
-          <iframe-button [awesomeLogo]="'fas fa-cat'" [frameName]="'iframePC'" [buttonText]="'iframePC'" (iframeToggle)="toggle($event)"></iframe-button>
-          <iframe-button [awesomeLogo]="'fas fa-dog'"  [frameName]="'iframePC2'" [buttonText]="'iframePC2'" (iframeToggle)="toggle($event)"></iframe-button>
-          <iframe-button [awesomeLogo]="'fas fa-dragon'"  [frameName]="'iframeMAC'" [buttonText]="'iframeMAC'" (iframeToggle)="toggle($event)"></iframe-button>
+<!--          <iframe-button [awesomeLogo]="'fas fa-cat'"  *ngFor="let item of vlcdata" [frameName]="item.ipAddress" [buttonText]="item.ipAddress" (iframeToggle)="toggle($event)"></iframe-button>-->
+
         </ion-buttons>
 <!--        <ion-buttons [collapse]="true" slot="end">
           <ion-button (click)="presentPopover($event)">
@@ -20,39 +19,9 @@
     </ion-header>
 <ion-content>
 
-    <div class="remote clearfix">
-      <div class="noselect">
-        <hexatrail> </hexatrail>
-        <!-- PC -->
-<!--        <iframe #iframePC id="iframePC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8081/mobile.html"></iframe>
-        <iframe #iframePC2 id="iframePC2" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.2:8080/mobile.html"></iframe>
-        <iframe #iframeMAC id="iframeMAC" class="col-xs-6 col-sm-5 col-md-4" src="http://192.168.2.13:8080/mobile.html"></iframe>
-        <br>-->
-      </div>
-      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframePC'" [hideFrame]="hideIframePC" [url]="'http://192.168.2.2:8080/mobile.html'"></app-iframe>
-      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframePC2'" [hideFrame]="hideIframePC2" [url]="'http://192.168.2.2:8081/mobile.html'"></app-iframe>
-      <app-iframe class="col-xs-6 col-sm-5 col-md-4" [frameName]="'iframeMAC'" [hideFrame]="hideIframeMAC" [url]="'http://192.168.2.13:8080/mobile.html'"></app-iframe>
-
-
-<!--          <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
-      <ion-fab-button>
-        <ion-icon name="share-social"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-list side="top">
-        <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
-          <ion-icon name="logo-vimeo"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button color="instagram" (click)="openSocial('Instagram',fab)">
-          <ion-icon name="logo-instagram"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button color="twitter" (click)="openSocial('Twitter',fab)">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button color="facebook" (click)="openSocial('Facebook',fab)">
-          <ion-icon name="logo-facebook"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>-->
+    <div *ngFor="let item of vlcdata; index as i " >
+        <app-iframe   class="col-xs-6 col-sm-5 col-md-4" [url]="item.ipAddress"></app-iframe>
+     {{i}}  {{item.ipAddress}}
 </div>
 
 </ion-content>

@@ -12,113 +12,28 @@
   <div class="ion-padding-top ion-text-center">
   <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
     <h2>{{username}}</h2>
-    <div class="storage-buttoins">
-      <ion-button class="butt" (click)="setJson(1)">set 1</ion-button>
-      <ion-button class="butt" (click)="getJson(1)">get 1</ion-button>
-    </div>
+
     <div class="data">
-      {{getterdata}}    <ion-button class="butt" (click)="delJson()">delete</ion-button>
-      {{getterpass}}
-
+      <ion-button class="butt" (click)="delJson()">delete all</ion-button>
     </div>
 
-
+    <ion-badge color="tertiary" *ngFor="let item of getterdata">{{item.ipAddress}}</ion-badge>
 
     <div class="ion-padding">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>What you are entering</ion-card-title>
+          <ion-card-title>Add an other VLC</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-
-
       <ion-list>
         <ion-item>
-          <ion-label position="fixed"><ion-badge color="secondary">vlcUser</ion-badge></ion-label>
-          <ion-input type="text" [(ngModel)]="configForm.vlcUser"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="fixed"><ion-badge color="tertiary">vlcPass</ion-badge></ion-label>
-          <ion-input type="text" [(ngModel)]="configForm.vlcPass"></ion-input>
-        </ion-item>
-        <ion-item>
           <ion-label position="fixed"><ion-badge color="secondary">ipAddress</ion-badge></ion-label>
-          <ion-input type="text" [(ngModel)]="configForm.ipAddress"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="fixed"><ion-badge color="tertiary">port</ion-badge></ion-label>
-          <ion-input type="text" [(ngModel)]="configForm.port"></ion-input>
-        </ion-item>
-
-        <ion-item class="ion-float-right" lines="none">
-          <ion-button color="primary" [routerLink]="'/confirm'">Confirm</ion-button>
+          <ion-input type="text" [value]="'192.168.2.xxx:8080'" [placeholder]="'192.168.xxx.xxx:8080'" [(ngModel)]="configForm.ipAddress"></ion-input>
         </ion-item>
       </ion-list>
-          <br /><br />
-          <ion-badge color="tertiary">{{ user2 | json }}</ion-badge>
+          <ion-button class="butt" (click)="setJson(1)">Add</ion-button>
         </ion-card-content>
-      </ion-card>
-    </div>
-
-    <div class="ion-padding">
-      <ion-card>
-  <form [formGroup]="myForm" (submit)="saveConfig(myForm)">
-    <ion-button  type="submit">Save</ion-button>
-    <ion-badge color="tertiary">{{myForm.value | json}}   </ion-badge>
-
-    <ion-item>
-      <ion-label floating>
-        <ion-badge color="secondary">vlcPass</ion-badge>
-      </ion-label>
-      <ion-input type="text" formControlName="vlcPass"></ion-input>
-    </ion-item>
-    <div *ngIf="myForm.get('vlcPass').invalid && myForm.get('vlcPass').dirty">
-      <ion-item *ngIf="myForm.hasError('required', 'vlcPass')">
-        <span style="color:red;">vlcPass required!</span>
-      </ion-item>
-      <ion-item *ngIf="myForm.hasError('minlength', 'vlcPass')">
-        <span style="color:red;">vlcPass minLength 1!</span>
-      </ion-item>
-    </div>
-
-
-
-    <ion-item>
-      <ion-label floating><ion-badge color="secondary">vlcUser</ion-badge> </ion-label>
-      <ion-input type="text" formControlName="vlcUser"></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label floating>ipAddress</ion-label>
-      <ion-input type="text" formControlName="ipAddress"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>port</ion-label>
-      <ion-input type="text" formControlName="port"></ion-input>
-    </ion-item>
-
-    <div style="margin-top:30px;" checkbox-group>
-      <ion-list formGroupName="pcs">
-        <ion-item>
-          <ion-label>pc1</ion-label>
-          <ion-checkbox formControlName="pc1" value="true" ></ion-checkbox>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>pc2</ion-label>
-          <ion-checkbox formControlName="pc2" value="true"></ion-checkbox>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>pc3</ion-label>
-          <ion-checkbox formControlName="pc3" value="true"></ion-checkbox>
-        </ion-item>
-      </ion-list>
-    </div>
-  </form>
       </ion-card>
     </div>
   </div>

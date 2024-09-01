@@ -13,7 +13,7 @@ import {
   FormBuilder,
   Validators,
   ReactiveFormsModule,
-  FormsModule
+  FormsModule, ValidatorFn, AbstractControl, ValidationErrors
 } from '@angular/forms';
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
@@ -21,14 +21,11 @@ import {StorageService} from "../../services/storage.service";
 import {json} from "@angular-devkit/core";
 
 export interface pass {
-  vlcUser: string,
   vlcPass: string,
 }
 
-export interface User extends pass {
+export interface User {
   ipAddress: string;
-  port: number;
-  pcs: string[];
 }
 
 
@@ -52,23 +49,20 @@ export class AccountPage implements OnInit {
   ipaddress: string;
   vlcpassword: string;
   myForm: FormGroup;
-  user2: any;
   user: User;
+  addVlc: User;
 
-  userSettings: User = {
-    vlcPass: '1z2x',
-    ipAddress: '192.168.2.2',
-    port: 8080,
-    vlcUser: '',
-    pcs: ['192.168.2.2:8080', '192.168.2.2:8081', '192.168.2.3:8080']
-  };
-
-
-  configAccount: string = JSON.stringify(this.userSettings);
+  userSettings: User[] = [{
+    ipAddress: '192.168.2.2:8080',
+  }, {
+    ipAddress: '192.168.2.2:8081',
+  }];
 
 
-  public getterdata: string = "no data";
-  public getterpass: string = "no pass";
+
+
+
+  public getterdata: User[]=  [];
   configForm: any;
 
   constructor(
@@ -81,61 +75,44 @@ export class AccountPage implements OnInit {
     private fb: FormBuilder) {
   }
   ngOnInit() {
-    this.user2 = this.userService;
+    this.getJson(1);
+    this.user = this.userService;
     this.configForm = this.userService;
 
     //1. FormBuilder
     this.myForm = this.fb.group({
-      vlcPass: ['', [Validators.required, Validators.minLength(1)]],
-      port: ['', this.mobileValidator],
-      vlcUser: '',
       ipAddress: ['', this.ipValidator],
-      pcs:this.fb.group({
-        pc1:false,
-        pc2:false,
-        pc3:false
-      })
     });
 
     // 2. FormControl, FormGroup,
     this.myForm = new FormGroup({
-      vlcPass: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      port: new FormControl('', this.mobileValidator),
-      vlcUser: new FormControl(''),
       ipAddress: new FormControl('', this.ipValidator),
-      pcs:new FormGroup({
-        pc1:new FormControl(false),
-        pc2:new FormControl(false),
-        pc3:new FormControl(false)
-      })
     });
 
     this.myForm.setValue({
-      vlcPass: this.userSettings.vlcPass,
-      port: this.userSettings.port,
-      vlcUser: this.userSettings.vlcUser,
-      ipAddress: this.userSettings.ipAddress,
-      pcs: {
-        pc1: this.userSettings.pcs.indexOf('pc1') > -1,
-        pc2: this.userSettings.pcs.indexOf('pc2') > -1,
-        pc3: this.userSettings.pcs.indexOf('pc3') > -1
-      }
-    });
-  }
-
-  ionViewDidLoad() {
-
-  }
-
-  ngAfterViewInit() {
-
+      ipAddress: this.addVlc.ipAddress,
+    }
+    );
+    this.userSettings = [ ...this.userSettings, this.addVlc]
   }
 
   setJson(setter: number) {
     if (setter == 1){
-      let config: string = JSON.stringify(this.userSettings.vlcPass);
-      this.storageServive.setData(this.userSettings.ipAddress, this.configAccount).then(r =>{});
-      this.storageServive.setData('pass', config).then(r =>{});
+      this.getJson(setter).then(r => console.log("getting before setting: "));
+
+    let ip = [   {
+        'ipAddress': this.user.ipAddress
+      }]
+      if (this.getterdata.find(value => value.ipAddress === ip[0].ipAddress)){
+        console.log("%c 1 --> something: ","color:#f0f;");
+      } else {
+        this.getterdata = [...this.getterdata, ...ip
+        ].filter(value => value.ipAddress)
+      }
+        let configAccount = JSON.stringify(this.getterdata);
+        this.storageServive.setData(this.userSettings[0].ipAddress, configAccount).then(r => {
+        });
+        // this.storageServive.setData('pass', config).then(r =>{});
 
     }
 
@@ -144,32 +121,33 @@ export class AccountPage implements OnInit {
   }
   async getJson(getter: number) {
     if (getter == 1){
-      await this.storageServive.getData(this.userSettings.ipAddress).then((data:any) => {
-        if(data.value) {
-          this.getterdata = data.value;
-        } else {
-          this.getterdata = "no value";
+      await this.storageServive.getData(this.userSettings[0].ipAddress).then((data:any) => {
+
+        let res;
+        if (data.value) {
+          res = JSON.parse(data.value);
+
+          this.getterdata = res
+          console.log("%c 1 --> 135||C:/workspace/projects/Android-vlc-Remote/src/app/pages/account/account.ts\n this.getterdata: ","color:#f0f;", this.getterdata);
         }
       });
-    }
+         }
 
-    await this.storageServive.getData('pass').then((data:any) => {
-        if (data.value) {
-          let configUserPass: pass = JSON.parse(data.value)
-          this.getterpass = configUserPass.vlcPass;
-        } else {
-          this.getterpass = "no value";
-        }
-      }
-    );
+    // await this.storageServive.getData('pass').then((data:any) => {
+    //     if (data.value) {
+    //       let configUserPass: pass = JSON.parse(data.value)
+    //       this.getterpass = configUserPass.vlcPass;
+    //     } else {
+    //       this.getterpass = "no value";
+    //     }
+    //   }
+    // );
 
   }
+
   async delJson() {
-    await this.storageServive.delData(this.userSettings.ipAddress);
-    await this.storageServive.delData("config");
-    await this.storageServive.delData("pass");
-    this.getterdata = "no data";
-    this.getterpass = "no data";
+    await this.storageServive.delData(this.userSettings[0].ipAddress);
+    this.getterdata = [];
   }
 
 
@@ -181,13 +159,13 @@ export class AccountPage implements OnInit {
   }
 
 
-  ipValidator(ipAddress: FormControl): any {
-    let value = (ipAddress.value || '') + '';
-    var ipReg = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
-    let valid ;
-    (value == 'localhost') ? valid = true : valid = ipReg.test(value);
+  ipValidator(ipAddress: FormControl): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const regex = /^(?:\d{1,3}\.){3}\d{1,3}:(?:6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[1-5]\d{4}|\d{1,4})$/;
+    const valid = regex.test(ipAddress.value);
     return valid ? null: {ipAddress: valid}
-  }
+  };
+}
 
   saveConfig(myForm: FormGroup) {
     let configForm: User = JSON.parse(myForm.value)
