@@ -44,7 +44,7 @@ div:hover {
 }
 
 iframe {
-  display: flex;
+  display: inline-grid;
   transition: opacity 1s ease-out;
   min-width: 450px;
   min-height: 350px;

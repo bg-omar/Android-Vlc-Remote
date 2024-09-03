@@ -25,6 +25,7 @@ export interface pass {
 }
 
 export interface User {
+  hide: boolean;
   ipAddress: string;
 }
 
@@ -45,17 +46,14 @@ export interface User {
   ],
 })
 export class AccountPage implements OnInit {
-  username: string;
-  ipaddress: string;
-  vlcpassword: string;
   myForm: FormGroup;
   user: User;
   addVlc: User;
 
   userSettings: User[] = [{
-    ipAddress: '192.168.2.2:8080',
+    ipAddress: '192.168.2.2:8080', hide: false
   }, {
-    ipAddress: '192.168.2.2:8081',
+    ipAddress: '192.168.2.2:8081', hide: false
   }];
 
 
@@ -101,7 +99,9 @@ export class AccountPage implements OnInit {
       this.getJson(setter).then(r => console.log("getting before setting: "));
 
     let ip = [   {
-        'ipAddress': this.user.ipAddress
+        'ipAddress': 'http://192.168.2.'+this.user.ipAddress+'/mobile.html',
+        'hide': this.user.hide
+
       }]
       if (this.getterdata.find(value => value.ipAddress === ip[0].ipAddress)){
         console.log("%c 1 --> something: ","color:#f0f;");
@@ -145,9 +145,12 @@ export class AccountPage implements OnInit {
 
   }
 
-  async delJson() {
+  async delJson(i) {
     await this.storageServive.delData(this.userSettings[0].ipAddress);
-    this.getterdata = [];
+    let foo_object = this.getterdata[i];
+    this.getterdata = this.getterdata.filter(obj => {
+      return obj !== foo_object
+    });
   }
 
 

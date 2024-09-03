@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
   private _ipAddress: string;
+  private _hide: boolean;
 
 
   get ipAddress() {
@@ -14,4 +15,11 @@ export class UserService {
     this._ipAddress = ip;
   }
 
+  get hide() {
+    return this._hide;
+  }
+
+  set hide(hide: boolean) {
+    this._hide = hide;
+  }
 }

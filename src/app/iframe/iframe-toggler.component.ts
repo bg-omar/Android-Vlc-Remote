@@ -18,12 +18,12 @@ import {IonicModule} from "@ionic/angular";
 })
 export class IFrameToggler implements OnInit{
   @Input()  frameName: string = 'IframePC';
-  @Input()  awesomeLogo: string = 'fas fa-cat'
-  @Input()  buttonText: string = ''
+  @Input()  awesomeLogo: string = 'fas fa-cat';
+  @Input()  buttonText: any;
   @Output() iframeToggle: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit() {
-    if (this.buttonText == '') this.buttonText = this.frameName;
+    this.buttonText = this.buttonText.match(/(\d+:\d+)/) || this.frameName;
   }
 
   onIframeToggle() {

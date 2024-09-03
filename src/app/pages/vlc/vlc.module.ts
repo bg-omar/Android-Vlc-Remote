@@ -12,7 +12,7 @@ import {AccountModule} from "../account/account.module";
 
 import {IframeComponent} from "../../iframe/iframe.component";
 import {IFrameToggler} from "../../iframe/iframe-toggler.component";
-import {TabsPage} from "../tabs-page/tabs-page";
+
 
 
 
@@ -30,7 +30,6 @@ import {TabsPage} from "../tabs-page/tabs-page";
     AccountModule,
     IframeComponent,
     IFrameToggler,
-    TabsPage
   ],
   declarations: [
     VlcComponent, VlcPopoverPage

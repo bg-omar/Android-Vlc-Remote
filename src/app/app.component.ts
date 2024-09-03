@@ -49,18 +49,9 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
-  some_return_function(x) {
-    return 'returning: ' + x;
-  }
-  other_function() {
-    let variable;
-    variable = 'THE_STRING';
-    this.some_return_function(variable);
-    console.log("this.some_return_function(variable): ", this.some_return_function(variable));
-  }
+
 
   async ngOnInit() {
-    this.other_function();
     this.checkLoginStatus();
     this.listenForLoginEvents();
 
@@ -95,12 +86,12 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      if (this.platform.is('hybrid')) {
-        StatusBar.hide();
-        SplashScreen.hide();
-      }
-    });
+    // this.platform.ready().then(() => {
+    //   if (this.platform.is('hybrid')) {
+    //     StatusBar.hide();
+    //     SplashScreen.hide();
+    //   }
+    // });
 
     const getConfig = async () => {
       return  await Preferences.get({ key: 'pass' });

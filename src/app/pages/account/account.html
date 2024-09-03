@@ -8,16 +8,13 @@
 </ion-header>
 
 <ion-content>
-<!--  <div *ngIf="username" class="ion-padding-top ion-text-center">-->
-  <div class="ion-padding-top ion-text-center">
-  <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
-    <h2>{{username}}</h2>
 
     <div class="data">
-      <ion-button class="butt" (click)="delJson()">delete all</ion-button>
-    </div>
 
-    <ion-badge color="tertiary" *ngFor="let item of getterdata">{{item.ipAddress}}</ion-badge>
+    </div>
+  <li *ngFor="let item of getterdata; index as i">
+    <ion-badge color="tertiary">{{item.ipAddress}}<ion-button class="butt" (click)="delJson(i)">remove</ion-button></ion-badge>
+  </li>
 
     <div class="ion-padding">
       <ion-card>
@@ -29,12 +26,11 @@
       <ion-list>
         <ion-item>
           <ion-label position="fixed"><ion-badge color="secondary">ipAddress</ion-badge></ion-label>
-          <ion-input type="text" [value]="'192.168.2.xxx:8080'" [placeholder]="'192.168.xxx.xxx:8080'" [(ngModel)]="configForm.ipAddress"></ion-input>
+          <ion-input type="text"  [helperText]="'x:port    x = 192.168.2.x:8080 '" [placeholder]="'x:port    x = 192.168.2.x:8080 '" [(ngModel)]="configForm.ipAddress"></ion-input>
         </ion-item>
       </ion-list>
           <ion-button class="butt" (click)="setJson(1)">Add</ion-button>
         </ion-card-content>
       </ion-card>
     </div>
-  </div>
 </ion-content>

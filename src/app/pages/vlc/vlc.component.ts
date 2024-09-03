@@ -19,24 +19,7 @@ import {AccountPage, User} from "../account/account";
   styleUrls: ['./vlc.component.scss']
 })
 export class VlcComponent implements OnInit {
-  @ViewChild('hidePC') hidePC: ElementRef;
-  @ViewChild('hidePC2') hidePC2: ElementRef;
-  @ViewChild('hideMAC') hideMAC: ElementRef;
-  @ViewChild('hideELITE') hideELITE: ElementRef;
-  @ViewChild('hideHP') hideHP: ElementRef;
-  @ViewChild('iframePC') iframePC: ElementRef;
-  @ViewChild('iframePC2') iframePC2: ElementRef;
-  @ViewChild('iframeMAC') iframeMAC: ElementRef;
-  @ViewChild('iframeELITE') iframeELITE: ElementRef;
-  @ViewChild('iframeHP') iframeHP: ElementRef;
-  @ViewChild('myDiv') myDiv: ElementRef;
-
   static hideIframe: string;
-  hideIframePC: boolean;
-  hideIframePC2: boolean;
-  hideIframeMAC: boolean;
-  hideIframeELITE: boolean;
-  hideIframeHP: boolean;
   vlcdata: User[]=  [];
   all: any;
 
@@ -50,19 +33,11 @@ export class VlcComponent implements OnInit {
     public config: Config
   ) { }
 
-  toggle($event: string) {
+  toggle($event: User) {
     console.log("$event: ", $event);
-    if ($event == 'iframePC') {
-      this.hideIframePC = !this.hideIframePC;
-    } else if ($event == 'iframePC2') {
-      this.hideIframePC2 = !this.hideIframePC2;
-    } else if ($event == 'iframeMAC') {
-      this.hideIframeMAC = !this.hideIframeMAC;
-    } else if ($event == 'iframeELITE') {
-      this.hideIframeELITE = !this.hideIframeELITE;
-    } else if ($event == 'iframeHP') {
-      this.hideIframeHP = !this.hideIframeHP;
-    }
+    this.vlcdata.find(value => {
+      if (value.ipAddress === $event.ipAddress) value.hide = !value.hide;
+    })
   }
 
   async getJson() {
