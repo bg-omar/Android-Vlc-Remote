@@ -6,6 +6,9 @@
     "cleartext": true
   },
   "plugins": {
+    "getJson": {
+      "variables": "your configuration here"
+    },
     "Preferences":  {
       "pass": {
         "pass": "Empty Password"

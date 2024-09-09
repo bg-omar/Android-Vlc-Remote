@@ -8,9 +8,8 @@ import { StatusBar } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
 import {GetResult, Preferences} from '@capacitor/preferences';
 
-import { Storage } from '@ionic/storage';
 import { UserData } from './providers/user-data';
-
+import { Storage } from '@ionic/storage-angular';
 
 
 
@@ -37,14 +36,11 @@ export class AppComponent implements OnInit {
   loggedIn = false;
   dark = true;
   title = this.appPages
+  passvalue: string;
+
   constructor(
     private menu: MenuController,
     private platform: Platform,
-    private router: Router,
-    private storage: Storage,
-    private userData: UserData,
-    private swUpdate: SwUpdate,
-    private toastCtrl: ToastController,
   ) {
     this.initializeApp();
   }
@@ -52,28 +48,7 @@ export class AppComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.checkLoginStatus();
-    this.listenForLoginEvents();
 
-    this.swUpdate.available.subscribe(async res => {
-      const toast = await this.toastCtrl.create({
-        message: 'Update available!',
-        position: 'bottom',
-        buttons: [
-          {
-            role: 'cancel',
-            text: 'Reload'
-          }
-        ]
-      });
-
-      await toast.present();
-
-      toast
-        .onDidDismiss()
-        .then(() => this.swUpdate.activateUpdate())
-        .then(() => window.location.reload());
-    });
     // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -86,30 +61,34 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
-    // this.platform.ready().then(() => {
-    //   if (this.platform.is('hybrid')) {
-    //     StatusBar.hide();
-    //     SplashScreen.hide();
-    //   }
-    // });
+    this.platform.ready().then(() => {
+      if (this.platform.is('hybrid')) {
+        StatusBar.hide();
+        SplashScreen.hide();
+      }
+    });
 
     const getConfig = async () => {
       return  await Preferences.get({ key: 'pass' });
     };
 
-    let passvalue: string = JSON.stringify( "1z2x");
+
     const setDefaultConfig = async () => {
-      await Preferences.set({
-        key: 'pass',
-        value: passvalue,
-      });
+      if (!this.passvalue) {
+        this.passvalue = prompt('Please enter your VLC password: ', '') || '1z2x';
+      }
+      if (this.passvalue) {
+        await Preferences.set({
+          key: 'pass',
+          value: this.passvalue,
+        });
+      }
     };
 
     function checkConfig(r: GetResult) {
       console.log("checking passvalue")
       console.log(r)
       if (r.value == null) {
-        console.log("Value = null  ==> setting Default")
         setDefaultConfig().then(r => getConfig());
       } else {
         console.log("Value: ", r.value)
@@ -117,44 +96,6 @@ export class AppComponent implements OnInit {
     }
 
     getConfig().then(r => checkConfig(r));
-  }
-
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn => {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
-
-  updateLoggedInStatus(loggedIn: boolean) {
-    setTimeout(() => {
-      this.loggedIn = loggedIn;
-    }, 300);
-  }
-
-  listenForLoginEvents() {
-    window.addEventListener('user:login', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:signup', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:logout', () => {
-      this.updateLoggedInStatus(false);
-    });
-  }
-
-  logout() {
-    this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
-    });
-  }
-
-  openTutorial() {
-    this.menu.enable(false);
-    this.storage.set('ion_did_tutorial', false);
-    this.router.navigateByUrl('/tutorial');
   }
 
   // Check/uncheck the toggle and update the theme based on isDark

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, ViewChild} from '@angular/core';
 import {
   Config,
   IonRouterOutlet,
@@ -6,10 +6,10 @@ import {
   PopoverController
 } from "@ionic/angular";
 
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
 import {AccountPage, User} from "../account/account";
-
+import { Storage } from '@ionic/storage-angular';
 
 
 
@@ -18,10 +18,11 @@ import {AccountPage, User} from "../account/account";
   templateUrl: './vlc.component.html',
   styleUrls: ['./vlc.component.scss']
 })
-export class VlcComponent implements OnInit {
+export class VlcComponent implements OnInit, OnChanges, OnDestroy {
   static hideIframe: string;
-  vlcdata: User[]=  [];
+  @Input() vlcdata: User[]=  [];
   all: any;
+  routerSubscription: any;
 
 
   constructor(
@@ -41,7 +42,7 @@ export class VlcComponent implements OnInit {
   }
 
   async getJson() {
-      await this.storageServive.getData("192.168.2.2:8080").then((data:any) => {
+      await this.storageServive.getData("VLC").then((data:any) => {
         let res: User[];
           res = JSON.parse(data.value);
           this.vlcdata = res
@@ -51,7 +52,52 @@ export class VlcComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJson();
+
+    // Listen for router navigation events
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Re-run the initialization logic when navigating back to this component
+        this.getJson();
+      }
+    });
   }
 
+  // This method will be triggered whenever @Input() properties change
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Changes detected:', changes);
+
+    // Check if a specific property changed
+    if (changes['vlcdata']) {
+      const previousValue = changes['vlcdata'].previousValue;
+      const currentValue = changes['vlcdata'].currentValue;
+      console.log(`inputProp changed from ${previousValue} to ${currentValue}`);
+
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to avoid memory leaks
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
+
+  getPcName(buttenName: string): string {
+    // If buttonText is not defined, use the part of frameName that matches the port or default to frameName
+
+    const pcMatch = buttenName.match(/\d+\.\d+\.\d+\.(\d+)/);  // Matches the last octet
+    const portMatch = buttenName.match(/:(\d{4})/);  // Matches the first two digits of the port (81)
+// Extract values if matches are found
+    const pc = pcMatch ? pcMatch[1] : null;
+    const port = portMatch ? portMatch[1].slice(-2) : null;
+    let matchedText;
+    if (pc && port) {
+      // Combine pc and port into matchedText
+      matchedText = pc + ': ' + port;
+
+      // Set buttonText to matchedText if it's valid, otherwise fallback to frameName
+    }
+    return matchedText;
+  }
 }
 

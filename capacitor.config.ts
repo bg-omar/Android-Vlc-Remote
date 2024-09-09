@@ -8,10 +8,13 @@ const config: CapacitorConfig = {
     cleartext: true,
   },
   plugins: {
-    Preferences:  {
-        pass: {
-            pass: "Empty Password"
-          }
+    "getJson": {
+      "variables": "your configuration here"
+    },
+    "Preferences":  {
+      "pass": {
+        "pass": "Empty Password"
+      }
     },
     CapacitorHttp: {
       enabled: true,

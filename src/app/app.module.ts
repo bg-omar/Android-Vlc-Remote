@@ -21,7 +21,6 @@ import {IframeComponent} from "./iframe/iframe.component";
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -38,7 +37,7 @@ import {IframeComponent} from "./iframe/iframe.component";
       enabled: environment.production
     }),
     NativeHttpModule,
-    IframeComponent,
+    IframeComponent
   ],
   providers: [
     HttpClient,

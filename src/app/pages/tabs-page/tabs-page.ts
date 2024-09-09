@@ -12,8 +12,5 @@ import {IFrameToggler} from "../../iframe/iframe-toggler.component";
   templateUrl: 'tabs-page.html'
 })
 export class TabsPage {
-  toggle($event: string) {
-    console.log("%c ---> tabspage $event: ","color:#F0F;", $event);
-    VlcComponent.hideIframe = $event;
-  }
+
 }

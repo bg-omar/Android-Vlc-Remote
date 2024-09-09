@@ -10,10 +10,19 @@
 <ion-content>
 
     <div class="data">
-
+      <ion-badge color="tertiary">
+        {{vlcPass}}
+        <ion-button class="butt" (click)="getPass(1)">show </ion-button>
+        <ion-button class="butt" (click)="getPass(2)">delete </ion-button>
+        <ion-button class="butt" (click)="getPass(3)">set </ion-button>
+      </ion-badge>
     </div>
   <li *ngFor="let item of getterdata; index as i">
-    <ion-badge color="tertiary">{{item.ipAddress}}<ion-button class="butt" (click)="delJson(i)">remove</ion-button></ion-badge>
+    <ion-badge color="tertiary">
+      {{item.ipAddress}}
+      <ion-button class="butt" (click)="delJson(i)">remove</ion-button>
+      <ion-button class="butt" (click)="setHide(i)">{{item.hide ? 'show' : 'hide'}}</ion-button>
+    </ion-badge>
   </li>
 
     <div class="ion-padding">

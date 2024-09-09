@@ -39,24 +39,36 @@ div:hover {
 
 .clearfix::after{
   content:" ";
-  display:block;
+  display:inline-block;
   clear:both;
 }
-
-iframe {
+.frame-holder {
   display: inline-grid;
-  transition: opacity 1s ease-out;
-  min-width: 450px;
-  min-height: 350px;
-  border-width: 0;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-}
 
+  app-iframe {
+    position: relative;
+    display: contents;
+    transition: opacity 1s ease-out;
+    min-width: 450px;
+    min-height: 350px;
+    border-width: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+
+    .note{
+      position: absolute;
+      align-self: end;
+      justify-self: flex-end;
+      width: fit-content;
+      height: fit-content;
+      color: #777;
+    }
+  }
+}
 .div-scrollable {
   font-family: 'Arial', cursive;
   font-weight: 600;
