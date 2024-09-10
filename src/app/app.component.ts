@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
 
     // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    console.log("%c 1 --> 54||app.component.ts\n prefersDark: ","color:#f0f;", prefersDark);
 
     // Initialize the dark theme based on the initial
     // value of the prefers-color-scheme media query
@@ -61,13 +62,6 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      if (this.platform.is('hybrid')) {
-        StatusBar.hide();
-        SplashScreen.hide();
-      }
-    });
-
     const getConfig = async () => {
       return  await Preferences.get({ key: 'pass' });
     };
@@ -76,12 +70,12 @@ export class AppComponent implements OnInit {
     const setDefaultConfig = async () => {
       if (!this.passvalue) {
         this.passvalue = prompt('Please enter your VLC password: ', '') || '1z2x';
-      }
-      if (this.passvalue) {
-        await Preferences.set({
-          key: 'pass',
-          value: this.passvalue,
-        });
+        {
+          await Preferences.set({
+            key: 'pass',
+            value: this.passvalue,
+          });
+        }
       }
     };
 

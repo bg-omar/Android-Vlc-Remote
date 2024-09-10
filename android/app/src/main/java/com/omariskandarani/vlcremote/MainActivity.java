@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.HttpAuthHandler;
+import com.omariskandarani.vlcremote.plugin.*;
 
 import android.webkit.WebView;
 
@@ -18,6 +19,9 @@ public class MainActivity extends BridgeActivity {
     @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+      // Initialize the plugin
+      getBridge().getPlugin(String.valueOf(getJsonPlugin.class));
 
     // Enable cookies
     CookieManager.getInstance().setAcceptCookie(true);

@@ -7,7 +7,7 @@
   },
   "plugins": {
     "getJson": {
-      "variables": "your configuration here"
+      "pass": "Empty Password"
     },
     "Preferences":  {
       "pass": {

@@ -78,7 +78,6 @@
     "@popperjs/core": "2.11.8",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
-    "getJson": "file:com-omariskandarani-vlcremote-plugin",
     "cordova-plugin-inappbrowser": "6.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

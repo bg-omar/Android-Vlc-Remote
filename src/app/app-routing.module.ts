@@ -6,7 +6,6 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'vlc',
-    pathMatch: 'full'
   },
   {
     path: 'vlc',

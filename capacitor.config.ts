@@ -9,7 +9,7 @@ const config: CapacitorConfig = {
   },
   plugins: {
     "getJson": {
-      "variables": "your configuration here"
+      "pass": "Empty Password"
     },
     "Preferences":  {
       "pass": {
