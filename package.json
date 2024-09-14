@@ -26,7 +26,7 @@
     "build:native": "npm run remove:sql:wasm && ng build",
     "init capacitor": "npx cap init vlc-remote com.omariskandarani.vlcremote",
     "init ionic": "npx ionic init vlc-remote --type=angular",
-    "run": "ng run vlc-remote:serve --host=localhost --port=8100",
+    "run": "ng run vlc-remote:serve",
     "watch VLC": "ng build --watch --configuration   --output-path www --watch --output-hashing none",
     "watch": "npm run copy:sql:wasm && ng build --watch --configuration development",
     "ionic:serve:before": "npm run copy:sql:wasm",

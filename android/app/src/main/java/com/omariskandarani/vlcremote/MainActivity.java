@@ -10,10 +10,6 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.HttpAuthHandler;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.InputStream;
 
 import android.webkit.WebView;
 
@@ -32,7 +28,7 @@ public class MainActivity extends BridgeActivity {
 
     // Get WebView settings
     WebView webView = this.getBridge().getWebView();
-    webView.setWebViewClient(new WebViewClient(bridge){
+    webView.setWebViewClient(new BridgeWebViewClient(bridge){
       @Override
       public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
 

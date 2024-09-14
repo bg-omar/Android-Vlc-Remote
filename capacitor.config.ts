@@ -4,6 +4,7 @@ const config: CapacitorConfig = {
   appId: 'com.omariskandarani.vlcremote',
   appName: 'vlc-remote',
   webDir: 'www',
+  bundledWebRuntime: false,
   server: {
     cleartext: true,
   },
