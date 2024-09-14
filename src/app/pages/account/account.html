@@ -34,7 +34,7 @@
         <ion-card-content>
       <ion-list>
         <ion-item>
-          <ion-label position="fixed"><ion-badge color="secondary">ipAddress</ion-badge></ion-label>
+          <ion-badge color="secondary" aria-label="ipAddress"></ion-badge>
           <ion-input type="text"  [helperText]="'x:port    x = 192.168.2.x:8080 '" [placeholder]="'x:port    x = 192.168.2.x:8080 '" [(ngModel)]="configForm.ipAddress"></ion-input>
         </ion-item>
       </ion-list>

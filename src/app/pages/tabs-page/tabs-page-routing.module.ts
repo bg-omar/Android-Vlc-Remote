@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/todos',
+        redirectTo: '/app/tabs/vlc',
         pathMatch: 'full'
       }
     ]

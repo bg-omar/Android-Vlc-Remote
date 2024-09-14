@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 
 @Injectable({
@@ -57,26 +57,6 @@ export class UserData {
 
   getUsername(): Promise<string> {
     return this.storage.get('username').then((value) => {
-      return value;
-    });
-  }
-
-  setVlcpassword(vlcpassword: string): Promise<any> {
-    return this.storage.set('vlcpassword', vlcpassword);
-  }
-
-  getVlcpassword(): Promise<string> {
-    return this.storage.get('vlcpassword').then((value) => {
-      return value;
-    });
-  }
-
-  setIpaddress(ipaddress: string): Promise<any> {
-    return this.storage.set('ipaddress', ipaddress);
-  }
-
-  getIpaddress(): Promise<string> {
-    return this.storage.get('ipaddress').then((value) => {
       return value;
     });
   }

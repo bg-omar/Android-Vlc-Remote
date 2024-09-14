@@ -1,17 +1,7 @@
 {
-  "defaultProject": "vlc-remote",
-  "projects": {
-    "angular-mobile-ap": {
-      "name": "vlc-remote",
-      "integrations": {
-        "capacitor": {}
-      },
-      "type": "angular"
-    },
-    "vlc-remote": {
-      "integrations": {
-        "capacitor": {}
-      }
-    }
+  "name": "vlc-remote",
+  "type": "angular",
+  "integrations": {
+    "capacitor": {}
   }
 }

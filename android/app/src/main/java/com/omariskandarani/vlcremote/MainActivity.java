@@ -28,7 +28,7 @@ public class MainActivity extends BridgeActivity {
 
     // Get WebView settings
     WebView webView = this.getBridge().getWebView();
-    webView.setWebViewClient(new BridgeWebViewClient(bridge){
+    webView.setWebViewClient(new WebViewClient(bridge){
       @Override
       public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
 

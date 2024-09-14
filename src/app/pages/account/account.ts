@@ -89,10 +89,6 @@ export class AccountPage implements OnInit {
       ipAddress: new FormControl('', this.ipValidator),
     });
 
-    this.myForm.setValue({
-        ipAddress: this.addVlc.ipAddress,
-      }
-    );
     this.userSettings = [...this.userSettings, this.addVlc]
   }
 

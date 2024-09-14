@@ -41,6 +41,11 @@ export class AppComponent implements OnInit {
   constructor(
     private menu: MenuController,
     private platform: Platform,
+    private router: Router,
+    private storage: Storage,
+    private userData: UserData,
+    private swUpdate: SwUpdate,
+    private toastCtrl: ToastController,
   ) {
     this.initializeApp();
   }
@@ -48,7 +53,29 @@ export class AppComponent implements OnInit {
 
 
   async ngOnInit() {
+    await this.storage.create();
+    await this.checkLoginStatus();
+    this.listenForLoginEvents();
 
+    this.swUpdate.versionUpdates.subscribe(async res => {
+      const toast = await this.toastCtrl.create({
+        message: 'Update available!',
+        position: 'bottom',
+        buttons: [
+          {
+            role: 'cancel',
+            text: 'Reload'
+          }
+        ]
+      });
+
+      await toast.present();
+
+      toast
+        .onDidDismiss()
+        .then(() => this.swUpdate.activateUpdate())
+        .then(() => window.location.reload());
+    });
     // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     console.log("%c 1 --> 54||app.component.ts\n prefersDark: ","color:#f0f;", prefersDark);
@@ -90,6 +117,44 @@ export class AppComponent implements OnInit {
     }
 
     getConfig().then(r => checkConfig(r));
+  }
+
+  checkLoginStatus() {
+    return this.userData.isLoggedIn().then(loggedIn => {
+      return this.updateLoggedInStatus(loggedIn);
+    });
+  }
+
+  updateLoggedInStatus(loggedIn: boolean) {
+    setTimeout(() => {
+      this.loggedIn = loggedIn;
+    }, 300);
+  }
+
+  listenForLoginEvents() {
+    window.addEventListener('user:login', () => {
+      this.updateLoggedInStatus(true);
+    });
+
+    window.addEventListener('user:signup', () => {
+      this.updateLoggedInStatus(true);
+    });
+
+    window.addEventListener('user:logout', () => {
+      this.updateLoggedInStatus(false);
+    });
+  }
+
+  logout() {
+    this.userData.logout().then(() => {
+      return this.router.navigateByUrl('/app/tabs/schedule');
+    });
+  }
+
+  openTutorial() {
+    this.menu.enable(false);
+    this.storage.set('ion_did_tutorial', false);
+    this.router.navigateByUrl('/tutorial');
   }
 
   // Check/uncheck the toggle and update the theme based on isDark

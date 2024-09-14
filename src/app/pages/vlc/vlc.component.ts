@@ -34,11 +34,21 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
     public config: Config
   ) { }
 
+  // This lifecycle method will be triggered when the Home page becomes active
+  ionViewWillEnter() {
+    this.refreshData(); // Replace this with your data-fetching or refreshing logic
+  }
+
+  refreshData() {
+    this.getJson();
+  }
+
   toggle($event: User) {
     console.log("$event: ", $event);
     this.vlcdata.find(value => {
       if (value.ipAddress === $event.ipAddress) value.hide = !value.hide;
     })
+
   }
 
   async getJson() {

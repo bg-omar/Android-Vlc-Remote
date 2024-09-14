@@ -24,7 +24,7 @@ import {NgClass} from "@angular/common";
   ],
   standalone: true
 })
-export class IframeComponent implements OnInit {
+export class IframeComponent implements OnInit, AfterViewInit{
   @ViewChild('myFrame') myFrame: ElementRef;
 
   @Input() frameName: string = "";

@@ -20,26 +20,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-
-// --> Below only required if you want to use a web platform
-const platform = Capacitor.getPlatform();
-if(platform === "web") {
-  // Web platform
-  // required for toast component in Browser
-  pwaElements(window);
-
-
-  window.addEventListener('DOMContentLoaded', async () => {
-    const jeepEl = document.createElement("jeep-sqlite");
-    document.body.appendChild(jeepEl);
-//      jeepEl.autoSave = true;
-  });
-}
-// Above only required if you want to use a web platform <--
-
-
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
-
-  defineCustomElements(window).then(r =>  console.log("r: ", r));
-
+  .catch(err => console.log(err));
