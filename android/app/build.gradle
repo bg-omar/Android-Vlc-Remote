@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
 
-    namespace 'com.omariskandarani.vlcremote'
-    compileSdkVersion rootProject.ext.compileSdkVersion
+  namespace 'com.omariskandarani.vlcremote'
+  compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.omariskandarani.vlcremote"
         minSdkVersion rootProject.ext.minSdkVersion

@@ -1,5 +1,5 @@
 package com.omariskandarani.vlcremote;
-
+import com.omariskandarani.vlcremote.plugin.*;
 import android.content.SharedPreferences;
 
 import com.getcapacitor.BridgeActivity;
@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.HttpAuthHandler;
-import com.omariskandarani.vlcremote.plugin.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.InputStream;
 
 import android.webkit.WebView;
 
@@ -45,6 +49,8 @@ public class MainActivity extends BridgeActivity {
 
     // Enable JavaScript (if needed)
     webSettings.setJavaScriptEnabled(true);
+
+    registerPlugin(EchoPlugin.class);
 
 
   }

@@ -2,15 +2,11 @@
   "appId": "com.omariskandarani.vlcremote",
   "appName": "vlc-remote",
   "webDir": "www",
-  "bundledWebRuntime": false,
   "server": {
     "androidScheme": "https",
     "cleartext": true
   },
   "plugins": {
-    "getJson": {
-      "pass": "Empty Password"
-    },
     "Preferences":  {
       "pass": {
         "pass": "Empty Password"

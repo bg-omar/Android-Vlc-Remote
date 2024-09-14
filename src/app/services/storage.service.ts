@@ -21,11 +21,15 @@ export class StorageService {
   }
 
   async getData(key: string) {
-    return await Preferences.get({key});
+    return (await Preferences.get({key}))
   }
 
   async delData(key: string) {
     await Preferences.remove({key})
+  }
+
+  async upData(key: string, value: any) {
+    await Preferences.set({key, value})
   }
 
   async clear() {

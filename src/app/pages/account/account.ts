@@ -48,6 +48,9 @@ export interface User {
   ],
 })
 export class AccountPage implements OnInit {
+  username: string;
+  ipaddress: string;
+  vlcpassword: string;
   myForm: FormGroup;
   user: User;
   addVlc: User;
@@ -91,6 +94,25 @@ export class AccountPage implements OnInit {
 
     this.userSettings = [...this.userSettings, this.addVlc]
   }
+
+  createUser({ value, valid }: { value: any, valid: boolean }) {
+    let user: User = this.myForm.value;
+    console.log(JSON.stringify(user));
+    console.log(this.myForm.value);
+
+
+    let control = this.myForm.get('nickName') as FormControl;
+    let formArray = this.myForm.get('address.addressArray') as FormArray;
+
+    //let formArray = group.controls.addressArray as FormArray;
+
+    console.log(formArray.controls[0].value);
+
+    let nickNameValid = this.myForm.get('nickName').valid;
+    let nickNameErrorMsg = this.myForm.get('nickName').errors;
+    console.log(`Nick Name Error: ${nickNameValid}-${JSON.stringify(nickNameErrorMsg)}`);
+  }
+
 
   setHide(i: number) {
     this.getterdata[i].hide = !this.getterdata[i].hide;
@@ -175,5 +197,120 @@ export class AccountPage implements OnInit {
       const valid = regex.test(ipAddress.value);
       return valid ? null : {ipAddress: valid}
     };
+  }
+
+  updatePicture() {
+    console.log('Clicked to update picture');
+  }
+
+  // Present an alert with the current username populated
+  // clicking OK will update the username and display it
+  // clicking Cancel will close the alert and do nothing
+  async changeUsername() {
+    const alert = await this.alertCtrl.create({
+      header: 'Change Username',
+      buttons: [
+        'Cancel',
+        {
+          text: 'Ok',
+          handler: (data: any) => {
+            this.userData.setUsername(data.username);
+            this.getUsername();
+          }
+        }
+      ],
+      inputs: [
+        {
+          type: 'text',
+          name: 'username',
+          value: this.username,
+          placeholder: 'username'
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  getUsername() {
+    this.userData.getUsername().then((username) => {
+      this.username = username;
+    });
+  }
+
+  changePassword() {
+    console.log('Clicked to change password');
+  }
+
+  logout() {
+    this.userData.logout();
+    this.router.navigateByUrl('/login');
+  }
+
+  support() {
+    this.router.navigateByUrl('/support');
+  }
+
+  getVlcpassword() {
+    this.userData.getVlcpassword().then((vlcpassword) => {
+      this.vlcpassword = vlcpassword;
+    });
+  }
+
+  getIpaddress() {
+    this.userData.getVlcpassword().then((ipaddress) => {
+      this.ipaddress = ipaddress;
+    });
+  }
+
+  async changevlcpassword() {
+    const alert = await this.alertCtrl.create({
+      header: 'Change VlcPass',
+      buttons: [
+        'Cancel',
+        {
+          text: 'Ok',
+          handler: (data: any) => {
+            this.userData.setVlcpassword(data.vlcpassword);
+            this.getVlcpassword();
+          }
+        }
+      ],
+      inputs: [
+        {
+          type: 'text',
+          name: 'vlcpassword',
+          value: this.vlcpassword,
+          placeholder: 'vlcpassword'
+        }
+      ]
+    });
+    await alert.present();
+
+  }
+
+  async changeipaddress() {
+    const alert = await this.alertCtrl.create({
+      header: 'Change ipaddress',
+      buttons: [
+        'Cancel',
+        {
+          text: 'Ok',
+          handler: (data: any) => {
+            this.userData.setIpaddress(data.ipaddress);
+            this.getIpaddress();
+          }
+        }
+      ],
+      inputs: [
+        {
+          type: 'text',
+          name: 'ipaddress',
+          value: this.ipaddress,
+          placeholder: 'ipaddress'
+        }
+      ]
+    });
+    await alert.present();
+
   }
 }

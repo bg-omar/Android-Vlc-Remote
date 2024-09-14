@@ -10,7 +10,24 @@ import {NavigationEnd, Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
 import {AccountPage, User} from "../account/account";
 import { Storage } from '@ionic/storage-angular';
+import { Renderer2} from '@angular/core';
+import "jquery";
+import {VlcPopoverPage} from "./vlc-popover";
+import {
+  AlertController,
+  ModalController,
+  ToastController
+} from "@ionic/angular";
+import {Element} from "@angular/compiler";
 
+import {GetResult} from "@capacitor/preferences";
+import {ConferenceData} from "../../providers/conference-data";
+
+import {UserData} from "../../providers/user-data";
+import Echo from './echo-plugin';
+
+declare var $: JQueryStatic;
+declare var jQuery: JQueryStatic;
 
 
 @Component({
@@ -31,7 +48,14 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
     public storageServive: StorageService,
     public router: Router,
     public routerOutlet: IonRouterOutlet,
-    public config: Config
+    public config: Config,
+    private renderer: Renderer2,
+    public alertCtrl: AlertController,
+    public confData: ConferenceData,
+    public modalCtrl: ModalController,
+    public toastCtrl: ToastController,
+    public user: UserData,
+
   ) { }
 
   // This lifecycle method will be triggered when the Home page becomes active
@@ -108,6 +132,14 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
       // Set buttonText to matchedText if it's valid, otherwise fallback to frameName
     }
     return matchedText;
+  }
+
+  async presentPopover(event: Event) {
+    const popover = await this.popoverCtrl.create({
+      component: VlcPopoverPage,
+      event
+    });
+    await popover.present();
   }
 }
 

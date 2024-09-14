@@ -43,6 +43,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js"
             ],
             "vendorChunk": true,
@@ -100,12 +101,12 @@
               "progress": false
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app:build",
+            "browserTarget": "vlc-remote:build",
             "disableHostCheck": true
           },
           "configurations": {
@@ -169,13 +170,13 @@
         "e2e": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "app:serve",
+            "devServerTarget": "vlc-remote:serve",
             "watch": true,
             "headless": false
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app:serve:production"
+              "devServerTarget": "vlc-remote:serve:production"
             },
             "ci": {
               "watch": false,
@@ -192,11 +193,11 @@
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "app:serve"
+            "devServerTarget": "vlc-remote:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "app:serve:production"
+              "devServerTarget": "vlc-remote:serve:production"
             }
           }
         },
@@ -210,14 +211,14 @@
         "ct": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "app:serve",
+            "devServerTarget": "vlc-remote:serve",
             "watch": true,
             "headless": false,
             "testingType": "component"
           },
           "configurations": {
             "development": {
-              "devServerTarget": "app:serve:development"
+              "devServerTarget": "vlc-remote:serve:development"
             }
           }
         }
@@ -230,7 +231,8 @@
       "@angular-eslint/schematics",
       "@schematics/angular"
     ],
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@ionic/angular-toolkit"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

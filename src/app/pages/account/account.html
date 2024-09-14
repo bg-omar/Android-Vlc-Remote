@@ -8,6 +8,15 @@
 </ion-header>
 
 <ion-content>
+<!--  <ion-list inset>-->
+<!--    <ion-item (click)="updatePicture()">Update Picture</ion-item>-->
+<!--    <ion-item (click)="changeUsername()">Change Username</ion-item>-->
+<!--    <ion-item (click)="changePassword()">Change Password</ion-item>-->
+<!--    <ion-item (click)="changeipaddress()">ipaddress</ion-item>-->
+<!--    <ion-item (click)="changevlcpassword()">vlcpassword</ion-item>-->
+<!--    <ion-item (click)="support()">Support</ion-item>-->
+<!--    <ion-item (click)="logout()">Logout</ion-item>-->
+<!--  </ion-list>-->
 
     <div class="data">
       <ion-badge color="tertiary">
@@ -33,9 +42,10 @@
 
         <ion-card-content>
       <ion-list>
+
         <ion-item>
           <ion-badge color="secondary" aria-label="ipAddress"></ion-badge>
-          <ion-input type="text"  [helperText]="'x:port    x = 192.168.2.x:8080 '" [placeholder]="'x:port    x = 192.168.2.x:8080 '" [(ngModel)]="configForm.ipAddress"></ion-input>
+          <ion-input type="text"  [helperText]="'x:port    x = 192.168.2.x:8080 '" [placeholder]="'2:8080'" [(ngModel)]="configForm.ipAddress"></ion-input>
         </ion-item>
       </ion-list>
           <ion-button class="butt" (click)="setJson(1)">Add</ion-button>
