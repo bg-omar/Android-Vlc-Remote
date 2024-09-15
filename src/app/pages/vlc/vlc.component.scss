@@ -39,15 +39,15 @@ div:hover {
 
 .clearfix::after{
   content:" ";
-  display:inline-block;
+  display:block;
   clear:both;
 }
 .frame-holder {
-  display: inline-grid;
+  display: inline-block;
 
   app-iframe {
     position: relative;
-    display: contents;
+    display: inline-flex;
     transition: opacity 1s ease-out;
     min-width: 450px;
     min-height: 350px;

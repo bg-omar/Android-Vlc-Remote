@@ -68,11 +68,10 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   toggle($event: User) {
-    console.log("$event: ", $event);
     this.vlcdata.find(value => {
       if (value.ipAddress === $event.ipAddress) value.hide = !value.hide;
     })
-
+    console.log("$event: ", $event);
   }
 
   async getJson() {
@@ -86,14 +85,6 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.getJson();
-
-    // Listen for router navigation events
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Re-run the initialization logic when navigating back to this component
-        this.getJson();
-      }
-    });
   }
 
   // This method will be triggered whenever @Input() properties change
@@ -111,25 +102,19 @@ export class VlcComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     // Unsubscribe to avoid memory leaks
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
-    }
+
   }
 
   getPcName(buttenName: string): string {
-    // If buttonText is not defined, use the part of frameName that matches the port or default to frameName
-
     const pcMatch = buttenName.match(/\d+\.\d+\.\d+\.(\d+)/);  // Matches the last octet
     const portMatch = buttenName.match(/:(\d{4})/);  // Matches the first two digits of the port (81)
 // Extract values if matches are found
     const pc = pcMatch ? pcMatch[1] : null;
     const port = portMatch ? portMatch[1].slice(-2) : null;
+
     let matchedText;
     if (pc && port) {
-      // Combine pc and port into matchedText
       matchedText = pc + ': ' + port;
-
-      // Set buttonText to matchedText if it's valid, otherwise fallback to frameName
     }
     return matchedText;
   }

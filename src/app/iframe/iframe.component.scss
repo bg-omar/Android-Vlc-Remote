@@ -3,6 +3,10 @@
 ion-badge {
   margin: 5px;
   span { margin: 0 5px}
+  background-color: #f0f;
+  &.frame-hidden {
+    background-color: #505;
+  }
 }
 iframe {
   display: inline-flex;
@@ -16,6 +20,7 @@ iframe {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
   animation-duration: 1s;
+
   &.is-hidden {
     display: none;
   }

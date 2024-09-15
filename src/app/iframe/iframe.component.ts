@@ -17,7 +17,15 @@ import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-iframe',
-  templateUrl: './iframe.component.html',
+  template: `
+    <iframe #myFrame
+            class="col-xs-6 col-sm-5 col-md-4"
+            width="auto" height="auto" frameBorder="0"
+            [id]="frameName"
+            [ngClass]="{'is-hidden': hideFrame}"
+            [src]="urlSafe"></iframe>
+    <ng-content></ng-content>
+  `,
   styleUrls: ['./iframe.component.scss'],
   imports: [
     NgClass
@@ -29,7 +37,7 @@ export class IframeComponent implements OnInit, AfterViewInit{
 
   @Input() frameName: string = "";
   @Input() url: string = "http://127.0.0.1:8080";
-  @Input() hideFrame: boolean = false;
+  @Input() hideFrame: boolean;
   urlSafe: SafeResourceUrl;
 
 
