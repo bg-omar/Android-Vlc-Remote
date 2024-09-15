@@ -2,16 +2,15 @@ package com.omariskandarani.vlcremote.plugin;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.getcapacitor.BridgeActivity;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.Plugin;
-import com.getcapacitor.annotation.Permission;
 
 @CapacitorPlugin(name = "SharedPrefsPlugin")
-public class SharedPrefsPlugin extends Plugin {
+public class SharedPrefsPluginPlugin extends Plugin {
 
   @PluginMethod
   public void getPreference(PluginCall call) {

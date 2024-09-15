@@ -21,10 +21,10 @@ public class MainActivity extends BridgeActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.registerPlugin(getJsonPlugin.class);
-    this.registerPlugin(SharedPrefsPlugin.class);
+    this.registerPlugin(SharedPrefsPluginPlugin.class);
     // Initialize the plugin
     getBridge().getPlugin(String.valueOf(getJsonPlugin.class));
-    getBridge().getPlugin(String.valueOf(SharedPrefsPlugin.class));
+
 
     // Enable cookies
     CookieManager.getInstance().setAcceptCookie(true);
