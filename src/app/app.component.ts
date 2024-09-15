@@ -81,7 +81,6 @@ export class AppComponent implements OnInit {
       return  await Preferences.get({ key: 'pass' });
     };
 
-
     const setDefaultConfig = async () => {
       if (!this.passvalue) {
         this.passvalue = prompt('Please enter your VLC password: ', '') || '1z2x';
@@ -106,38 +105,18 @@ export class AppComponent implements OnInit {
 
     getConfig().then(r => checkConfig(r) );
 
-    storePassValue().then(r => retrievePassValue());
-    retrievePassValue().then(r => console.log("Value: ", r));
-
-    async function storePassValue() {
-      if (Capacitor.getPlatform() === 'android') {
-        await SharedPrefsPlugin.setPreference({
-          key: 'pass',
-          value: 'your_password_value'
-        });
-      } else {
-        console.log("SharedPrefsPlugin is not available");
-      }
-    }
-
-    async function retrievePassValue() {
-      if (Capacitor.getPlatform() === 'android') {
+    if (Capacitor.getPlatform() === 'android') {
+      retrievePassValue().then(r => console.log("Value: ", r));
+      async function retrievePassValue() {
         try {
-          // Only run this code on Android
-          const result = await SharedPrefsPlugin.getPreference({ key: 'pass' });
+          const result = await SharedPrefsPlugin.getPreference({key: 'pass'});
           console.log('Pass value from Android:', result.value);
-        } catch (error) {
+        }
+        catch (error) {
           console.error('Error fetching pass value:', error);
         }
-      } else {
-        // Handle web or other platforms
-        console.log('Running on web or non-Android platform');
-        // You can provide a fallback value or handle it as you prefer
       }
-
-
     }
-
   }
 
   // Check/uncheck the toggle and update the theme based on isDark
