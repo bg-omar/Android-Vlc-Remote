@@ -37,7 +37,8 @@
     "ionic enable cap": "npx ionic integrations enable capacitor",
     "ionic cap add android": "npx ionic capacitor add android",
     "add android": "npx cap add android",
-    "add ois": "npx cap add ois"
+    "add ois": "npx cap add ois",
+    "update cap android": "npx ionic capacitor update android"
   },
   "private": true,
   "dependencies": {

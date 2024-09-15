@@ -4,12 +4,25 @@ img {
   border-radius: 50%;
 }
 
-.storage-buttoins{
-  gap: 15px;
-  .butt{
-    margin: 15px;
-  }
+
+ion-item {
+  display: grid;
+  justify-content: center;
 }
+
+ion-input{
+  margin-left: 20px;
+}
+
+.butt{
+  gap: 15px;
+}
+
 .data {
   font-size: large;
+}
+
+.list-md.list-inset {
+  margin: 0;
+  padding: 0;
 }

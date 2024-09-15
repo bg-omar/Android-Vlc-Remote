@@ -1,31 +1,26 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-
-import { AlertController } from '@ionic/angular';
-
+import {AlertController, ItemReorderEventDetail} from '@ionic/angular';
 import { UserData } from '../../providers/user-data';
-
 import {IonicModule, NavController} from '@ionic/angular';
 import {
   FormGroup,
   FormControl,
-  FormArray,
   FormBuilder,
-  Validators,
   ReactiveFormsModule,
   FormsModule, ValidatorFn, AbstractControl, ValidationErrors
 } from '@angular/forms';
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
-import {jsonData, StorageService} from "../../services/storage.service";
-import { Storage } from '@ionic/storage';
-import {GetResult, Preferences} from "@capacitor/preferences";
+import {StorageService} from "../../services/storage.service";
+import {Preferences} from "@capacitor/preferences";
 
 export interface pass {
   vlcPass: string,
 }
 
 export interface User {
+  icon?: string;
   buttenName?: string;
   hide: boolean;
   ipAddress: string;
@@ -174,30 +169,5 @@ export class AccountPage implements OnInit {
       const valid = regex.test(ipAddress.value);
       return valid ? null : {ipAddress: valid}
     };
-  }
-  foods = [
-    {
-      id: 1,
-      name: 'Apples',
-      type: 'fruit',
-    },
-    {
-      id: 2,
-      name: 'Carrots',
-      type: 'vegetable',
-    },
-    {
-      id: 3,
-      name: 'Cupcakes',
-      type: 'dessert',
-    },
-  ];
-
-  compareWith(o1, o2) {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
-  }
-
-  handleChange(ev) {
-    console.log('Current value:', JSON.stringify(ev.target.value));
   }
 }

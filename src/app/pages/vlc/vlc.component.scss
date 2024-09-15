@@ -69,13 +69,7 @@ div:hover {
     }
   }
 }
-.div-scrollable {
-  font-family: 'Arial', cursive;
-  font-weight: 600;
-  background-color: #fde4fa;
 
-  .remote {
-    width: max-content;
 
     .storage-buttoins{
       gap: 15px;
@@ -86,8 +80,7 @@ div:hover {
     .data {
       font-size: large;
     }
-  }
-}
+
 
 
 @keyframes fade-in {
