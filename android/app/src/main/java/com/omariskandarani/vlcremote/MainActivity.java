@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.BridgeWebViewClient;
 
+
 import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
@@ -19,25 +20,30 @@ public class MainActivity extends BridgeActivity {
     @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-      // Initialize the plugin
-      getBridge().getPlugin(String.valueOf(getJsonPlugin.class));
+    this.registerPlugin(getJsonPlugin.class);
+    this.registerPlugin(SharedPrefsPlugin.class);
+    // Initialize the plugin
+    getBridge().getPlugin(String.valueOf(getJsonPlugin.class));
+    getBridge().getPlugin(String.valueOf(SharedPrefsPlugin.class));
 
     // Enable cookies
     CookieManager.getInstance().setAcceptCookie(true);
 
     // Get WebView settings
     WebView webView = this.getBridge().getWebView();
+
     webView.setWebViewClient(new BridgeWebViewClient(bridge){
       @Override
       public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
 
-          SharedPreferences sharedPreferences = getSharedPreferences("pass", MODE_PRIVATE);
-          String value = sharedPreferences.getString("pass", "pass not fetched");
-          System.out.print(": -------------------------------------> ");
-          System.out.println(value);
+        // Access SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        String passValue = sharedPreferences.getString("pass", "pass not fetched");
 
-          handler.proceed("", "1z2x");
+        // Print or use the retrieved value
+        System.out.println("Pass value from SharedPreferences: " + passValue);
+
+          handler.proceed("", passValue);
 
       }
     });
@@ -46,20 +52,8 @@ public class MainActivity extends BridgeActivity {
     // Enable JavaScript (if needed)
     webSettings.setJavaScriptEnabled(true);
 
-    registerPlugin(EchoPlugin.class);
 
 
-  }
 
-
-  public void onresume() {
-    super.onResume();
-    WebView webview = this.getBridge().getWebView();
-    webview.setWebViewClient(new BridgeWebViewClient(bridge){
-      @Override
-      public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
-        handler.proceed("", "1z2x");
-      }
-    });
   }
 }

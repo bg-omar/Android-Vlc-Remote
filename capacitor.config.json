@@ -7,9 +7,12 @@
     "cleartext": true
   },
   "plugins": {
+    "SharedPrefsPlugin": {
+
+    },
     "Preferences":  {
       "pass": {
-        "pass": "Empty Password"
+        "value": "Empty Password"
       }
     },
     "CapacitorHttp": {

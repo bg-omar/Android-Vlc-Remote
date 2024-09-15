@@ -14,6 +14,8 @@ import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
 import {StorageService} from "../../services/storage.service";
 import {Preferences} from "@capacitor/preferences";
+import {SharedPrefsPlugin} from "shared-prefs-plugin/src";
+import {Capacitor} from "@capacitor/core";
 
 export interface pass {
   vlcPass: string,
@@ -151,15 +153,29 @@ export class AccountPage implements OnInit {
 
   async getPass(x) {
     if (x === 1) {
-      const result = await Preferences.get({key: 'pass'})
-      this.vlcPass = result.value || 'no password'
+      if (Capacitor.getPlatform() === 'android') {
+        const result = await SharedPrefsPlugin.getPreference({ key: 'pass' });
+        this.vlcPass = result.value || 'no password'
+        console.log('Pass value from Android:', result.value);
+      } else {
+        const result = await Preferences.get({key: 'pass'})
+        this.vlcPass = result.value || 'no password'
+        console.log('Pass value from Web:', result.value);
+      }
     }
 
     if (x === 2) {
-      await Preferences.set({
-        key: 'pass',
-        value: this.vlcPass || '1z2x',
-      });
+      if (Capacitor.getPlatform() === 'android') {
+        await SharedPrefsPlugin.setPreference({
+          key: 'pass',
+          value: this.vlcPass || '1z2x'
+        });
+      } else {
+        await Preferences.set({
+          key: 'pass',
+          value: this.vlcPass || '1z2x',
+        });
+      }
     }
   }
 

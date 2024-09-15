@@ -3,7 +3,8 @@ import { SwUpdate } from '@angular/service-worker';
 import { ToastController } from '@ionic/angular';
 import {GetResult, Preferences} from '@capacitor/preferences';
 import { Storage } from '@ionic/storage-angular';
-
+import {SharedPrefsPlugin} from "shared-prefs-plugin/src";
+import {Capacitor} from "@capacitor/core";
 
 
 
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-
+    console.log(SharedPrefsPlugin);
     this.swUpdate.versionUpdates.subscribe(async res => {
       const toast = await this.toastCtrl.create({
         message: 'Update available!',
@@ -93,17 +94,50 @@ export class AppComponent implements OnInit {
       }
     };
 
-    function checkConfig(r: GetResult) {
+    function checkConfig(r) {
       console.log("checking passvalue")
       console.log(r)
-      if (r.value == null) {
+      if (r == null) {
         setDefaultConfig().then(r => getConfig());
       } else {
-        console.log("Value: ", r.value)
+        console.log("Value: ", r)
       }
     }
 
-    getConfig().then(r => checkConfig(r));
+    getConfig().then(r => checkConfig(r) );
+
+    storePassValue().then(r => retrievePassValue());
+    retrievePassValue().then(r => console.log("Value: ", r));
+
+    async function storePassValue() {
+      if (Capacitor.getPlatform() === 'android') {
+        await SharedPrefsPlugin.setPreference({
+          key: 'pass',
+          value: 'your_password_value'
+        });
+      } else {
+        console.log("SharedPrefsPlugin is not available");
+      }
+    }
+
+    async function retrievePassValue() {
+      if (Capacitor.getPlatform() === 'android') {
+        try {
+          // Only run this code on Android
+          const result = await SharedPrefsPlugin.getPreference({ key: 'pass' });
+          console.log('Pass value from Android:', result.value);
+        } catch (error) {
+          console.error('Error fetching pass value:', error);
+        }
+      } else {
+        // Handle web or other platforms
+        console.log('Running on web or non-Android platform');
+        // You can provide a fallback value or handle it as you prefer
+      }
+
+
+    }
+
   }
 
   // Check/uncheck the toggle and update the theme based on isDark
