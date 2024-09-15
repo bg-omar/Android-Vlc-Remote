@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
-
-import { MenuController, Platform, ToastController } from '@ionic/angular';
-
-import { StatusBar } from '@capacitor/status-bar';
-import { SplashScreen } from '@capacitor/splash-screen';
+import { ToastController } from '@ionic/angular';
 import {GetResult, Preferences} from '@capacitor/preferences';
-
-import { UserData } from './providers/user-data';
 import { Storage } from '@ionic/storage-angular';
 
 
@@ -33,17 +26,13 @@ export class AppComponent implements OnInit {
       icon: 'people'
     }
   ];
-  loggedIn = false;
+
   dark = true;
   title = this.appPages
   passvalue: string;
 
   constructor(
-    private menu: MenuController,
-    private platform: Platform,
-    private router: Router,
     private storage: Storage,
-    private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
   ) {
@@ -54,8 +43,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    await this.checkLoginStatus();
-    this.listenForLoginEvents();
 
     this.swUpdate.versionUpdates.subscribe(async res => {
       const toast = await this.toastCtrl.create({
@@ -117,44 +104,6 @@ export class AppComponent implements OnInit {
     }
 
     getConfig().then(r => checkConfig(r));
-  }
-
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn => {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
-
-  updateLoggedInStatus(loggedIn: boolean) {
-    setTimeout(() => {
-      this.loggedIn = loggedIn;
-    }, 300);
-  }
-
-  listenForLoginEvents() {
-    window.addEventListener('user:login', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:signup', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:logout', () => {
-      this.updateLoggedInStatus(false);
-    });
-  }
-
-  logout() {
-    this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
-    });
-  }
-
-  openTutorial() {
-    this.menu.enable(false);
-    this.storage.set('ion_did_tutorial', false);
-    this.router.navigateByUrl('/tutorial');
   }
 
   // Check/uncheck the toggle and update the theme based on isDark
