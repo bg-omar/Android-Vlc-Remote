@@ -2,7 +2,6 @@ package com.omariskandarani.vlcremote.plugin;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
@@ -18,12 +17,8 @@ public class SharedPrefsPluginPlugin extends Plugin {
     Context context = getContext();
     SharedPreferences sharedPreferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
     String value = sharedPreferences.getString(key, "pass not fetched");
-
-    // Create a JSObject to return the value
     JSObject result = new JSObject();
     result.put("value", value);
-
-    // Resolve the call with the JSObject
     call.resolve(result);
   }
   @PluginMethod

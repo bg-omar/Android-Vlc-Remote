@@ -2,18 +2,12 @@
   "appId": "com.omariskandarani.vlcremote",
   "appName": "vlc-remote",
   "webDir": "www",
-  "bundledWebRuntime": false,
   "server": {
     "cleartext": true
   },
   "plugins": {
     "SharedPrefsPlugin": {
 
-    },
-    "Preferences":  {
-      "pass": {
-        "value": "Empty Password"
-      }
     },
     "CapacitorHttp": {
       "enabled": true
