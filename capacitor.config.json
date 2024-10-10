@@ -3,12 +3,10 @@
   "appName": "vlc-remote",
   "webDir": "www",
   "server": {
-    "cleartext": true
+    "androidScheme": "https"
   },
   "plugins": {
-    "SharedPrefsPlugin": {
-
-    },
+    "SharedPrefsPlugin": {},
     "CapacitorHttp": {
       "enabled": true
     },
@@ -27,5 +25,3 @@
     }
   }
 }
-
-
